@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ITFIT VAULT • Mobilita – 16 cviků + 28denní program</title>
+  <meta name="description" content="Denní 15min mobilita: 16 základních cviků, 28denní program, video návody.">
+  <style>
+    :root{
+      --bg:#050b08;
+      --panel:#0b1410;
+      --panel2:#0e1a14;
+      --text:#e8fff0;
+      --muted:#a9cbb6;
+      --border:rgba(0,255,65,.18);
+      --accent:#00ff41;
+      --accent2:#00d936;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(0,255,65,.14), transparent 60%),
+        radial-gradient(900px 500px at 85% 0%, rgba(0,217,54,.10), transparent 55%),
+        linear-gradient(180deg, #040806, #050b08 35%, #040806);
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1120px; margin:0 auto; padding:22px 18px 44px}
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:14px 16px; border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(0,255,65,.06), rgba(0,0,0,.0));
+      border-radius:18px; box-shadow:var(--shadow);
+      position:sticky; top:0; backdrop-filter: blur(10px);
+      z-index:10;
+    }
+    .brand{display:flex; align-items:center; gap:10px}
+    .dot{
+      width:12px; height:12px; border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 18px rgba(0,255,65,.6);
+    }
+    .brand b{letter-spacing:.5px}
+    .mini{color:var(--muted); font-size:13px}
+    .hero{margin:18px 0 10px}
+    h1{
+      margin:0 0 8px; line-height:1.15;
+      font-size:clamp(28px, 3.2vw, 40px);
+      letter-spacing:.2px;
+    }
+    .lead{margin:0; color:var(--muted); font-size:17px}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border:1px solid var(--border);
+      border-radius:999px; font-size:12px; color:var(--muted);
+      background:rgba(0,255,65,.04);
+      box-shadow:0 0 0 1px rgba(0,255,65,.06) inset;
+      white-space:nowrap;
+    }
+
+    .grid2{display:grid; gap:16px; grid-template-columns:repeat(2, minmax(0,1fr)); margin-top:16px}
+    @media (max-width:900px){ .grid2{grid-template-columns:1fr} }
+    .panel{
+      background:linear-gradient(180deg, rgba(0,255,65,.06), rgba(0,0,0,.0));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:14px 14px;
+      box-shadow:var(--shadow);
+    }
+    .panel h2{margin:0 0 8px; font-size:20px}
+    .panel h3{margin:0 0 6px; font-size:16px}
+    .section{margin-top:22px}
+    .section h2{
+      margin:0 0 10px;
+      font-size:clamp(20px, 2.2vw, 26px);
+      letter-spacing:.2px;
+    }
+
+    /* TOC */
+    .toc ul{margin:8px 0 0; padding-left:18px}
+    .toc li{margin:5px 0}
+    .toc a{color:var(--text)}
+    .toc a:hover{color:var(--accent); text-decoration:none}
+
+    /* callout */
+    .callout{
+      border:1px solid rgba(0,255,65,.22);
+      background:rgba(0,255,65,.06);
+      border-radius:14px;
+      padding:12px 14px;
+      color:var(--muted);
+      margin-top:14px;
+    }
+    .callout b{color:var(--text)}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .chip{
+      padding:6px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(0,255,65,.04);
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    /* lists */
+    ul{color:var(--muted)}
+    li{margin:6px 0}
+    .muted{color:var(--muted)}
+    .small{font-size:13px; color:var(--muted)}
+
+    /* Table (program) */
+    table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:12px; border:1px solid var(--border)}
+    th,td{padding:10px 10px; border-bottom:1px solid var(--border); vertical-align:top; font-size:13px}
+    th{background:rgba(0,255,65,.06); text-align:left; color:var(--text)}
+    .day{font-weight:700; color:var(--text); margin-bottom:6px}
+    td ul{margin:6px 0 0 18px; padding:0}
+    td li{margin:3px 0}
+
+    /* Quick links to exercises */
+    .quick{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:10px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(0,255,65,.05);
+      color:var(--text);
+      font-weight:700;
+      letter-spacing:.2px;
+      text-decoration:none;
+      box-shadow:0 0 0 1px rgba(0,255,65,.06) inset;
+    }
+    .btn:hover{
+      background:rgba(0,255,65,.09);
+      text-decoration:none;
+      border-color:rgba(0,255,65,.35);
+    }
+
+    /* Details grid */
+    .details-grid{display:grid; gap:16px; grid-template-columns:repeat(2, minmax(0,1fr))}
+    @media (max-width:860px){ .details-grid{grid-template-columns:1fr} }
+    details{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 12px;
+      background:linear-gradient(180deg, rgba(0,255,65,.05), rgba(0,0,0,0));
+      box-shadow:var(--shadow);
+    }
+    summary{
+      cursor:pointer; list-style:none; font-weight:800; color:var(--text);
+      letter-spacing:.2px;
+    }
+    summary::-webkit-details-marker{display:none}
+    .acc-body{margin-top:10px; color:var(--muted)}
+    .acc-body h4{margin:10px 0 8px; color:var(--text); font-size:14px}
+    .pill{
+      display:inline-block; margin:0 8px 8px 0;
+      padding:4px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(0,255,65,.04);
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    /* Video */
+    .video{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;
+      background:#000;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid rgba(0,255,65,.20);
+      margin:8px 0 10px;
+    }
+    .video iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+
+    /* Footer */
+    .footer{
+      margin:28px 0 0;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+    hr{border:none; border-top:1px solid var(--border); margin:18px 0}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <b>ITFIT VAULT</b>
+          <div class="mini">Mobilita • 16 cviků • 28 dní</div>
+        </div>
+      </div>
+      <span class="badge">✅ Jen videa • bez náhledů</span>
+    </div>
+
+    <header class="hero" id="top">
+      <h1>Mobilita (28 dní)</h1>
+      <p class="lead">Denní „hygiena pohybu“: krátce, pravidelně, bez bolesti. Cíl je funkční tělo, méně ztuhlosti a lepší pohyb do tréninku i běžného dne.</p>
+
+      <div class="callout">
+        <b>Pravidlo:</b> kvalita &gt; objem. 15 minut denně porazí jednu nárazovou hodinu týdně.
+        <div class="chips">
+          <span class="chip">kyčle</span>
+          <span class="chip">hrudník</span>
+          <span class="chip">kotníky</span>
+          <span class="chip">střed těla</span>
+          <span class="chip">dech</span>
+        </div>
+      </div>
+
+      <nav class="panel toc section" aria-label="Obsah">
+        <h2>Obsah</h2>
+        <ul>
+          <li><a href="#uvod">Slovo úvodem</a></li>
+          <li><a href="#trenink">Trénink (jak to jet)</a></li>
+          <li><a href="#program">28denní program</a></li>
+          <li><a href="#cviky">Seznam cviků (rychlé odkazy)</a></li>
+          <li><a href="#detaily">Detaily cviků &amp; videa</a></li>
+          <li><a href="#jak-dal">Jak pokračovat po 28 dnech</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Úvod -->
+      <section class="section" id="uvod">
+        <h2>Slovo úvodem</h2>
+        <div class="grid2">
+          <div class="panel">
+            <h3>O co jde</h3>
+            <p class="muted">Tohle je <b>úvodní vstup</b> do mobility – základní, bezpečný a naučný. Progrese přidáme později. Teď chceme vytvořit návyk.</p>
+          </div>
+          <div class="panel">
+            <h3>Pro koho</h3>
+            <ul>
+              <li>sedavá práce, sport, turistika, posilka… prostě „normální život“</li>
+              <li>pro začátečníky i pokročilé (jen škáluješ rozsah/tempo)</li>
+              <li>pro každého, kdo chce regenerovat chytře, ne déle</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>S čím to pomůže</h3>
+            <ul>
+              <li>mobilita kyčlí, hrudní páteře a kotníků</li>
+              <li>stabilita středu a pánve (lepší dřep/hinge/kyčelní práce)</li>
+              <li>méně ztuhlosti ráno, rychlejší zahřátí před tréninkem</li>
+              <li>lepší držení těla a dechový vzor</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Jak poznáš, že to děláš správně</h3>
+            <ul>
+              <li>bez ostré bolesti (mírné „natažení“ je OK)</li>
+              <li>dech je klidný (ideálně nosem)</li>
+              <li>po skončení se cítíš „lehčí", ne rozbitý</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trénink -->
+      <section class="section" id="trenink">
+        <h2>Trénink (jak to jet)</h2>
+        <div class="grid2">
+          <div class="panel">
+            <h3>Základní nastavení (doporučeno)</h3>
+            <ul>
+              <li><b>40 s práce / 20 s odpočinek</b></li>
+              <li>7 cviků → <b>1 min pauza</b> → znovu 7 cviků</li>
+              <li>Celkem ~15 min</li>
+              <li>Intenzita: RPE 4–6 (střední, kontrolovaný dech)</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Pravidla provedení</h3>
+            <ul>
+              <li>Tempo: pomalu dolů (2–3 s), nahoře pauza 1–2 s</li>
+              <li>Rozsah: jen tam, kde držíš kontrolu</li>
+              <li>Výdech = „žebra dolů“ (chrání bedra)</li>
+              <li>Když se zadýcháš: prodluž pauzu na 30–40 s</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Silnější varianta</h3>
+            <ul>
+              <li><b>45 s / 25 s</b></li>
+              <li>2 kola + 1 min pauza ≈ 17:20</li>
+              <li>Použij až když technika drží bez kompenzací</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Jak škálovat (vyber 1 věc)</h3>
+            <ul>
+              <li><b>+ čas</b>: 40/20 → 45/25</li>
+              <li><b>+ tempo</b>: delší excentrika / pauza v konci</li>
+              <li><b>+ série</b>: přidej 3. kolo</li>
+              <li><b>+ varianta</b>: těžší verze cviku (až když je základ čistý)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Program -->
+      <section class="section" id="program">
+        <h2>28denní program (4 týdny)</h2>
+        <p class="small">Základní trio <b>(Hip raise, Dead bug, Výpad s rotací)</b> je každý den. Ostatní cviky se rotují pro vyváženost.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Týden 1</th>
+              <th>Týden 2</th>
+              <th>Týden 3</th>
+              <th>Týden 4</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="day">Den 1</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Paže nad hlavu</li><li>Birddog</li><li>Pozice dítěte</li><li>Úklon do strany</li></ul></td>
+              <td><div class="day">Den 1</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Pozice dítěte</li><li>Úklon do strany</li><li>Fire Hydrant</li><li>Walk the dog</li></ul></td>
+              <td><div class="day">Den 1</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Fire Hydrant</li><li>Walk the dog</li><li>Forward Fold</li><li>Poloviční kobylka</li></ul></td>
+              <td><div class="day">Den 1</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Forward Fold</li><li>Poloviční kobylka</li><li>Cobra</li><li>Pigeon Pose</li></ul></td>
+            </tr>
+
+            <tr>
+              <td><div class="day">Den 2</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Fire Hydrant</li><li>Walk the dog</li><li>Forward Fold</li><li>Poloviční kobylka</li></ul></td>
+              <td><div class="day">Den 2</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Forward Fold</li><li>Poloviční kobylka</li><li>Cobra</li><li>Pigeon Pose</li></ul></td>
+              <td><div class="day">Den 2</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Cobra</li><li>Pigeon Pose</li><li>Kolena k hrudi</li><li>Poloviční Pluh</li></ul></td>
+              <td><div class="day">Den 2</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Kolena k hrudi</li><li>Poloviční Pluh</li><li>Rotace vleže</li><li>Paže nad hlavu</li></ul></td>
+            </tr>
+
+            <tr>
+              <td><div class="day">Den 3</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Cobra</li><li>Pigeon Pose</li><li>Kolena k hrudi</li><li>Poloviční Pluh</li></ul></td>
+              <td><div class="day">Den 3</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Kolena k hrudi</li><li>Poloviční Pluh</li><li>Rotace vleže</li><li>Paže nad hlavu</li></ul></td>
+              <td><div class="day">Den 3</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Rotace vleže</li><li>Paže nad hlavu</li><li>Birddog</li><li>Pozice dítěte</li></ul></td>
+              <td><div class="day">Den 3</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Birddog</li><li>Pozice dítěte</li><li>Úklon do strany</li><li>Fire Hydrant</li></ul></td>
+            </tr>
+
+            <tr>
+              <td><div class="day">Den 4</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Rotace vleže</li><li>Paže nad hlavu</li><li>Birddog</li><li>Pozice dítěte</li></ul></td>
+              <td><div class="day">Den 4</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Birddog</li><li>Pozice dítěte</li><li>Úklon do strany</li><li>Fire Hydrant</li></ul></td>
+              <td><div class="day">Den 4</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Úklon do strany</li><li>Fire Hydrant</li><li>Walk the dog</li><li>Forward Fold</li></ul></td>
+              <td><div class="day">Den 4</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Walk the dog</li><li>Forward Fold</li><li>Poloviční kobylka</li><li>Cobra</li></ul></td>
+            </tr>
+
+            <tr>
+              <td><div class="day">Den 5</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Úklon do strany</li><li>Fire Hydrant</li><li>Walk the dog</li><li>Forward Fold</li></ul></td>
+              <td><div class="day">Den 5</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Walk the dog</li><li>Forward Fold</li><li>Poloviční kobylka</li><li>Cobra</li></ul></td>
+              <td><div class="day">Den 5</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Poloviční kobylka</li><li>Cobra</li><li>Pigeon Pose</li><li>Kolena k hrudi</li></ul></td>
+              <td><div class="day">Den 5</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Pigeon Pose</li><li>Kolena k hrudi</li><li>Poloviční Pluh</li><li>Rotace vleže</li></ul></td>
+            </tr>
+
+            <tr>
+              <td><div class="day">Den 6</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Poloviční kobylka</li><li>Cobra</li><li>Pigeon Pose</li><li>Kolena k hrudi</li></ul></td>
+              <td><div class="day">Den 6</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Pigeon Pose</li><li>Kolena k hrudi</li><li>Poloviční Pluh</li><li>Rotace vleže</li></ul></td>
+              <td><div class="day">Den 6</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Poloviční Pluh</li><li>Rotace vleže</li><li>Paže nad hlavu</li><li>Birddog</li></ul></td>
+              <td><div class="day">Den 6</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Paže nad hlavu</li><li>Birddog</li><li>Pozice dítěte</li><li>Úklon do strany</li></ul></td>
+            </tr>
+
+            <tr>
+              <td><div class="day">Den 7</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Poloviční Pluh</li><li>Rotace vleže</li><li>Paže nad hlavu</li><li>Birddog</li></ul></td>
+              <td><div class="day">Den 7</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Paže nad hlavu</li><li>Birddog</li><li>Pozice dítěte</li><li>Úklon do strany</li></ul></td>
+              <td><div class="day">Den 7</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Pozice dítěte</li><li>Úklon do strany</li><li>Fire Hydrant</li><li>Walk the dog</li></ul></td>
+              <td><div class="day">Den 7</div><ul><li>Zvedání pánve</li><li>Mrtvý brouk</li><li>Nízký výpad s rotací</li><li>Fire Hydrant</li><li>Walk the dog</li><li>Forward Fold</li><li>Poloviční kobylka</li></ul></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout" style="margin-top:14px">
+          <b>Poznámka:</b> Tohle je šablona pro týden — každý týden (1–4) si jedeš stejných 7 dní podle svého aktuálního týdne.
+        </div>
+      </section>
+
+      <!-- Seznam cviků -->
+      <section class="section" id="cviky">
+        <h2>Seznam cviků (rychlé odkazy)</h2>
+        <p class="small">Klikni a stránka tě hodí přímo do detailu (akordeon se automaticky otevře).</p>
+        <div class="panel">
+          <div class="quick">
+            <a class="btn" href="#cvik-zvedani-panve">Zvedání pánve</a>
+            <a class="btn" href="#cvik-mrtvy-brouk">Mrtvý brouk</a>
+            <a class="btn" href="#cvik-nizky-vypad-rotace">Nízký výpad s rotací</a>
+            <a class="btn" href="#cvik-paze-nad-hlavu">Paže nad hlavu</a>
+            <a class="btn" href="#cvik-birddog">Birddog</a>
+            <a class="btn" href="#cvik-pozice-ditete">Pozice dítěte</a>
+            <a class="btn" href="#cvik-uklon-do-strany">Úklon do strany</a>
+            <a class="btn" href="#cvik-fire-hydrant">Fire Hydrant</a>
+            <a class="btn" href="#cvik-walk-the-dog">Walk the dog</a>
+            <a class="btn" href="#cvik-forward-fold">Forward Fold</a>
+            <a class="btn" href="#cvik-polovicni-kobylka">Poloviční kobylka</a>
+            <a class="btn" href="#cvik-cobra">Cobra</a>
+            <a class="btn" href="#cvik-pigeon">Pigeon Pose</a>
+            <a class="btn" href="#cvik-kolena-k-hrudi">Kolena k hrudi</a>
+            <a class="btn" href="#cvik-polovicni-pluh">Poloviční Pluh</a>
+            <a class="btn" href="#cvik-rotace-vleze">Rotace vleže</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Detaily -->
+      <section class="section" id="detaily">
+        <h2>Detaily cviků &amp; videa</h2>
+
+        <div class="details-grid">
+          <details id="cvik-zvedani-panve">
+            <summary>Zvedání pánve 🏋️‍♂️</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/vbjtnPWTsGU" title="Zvedání pánve" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> aktivace hýždí • stabilita pánve • úleva bedrům
+              <h4>Provedení</h4>
+              <ul>
+                <li>Leh na zádech, chodidla na šířku pánve, kolena cca 90°.</li>
+                <li>S výdechem stáhni žebra dolů a jemně podsad pánev.</li>
+                <li>Tlač paty do země a zvedni pánev do linie koleno–kyčel–rameno.</li>
+                <li>Nahoře 1–2 s podrž, pak kontrolovaně dolů.</li>
+              </ul>
+              <p><b>Dýchání:</b> výdech při zvedání, nádech dole nosem.</p>
+              <p><b>Chyby:</b> prohnutí v bedrech, kolena utíkají dovnitř, švih.</p>
+              <p><b>Časování:</b> 40/20 × 2</p>
+            </div>
+          </details>
+
+          <details id="cvik-mrtvy-brouk">
+            <summary>Mrtvý brouk 🐞</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/McgQ2OdSKLg" title="Mrtvý brouk" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> stabilita středu • kontrola žeber a beder
+              <h4>Provedení</h4>
+              <ul>
+                <li>Leh na zádech, ruce nad hrudníkem, kyčle/kolena 90°.</li>
+                <li>S výdechem žebra dolů, bedra jemně do podložky.</li>
+                <li>Střídej opačnou ruku a nohu, bez odlepování beder.</li>
+              </ul>
+              <p><b>Chyby:</b> odlepení beder, příliš velké páky, švih.</p>
+              <p><b>Časování:</b> 40/20 × 2</p>
+            </div>
+          </details>
+
+          <details id="cvik-nizky-vypad-rotace">
+            <summary>Nízký výpad s rotací 🔄</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/oqADEmUaOC8" title="Nízký výpad s rotací" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> kyčle • hrudní rotace • stabilita kolene/pánve
+              <h4>Provedení</h4>
+              <ul>
+                <li>Nízký výpad, zadní koleno na zemi, páteř dlouhá.</li>
+                <li>Jedna ruka opora, druhou otevírej do rotace.</li>
+                <li>Rotuj hrudníkem, pánev drž stabilní.</li>
+              </ul>
+              <p><b>Chyby:</b> rotace z beder, koleno padá dovnitř, propad pánve.</p>
+              <p><b>Časování:</b> 40/20 × 2</p>
+            </div>
+          </details>
+
+          <details id="cvik-paze-nad-hlavu">
+            <summary>Paže nad hlavu 💪</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/I_bDwhlSbf0" title="Paže nad hlavu" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> otevření ramen • bez kompenzace v bedrech
+              <h4>Provedení</h4>
+              <ul>
+                <li>Stoj, žebra dolů, pánev neutrálně.</li>
+                <li>Vzpažuj bez záklonu v bedrech.</li>
+                <li>Brada lehce zasunutá, dlouhá šíje.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2</p>
+            </div>
+          </details>
+
+          <details id="cvik-birddog">
+            <summary>Birddog 🐕</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/udTZbeCSM_w" title="Birddog" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> antirotace • stabilita středu v oporách
+              <h4>Provedení</h4>
+              <ul>
+                <li>Klek na čtyřech, páteř neutrálně.</li>
+                <li>Opačná ruka/noha do délky, pánev se nehýbe.</li>
+                <li>Vrať a vystřídej.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2</p>
+            </div>
+          </details>
+
+          <details id="cvik-pozice-ditete">
+            <summary>Pozice dítěte 👶</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/OoYFBfhQaXc" title="Pozice dítěte" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> uvolnění beder • dech do zadních žeber
+              <h4>Provedení</h4>
+              <ul>
+                <li>Sed na paty, trup vpřed, šíje volná.</li>
+                <li>Vnímej nádech do zadních žeber.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2 nebo drž 60–90 s</p>
+            </div>
+          </details>
+
+          <details id="cvik-uklon-do-strany">
+            <summary>Úklon do strany 🏊‍♂️</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/-F73hgqVgbw" title="Úklon do strany" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> laterální mobilita • mezižebří
+              <h4>Provedení</h4>
+              <ul>
+                <li>Široký stoj/boční výpad, páteř dlouhá.</li>
+                <li>Úklon trupu za horní paží, druhá ruka opora.</li>
+                <li>Vystřídej strany.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2</p>
+            </div>
+          </details>
+
+          <details id="cvik-fire-hydrant">
+            <summary>Fire Hydrant 🐕‍</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/4F6LkN4JxpA" title="Fire Hydrant" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> abduktory kyčlí • pánev bez rotace
+              <h4>Provedení</h4>
+              <ul>
+                <li>Klek na čtyřech, zpevni střed.</li>
+                <li>Koleno do strany bez otáčení pánve.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2</p>
+            </div>
+          </details>
+
+          <details id="cvik-walk-the-dog">
+            <summary>Walk the dog 🐕‍🦺</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/DmmiYxdAvt4" title="Walk the dog" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> lýtka • hamstringy • zadní řetězec
+              <h4>Provedení</h4>
+              <ul>
+                <li>Pozice střechy, střídavě pokládej paty.</li>
+                <li>Dlouhá záda, šíje volná.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2</p>
+            </div>
+          </details>
+
+          <details id="cvik-forward-fold">
+            <summary>Forward Fold 🙆</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/qQ_mPORZQuE" title="Forward Fold" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> hamstringy • zadní řetězec
+              <h4>Provedení</h4>
+              <ul>
+                <li>Předklon z kyčlí, klidně pokrč kolena.</li>
+                <li>Po výdechu povol tkáně, nespěchej do rozsahu.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2 nebo drž 60–90 s</p>
+            </div>
+          </details>
+
+          <details id="cvik-polovicni-kobylka">
+            <summary>Poloviční kobylka 🦗</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/tDOnG3CVapo" title="Poloviční kobylka" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> hýždě • zadní řetězec bez beder
+              <h4>Provedení</h4>
+              <ul>
+                <li>Leh na břiše, zvedej nohu „do dálky", ne do výšky.</li>
+                <li>Pánev klidná, bez švihu.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2</p>
+            </div>
+          </details>
+
+          <details id="cvik-cobra">
+            <summary>Cobra 🐍</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/TxEtuot8t_w" title="Cobra" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> hrudník • lehká extenze bez tlaku do beder
+              <h4>Provedení</h4>
+              <ul>
+                <li>Vytahuj se „nahoru", ne dozadu.</li>
+                <li>Ramena dolů, šíje dlouhá.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2 nebo drž 20–40 s</p>
+            </div>
+          </details>
+
+          <details id="cvik-pigeon">
+            <summary>Pigeon Pose 🕊️</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/xt8qn46AUHY" title="Pigeon Pose" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> kyčle • glute stretch
+              <h4>Provedení</h4>
+              <ul>
+                <li>Pánev drž co nejvíc rovně.</li>
+                <li>Dýchej pomalu, nepáč do bolesti.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2 nebo drž 30–60 s/strana</p>
+            </div>
+          </details>
+
+          <details id="cvik-kolena-k-hrudi">
+            <summary>Kolena k hrudi 🧘‍♂️</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/1_zP4WzHwgM" title="Kolena k hrudi" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> uvolnění beder • jemná flexe
+              <h4>Provedení</h4>
+              <ul>
+                <li>Přitáhni kolena, ramena volně.</li>
+                <li>Výdech = povolení beder.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2 nebo drž 30–60 s</p>
+            </div>
+          </details>
+
+          <details id="cvik-polovicni-pluh">
+            <summary>Poloviční Pluh 🚜</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/iSB7BMCxgWs" title="Poloviční Pluh" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> zadní řetězec • lehká inverze (bez tlaku do krku)
+              <h4>Provedení</h4>
+              <ul>
+                <li>Opora na lopatkách, krk uvolněný.</li>
+                <li>Žádné prudké přechody.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2 nebo drž 20–40 s</p>
+            </div>
+          </details>
+
+          <details id="cvik-rotace-vleze">
+            <summary>Rotace vleže 🔄</summary>
+            <div class="acc-body">
+              <div class="video"><iframe src="https://www.youtube.com/embed/zVnd1HEPZJo" title="Rotace vleže" allowfullscreen loading="lazy"></iframe></div>
+              <span class="pill">Účel</span> hrudní rotace • uvolnění beder
+              <h4>Provedení</h4>
+              <ul>
+                <li>Paže do T, kolena pokládej na strany.</li>
+                <li>Ramena nech u země, plynule dýchej.</li>
+              </ul>
+              <p><b>Časování:</b> 40/20 × 2 nebo drž 20–40 s/strana</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Jak dál -->
+      <section class="section" id="jak-dal">
+        <h2>Jak pokračovat po 28 dnech</h2>
+
+        <div class="panel">
+          <p><b>Základ:</b> tohle můžeš jet pořád. Mobilita = denní hygiena pohybu. Nehoníš rekordy — honíš konzistenci.</p>
+
+          <h3 style="margin-top:10px">1) Opakuj cyklus</h3>
+          <p class="muted">Projeď Den 1–28 znovu beze změn. Nejsilnější upgrade je „odjet to".</p>
+
+          <h3>2) Progres (vyber 1 věc – ne všechno)</h3>
+          <ul>
+            <li><b>Čas:</b> 40/20 → 45/25 u 1–2 cviků/den.</li>
+            <li><b>Tempo:</b> pomaleji dolů (3–4 s), pauza 2 s v konci.</li>
+            <li><b>Série:</b> přidej 3. kolo (jen pokud technika drží).</li>
+            <li><b>Varianta:</b> z regrese na progresi (bez kompenzací).</li>
+          </ul>
+
+          <h3>3) Deload</h3>
+          <p class="muted">Každé 4–6 týdnů dej 5–7 dní jen 40/20, bez progresí. Tělo dožene adaptaci.</p>
+
+          <hr>
+          <p class="small">Tip: chceš rychlou verzi? Dej 5–7 cviků, 40/20, 1–2 kola (10–15 min). Hotovo.</p>
+          <p class="small"><a href="#top">↑ Zpět nahoru</a></p>
+        </div>
+      </section>
+
+      <p class="footer">© ITFIT VAULT • Mobilita</p>
+    </main>
+  </div>
+
+  <script>
+    // smooth scroll + auto-open detail
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          if(el.tagName.toLowerCase()==='details'){ el.open = true; }
+          el.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
+    });
+  </script>
+
+  <script>
+    /**
+     * YouTube embed hardening
+     * - Přepne na youtube-nocookie.com
+     * - Parametry: rel=0, modestbranding=1, playsinline=1
+     */
+    (function(){
+      const iframes = document.querySelectorAll('.video iframe[src*="youtube.com/embed/"], .video iframe[src*="youtube-nocookie.com/embed/"]');
+      iframes.forEach((ifr) => {
+        try {
+          const src = new URL(ifr.src, window.location.href);
+          const m = src.pathname.match(/\/embed\/([^/?#]+)/);
+          const vid = m && m[1] ? m[1] : '';
+          if(!vid) return;
+
+          const params = new URLSearchParams(src.search);
+          params.set('rel','0');
+          params.set('modestbranding','1');
+          params.set('playsinline','1');
+
+          const newSrc = `https://www.youtube-nocookie.com/embed/${vid}?${params.toString()}`;
+          ifr.setAttribute('src', newSrc);
+          ifr.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+          ifr.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+          ifr.setAttribute('allowfullscreen','');
+        } catch(e){}
+      });
+    })();
+  </script>
+</body>
+</html>
