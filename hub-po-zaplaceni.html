@@ -167,6 +167,16 @@
 
 <body>
   <div id="auth-bar" class="auth-bar"></div>
+  <nav class="vault-menu" aria-label="Vault menu">
+    <a href="hub-po-zaplaceni.html">HUB</a>
+    <a href="zaklady-treninku.html">Základy</a>
+    <a href="mobilita.html">Mobilita</a>
+    <a href="treninky-a-b.html">Tréninky A/B</a>
+    <a href="knihovna-cviku.html">Knihovna cviků</a>
+    <a href="hubnuti-navzdy.html">Hubnutí</a>
+    <a href="bonus-ergonomie-a-sezeni.html">Ergonomie (Bonus)</a>
+  </nav>
+  <div class="vault-hint">V HUBu vždy začni těmito 3 kroky: Základy → Mobilita → Tréninky A/B.</div>
   <div class="wrap">
     <div class="topbar">
       <div class="brand">
@@ -183,6 +193,26 @@
       <h1>HUB (po přihlášení)</h1>
       <p class="lead">Tady máš všechno na jednom místě. Doporučení: začni „Základy“, pak Mobilita, potom Tréninky A/B.</p>
     </header>
+    <section class="section" id="zacni">
+      <h2>Začni tady (3 kroky)</h2>
+      <div class="steps">
+        <div class="step">
+          <b>1) Základy tréninku</b>
+          <p>Principy, bezpečnost, progres. Bez chaosu.</p>
+        </div>
+        <div class="step">
+          <b>2) Mobilita (denně)</b>
+          <p>10–15 min. Rychlý reset a lepší technika.</p>
+        </div>
+        <div class="step">
+          <b>3) Tréninky A/B (3× týdně)</b>
+          <p>Jednoduchý systém A/B, kratší i delší verze.</p>
+        </div>
+      </div>
+      <div class="mt-4 text-gray-400">
+        Knihovna cviků = technika a náhrady. Hubnutí = pravidla + nouzovky. Ergonomie = sezení/volant/kancl.
+      </div>
+    </section>
 
     <!-- Dlaždice -->
     <section class="grid" aria-label="Rychlé odkazy">
@@ -194,8 +224,8 @@
         <h3 class="title">Uvod &amp; jak používat Vault</h3>
         <p class="desc">Jak to celé funguje, jak si vybrat úroveň a jak držet konzistenci bez přepalů.</p>
         <div class="btnrow">
-          <a class="btn" href="index.html">Otevřít</a>
-          <a class="btn secondary small" href="#poradi">Doporučené pořadí</a>
+          <a class="btn" href="#zacni">Začni tady</a>
+          
         </div>
       </article>
 
@@ -220,7 +250,7 @@
         <p class="desc">Denní hygiena pohybu. Nejrychlejší způsob, jak zlepšit „tělo jako celek“.</p>
         <div class="btnrow">
           <a class="btn" href="mobilita.html">Otevřít</a>
-          <a class="btn secondary small" href="#rutina">Jak to poskládat do týdne</a>
+          <a class="btn secondary small" href="#minimum">Jak to poskládat do týdne</a>
         </div>
       </article>
 
@@ -272,47 +302,6 @@
       </article>
     </section>
 
-    <!-- Doporučené pořadí -->
-    <section class="section" id="poradi">
-      <h2>Doporučené pořadí (ať to nekomplikujeme)</h2>
-      <div class="steps">
-        <div class="step">
-          <b>1) Základy tréninku</b>
-          <p>Nejdřív pochopíš „proč“ a „jak“. Pak se ti nebude bortit technika ani motivace.</p>
-          <ul class="list">
-            <li>RPE / intenzita</li>
-            <li>progres &amp; deload</li>
-            <li>bezpečnost a konzistence</li>
-          </ul>
-        </div>
-        <div class="step">
-          <b>2) Mobilita (denně)</b>
-          <p>10–15 min denně. Je to „údržba“, která ti zlepší i tréninky A/B.</p>
-          <ul class="list">
-            <li>28 dní jako návyk</li>
-            <li>bez bolesti, plynule</li>
-          </ul>
-        </div>
-        <div class="step">
-          <b>3) Tréninky A/B (3× týdně)</b>
-          <p>Jednoduchý systém: A / B / A (nebo B jako 3. trénink).</p>
-          <ul class="list">
-            <li>krátká verze (35 min)</li>
-            <li>delší verze (60 min)</li>
-          </ul>
-        </div>
-        <div class="step">
-          <b>4) Knihovna cviků + Hubnutí</b>
-          <p>Když chceš ladit techniku, vybírat náhrady a řešit cíle typu „zhubnout“.</p>
-          <ul class="list">
-            <li>výběr cviků podle vzorců</li>
-            <li>kcal, kroky, jednoduché nastavení</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Týdenní rutina -->
     <section class="section" id="rutina">
       <h2>Jak to poskládat do týdne (nejčistší minimum)</h2>
       <p>Pro vytížené lidi: minimum, co funguje. Bez extrémů, bez „všechno nebo nic“.</p>
@@ -326,6 +315,16 @@
 
       <hr>
       <p class="small"><b>Tip:</b> Když nestíháš celý trénink, dej jen „krátkou verzi“ A/B a hotovo. Konzistence vyhrává.</p>
+    </section>
+
+
+    <section class="section" id="minimum">
+      <h2>Minimum, co funguje</h2>
+      <ul class="list">
+        <li><b>Mobilita:</b> 10–15 min denně</li>
+        <li><b>Trénink:</b> 3× týdně A/B</li>
+        <li><b>Kroky + spánek:</b> hlídej základní minimum</li>
+      </ul>
     </section>
 
     <p class="footer">© ITFIT VAULT • HUB</p>
