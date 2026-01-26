@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ITFIT Vault – Tréninky A/B</title>
+  <style>
+    :root{
+      --bg:#070a07; --panel:#0d120d; --panel2:#0a0f0a; --text:#e7ece7; --muted:#9aa49a; --muted2:#7f8a7f;
+      --green:#00ff41; --border:#1b241b; --shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans","Liberation Sans",sans-serif;
+      background: radial-gradient(1200px 700px at 15% 15%, rgba(0,255,65,.07), transparent 55%),
+                  radial-gradient(900px 600px at 85% 10%, rgba(0,255,65,.05), transparent 50%),
+                  var(--bg);
+      color:var(--text); line-height:1.55;}
+    .mono{font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+    a{color:var(--green); text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:1050px; margin:0 auto; padding:28px 18px 90px;}
+    .topbar{display:flex; gap:12px; align-items:center; justify-content:space-between;
+      border:1px solid var(--border); background:rgba(13,18,13,.65); border-radius:14px; padding:14px 16px;
+      box-shadow:var(--shadow); position:sticky; top:12px; backdrop-filter: blur(8px); z-index:10;}
+    .brand{display:flex; gap:12px; align-items:center;}
+    .dot{width:10px; height:10px; border-radius:99px; background:var(--green); box-shadow:0 0 18px rgba(0,255,65,.55);}
+    .nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
+    .chip{border:1px solid var(--border); background:rgba(10,15,10,.7); color:var(--text);
+      padding:8px 10px; border-radius:999px; font-size:12px;}
+    .chip:hover{border-color:rgba(0,255,65,.45)}
+    .hero{margin:22px 0 18px; padding:22px 18px; border:1px solid var(--border); border-radius:18px; background:linear-gradient(180deg, rgba(13,18,13,.75), rgba(10,15,10,.55));
+      box-shadow:var(--shadow);}
+    h1{margin:6px 0 10px; font-size:28px; letter-spacing:-.02em}
+    .sub{color:var(--muted); margin:0}
+    .grid{display:grid; grid-template-columns: 1.3fr .7fr; gap:14px; margin-top:14px;}
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr;} }
+    .card{border:1px solid var(--border); background:rgba(13,18,13,.6); border-radius:18px; padding:16px; box-shadow:var(--shadow);}
+    .card h2{margin:0 0 8px; font-size:18px}
+    .muted{color:var(--muted)}
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:7px 10px; border:1px solid var(--border); border-radius:999px; background:rgba(10,15,10,.7); font-size:12px; color:var(--muted);}
+    .pill b{color:var(--text); font-weight:600}
+    .btn{cursor:pointer; border:1px solid rgba(0,255,65,.35); background:rgba(0,255,65,.08); color:var(--text);
+      padding:10px 12px; border-radius:12px; font-weight:600;}
+    .btn:hover{background:rgba(0,255,65,.12)}
+    .list{margin:10px 0 0; padding:0; list-style:none;}
+    .list li{padding:10px 10px; border:1px solid var(--border); border-radius:14px; background:rgba(10,15,10,.55); margin-bottom:10px;}
+    .slot-title{display:flex; justify-content:space-between; gap:10px; align-items:flex-start;}
+    .slot-title .name{font-weight:700}
+    .slot-title .tag{font-size:12px; color:var(--muted); border:1px dashed rgba(0,255,65,.35); padding:3px 8px; border-radius:999px;}
+    .opts{margin-top:8px; display:grid; grid-template-columns:1fr; gap:8px;}
+    .opt{display:flex; justify-content:space-between; gap:10px; align-items:center; padding:10px 10px; border:1px solid var(--border); border-radius:12px; background:rgba(13,18,13,.35);}
+    .opt .left{display:flex; flex-direction:column; gap:4px;}
+    .opt .eq{font-size:12px; color:var(--muted2)}
+    .opt button{padding:7px 10px; border-radius:10px; border:1px solid rgba(0,255,65,.25); background:rgba(0,255,65,.06); color:var(--text); cursor:pointer; font-size:12px;}
+    .opt button:hover{background:rgba(0,255,65,.10)}
+    .kbd{font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; font-size:12px; padding:2px 6px; border:1px solid var(--border); border-radius:8px; background:rgba(0,0,0,.25);}
+    /* modal */
+    .overlay{position:fixed; inset:0; background:rgba(0,0,0,.72); display:none; align-items:center; justify-content:center; padding:18px; z-index:50;}
+    .modal{max-width:840px; width:100%; border:1px solid rgba(0,255,65,.25); border-radius:18px; background:rgba(9,12,9,.92); box-shadow:0 20px 60px rgba(0,0,0,.7);}
+    .modal header{display:flex; justify-content:space-between; gap:12px; align-items:flex-start; padding:14px 16px; border-bottom:1px solid var(--border);}
+    .modal h3{margin:0; font-size:18px}
+    .close{cursor:pointer; border:1px solid var(--border); background:rgba(13,18,13,.8); color:var(--text); padding:8px 10px; border-radius:12px;}
+    .close:hover{border-color:rgba(0,255,65,.35)}
+    .modal .body{padding:14px 16px; display:grid; grid-template-columns: 1fr 1fr; gap:12px;}
+    @media (max-width: 800px){ .modal .body{grid-template-columns:1fr;} }
+    .box{border:1px solid var(--border); border-radius:16px; background:rgba(13,18,13,.55); padding:12px;}
+    .box h4{margin:0 0 8px; font-size:13px; color:var(--muted)}
+    .box ul{margin:0; padding-left:18px; color:var(--text)}
+    .footer{margin-top:14px; color:var(--muted); font-size:12px}
+
+    .vault-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 16px 18px;
+      margin: 0 auto 18px;
+      max-width: 1050px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .vault-menu a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      background: rgba(0, 0, 0, 0.2);
+      opacity: 0.92;
+    }
+
+    .vault-menu a:hover {
+      opacity: 1;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .vault-menu .is-active {
+      border-color: var(--green);
+      box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.25) inset;
+      opacity: 1;
+    }
+
+    .vault-hint {
+      max-width: 1050px;
+      margin: 0 auto 18px;
+      padding: 0 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <nav class="vault-menu" aria-label="Vault menu">
+    <a href="hub-po-zaplaceni.html">HUB</a>
+    <a href="zaklady-treninku.html">Základy</a>
+    <a href="mobilita.html">Mobilita</a>
+    <a href="treninky-a-b.html">Tréninky A/B</a>
+    <a href="knihovna-cviku.html">Knihovna cviků</a>
+    <a href="hubnuti-navzdy.html">Hubnutí</a>
+    <a href="bonus-ergonomie-a-sezeni.html">Ergonomie (Bonus)</a>
+  </nav>
+  <div class="vault-hint">Vyber A nebo B podle týdne a dej krátkou verzi, když nestíháš.</div>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="dot"></div>
+        <div>
+          <div class="mono" style="font-size:13px;color:var(--muted)">ITFIT Vault / protocol</div>
+          <div class="mono" style="font-size:15px;letter-spacing:.01em">treninky_ab()</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="chip mono" href="itfit_vault_v12.html">← vault()</a>
+        <a class="chip mono" href="itfit_vault_cviky_knihovna_v1.html">cviky.knihovna()</a>
+        <a class="chip mono" href="#plan">plan()</a>
+        <a class="chip mono" href="#faq">faq()</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="mono" style="color:var(--muted)"># status: READY_TO_TRAIN</div>
+      <h1>Tréninky A/B – minimalistický protokol (30–35+ min)</h1>
+      <p class="sub">
+        2 tréninky. 2–3× týdně. Komplexní cviky. Žádnej cirkus. <span class="mono">Nuda + konzistence = výsledky.</span>
+        Vybereš si variantu podle vybavení (BW / expandér / kettlebell / fitko). Klikni na cvik a otevře se technika.
+      </p>
+      <div class="row" style="margin-top:12px">
+        <span class="pill"><b>Doporučení</b> 2× minimum / 3× ideál</span>
+        <span class="pill"><b>Default</b> 4 cviky / 4 série</span>
+        <span class="pill"><b>Cyklus</b> 2:00 (set + pauza)</span>
+        <span class="pill"><b>Cíl</b> zlepšit posturu + sílu</span>
+      </div>
+      <div class="footer mono">pozn.: když chceš 30 min, dej 3 série / cvik. když chceš “hodinu”, přidej 1 cvik + 1 sérii / slot (nebo doplň kondici).</div>
+    </section>
+
+    <div class="grid">
+      <section class="card" id="plan">
+        <h2>Jak to jet v týdnu (jednoduše)</h2>
+        <p class="muted" style="margin-top:6px">
+          Nejjednodušší rozpis: <span class="kbd">2× týdně</span> A/B nebo <span class="kbd">3× týdně</span> A/B/A (další týden B/A/B).
+          Mezitím každý den 10–15 min mobilita + chůze.
+        </p>
+        <ul class="list">
+          <li>
+            <div class="slot-title">
+              <div class="name">Warm-up (10–15 min)</div>
+              <div class="tag mono">reset + aktivace</div>
+            </div>
+            <div class="muted" style="margin-top:6px">
+              Deadbug • Bird dog • Hip raise • kliky (lehce) • around the world/halo • facepull • lehký dřep/hinge
+              <br><span class="mono">Cíl:</span> rozhýbat + “zapnout” trup a lopatky.
+            </div>
+          </li>
+          <li>
+            <div class="slot-title">
+              <div class="name">Main work (cca 32 min)</div>
+              <div class="tag mono">4 cviky × 4 série</div>
+            </div>
+            <div class="muted" style="margin-top:6px">
+              Nastav si timer: <span class="kbd">2:00</span> na sérii (včetně pauzy).
+              Těžší sloty klidně <span class="kbd">3:00</span>. Každý týden přidej “drobný progres” (1 opakování, těžší varianta, kratší pauza, lepší technika).
+            </div>
+          </li>
+          <li>
+            <div class="slot-title">
+              <div class="name">Cooldown (5–10 min)</div>
+              <div class="tag mono">vydechat + mobilita</div>
+            </div>
+            <div class="muted" style="margin-top:6px">
+              child’s pose • výpad s rotací • vis na hrazdě • double knees to chest • sphinx • lehký plank
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <aside class="card">
+        <h2>Pravidla pro progres (bez magie)</h2>
+        <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+          <li><b>Technika</b> je priorita. Nehoníš ego.</li>
+          <li><b>Progres</b>: +1–2 opakování, těžší varianta, +1 série, kratší pauza.</li>
+          <li><b>Stop</b>: ostrá bolest. “Pálení svalů” OK, “píchání kloubu” ne.</li>
+          <li><b>Čas</b>: když nestíháš, dej 3 série a hotovo. Konzistence > dokonalost.</li>
+          <li><b>Core</b> bereš jako “brzdy a stabilizaci” (ne jen břicho).</li>
+        </ul>
+        <div style="margin-top:12px; padding:12px; border:1px dashed rgba(0,255,65,.35); border-radius:16px; background:rgba(0,255,65,.04)">
+          <div class="mono" style="color:var(--muted)">Tip</div>
+          <div style="margin-top:6px">
+            Pokud je to lehké: <span class="kbd">zkrátit pauzu</span> / <span class="kbd">zpomalit negativní fázi</span> / <span class="kbd">superset</span>.
+            Pokud je to těžké: <span class="kbd">regrese</span> a drž konzistenci.
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="card" style="margin-top:14px">
+      <h2>Trénink A (Full-body) – “postura + síla”</h2>
+      <p class="muted">Vyber si u každého slotu jednu variantu podle vybavení. Klikni na cvik = otevře se technika.</p>
+      <ul class="list">
+        
+    <li>
+      <div class="slot-title">
+        <div class="name">A1: Dřepový pattern</div>
+        <div class="tag mono">SQUAT • 4× 8–12 (cyklus 2:00)</div>
+      </div>
+      <div class="opts">
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Goblet squat</b></div>
+            <div class="eq mono">eq: KTB / BW</div>
+          </div>
+          <button type="button" data-ex="Goblet squat">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Front squat</b></div>
+            <div class="eq mono">eq: OSA / GYM</div>
+          </div>
+          <button type="button" data-ex="Front squat">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Landmine squat</b></div>
+            <div class="eq mono">eq: GYM</div>
+          </div>
+          <button type="button" data-ex="Landmine squat">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Dřep (BW tempo)</b></div>
+            <div class="eq mono">eq: BW</div>
+          </div>
+          <button type="button" data-ex="Dřep (BW tempo)">detail()</button>
+        </div>
+        </div>
+    </li>
+    
+        
+    <li>
+      <div class="slot-title">
+        <div class="name">A2: Tlak</div>
+        <div class="tag mono">PUSH • 4× 6–15 (cyklus 2:00)</div>
+      </div>
+      <div class="opts">
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Kliky na zemi</b></div>
+            <div class="eq mono">eq: BW</div>
+          </div>
+          <button type="button" data-ex="Kliky na zemi">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Benchpress</b></div>
+            <div class="eq mono">eq: GYM</div>
+          </div>
+          <button type="button" data-ex="Benchpress">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Floor press</b></div>
+            <div class="eq mono">eq: KTB / OSA</div>
+          </div>
+          <button type="button" data-ex="Floor press">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Landmine tlaky</b></div>
+            <div class="eq mono">eq: GYM</div>
+          </div>
+          <button type="button" data-ex="Landmine tlaky">detail()</button>
+        </div>
+        </div>
+    </li>
+    
+        
+    <li>
+      <div class="slot-title">
+        <div class="name">A3: Tah (záda)</div>
+        <div class="tag mono">PULL • 4× 6–12 (cyklus 2:00)</div>
+      </div>
+      <div class="opts">
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Přítahy v předklonu</b></div>
+            <div class="eq mono">eq: KTB / OSA</div>
+          </div>
+          <button type="button" data-ex="Přítahy v předklonu">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Přítahy v předklonu s expandérem</b></div>
+            <div class="eq mono">eq: EXP</div>
+          </div>
+          <button type="button" data-ex="Přítahy v předklonu s expandérem">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Inverted rows</b></div>
+            <div class="eq mono">eq: BW</div>
+          </div>
+          <button type="button" data-ex="Inverted rows">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Shyby</b></div>
+            <div class="eq mono">eq: BW / GYM</div>
+          </div>
+          <button type="button" data-ex="Shyby">detail()</button>
+        </div>
+        </div>
+    </li>
+    
+        
+    <li>
+      <div class="slot-title">
+        <div class="name">A4: Core / anti-rotace</div>
+        <div class="tag mono">CORE • 4× 30–45s (cyklus 2:00)</div>
+      </div>
+      <div class="opts">
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Plank</b></div>
+            <div class="eq mono">eq: BW</div>
+          </div>
+          <button type="button" data-ex="Plank">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Vis na hrazdě</b></div>
+            <div class="eq mono">eq: BW / GYM</div>
+          </div>
+          <button type="button" data-ex="Vis na hrazdě">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Deadbug (mrtvý brouk)</b></div>
+            <div class="eq mono">eq: BW</div>
+          </div>
+          <button type="button" data-ex="Deadbug (mrtvý brouk)">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Woodchopper (dřevorubec)</b></div>
+            <div class="eq mono">eq: EXP</div>
+          </div>
+          <button type="button" data-ex="Woodchopper (dřevorubec)">detail()</button>
+        </div>
+        </div>
+    </li>
+    
+      </ul>
+    </section>
+
+    <section class="card" style="margin-top:14px">
+      <h2>Trénink B (Full-body) – “hinge + ramena + single-leg”</h2>
+      <p class="muted">Stejný princip: 4 sloty, 4 série, cyklus 2:00 (těžší hinge klidně 3:00).</p>
+      <ul class="list">
+        
+    <li>
+      <div class="slot-title">
+        <div class="name">B1: Kyčelní pattern (hinge)</div>
+        <div class="tag mono">HINGE • 4× 10–15 / 6–10 (cyklus 2–3:00)</div>
+      </div>
+      <div class="opts">
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Kettlebell swing</b></div>
+            <div class="eq mono">eq: KTB</div>
+          </div>
+          <button type="button" data-ex="Kettlebell swing">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Rumunský tah</b></div>
+            <div class="eq mono">eq: OSA / KTB</div>
+          </div>
+          <button type="button" data-ex="Rumunský tah">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Deadlift / Sumo DL</b></div>
+            <div class="eq mono">eq: OSA / GYM</div>
+          </div>
+          <button type="button" data-ex="Deadlift / Sumo DL">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Hip thrust / Hip raise</b></div>
+            <div class="eq mono">eq: BW / GYM</div>
+          </div>
+          <button type="button" data-ex="Hip thrust / Hip raise">detail()</button>
+        </div>
+        </div>
+    </li>
+    
+        
+    <li>
+      <div class="slot-title">
+        <div class="name">B2: Tlak nad hlavu / ramena</div>
+        <div class="tag mono">PUSH • 4× 6–12 (cyklus 2:00)</div>
+      </div>
+      <div class="opts">
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Tlak nad hlavu</b></div>
+            <div class="eq mono">eq: KTB / OSA</div>
+          </div>
+          <button type="button" data-ex="Tlak nad hlavu">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Tlak nad hlavu s expandérem</b></div>
+            <div class="eq mono">eq: EXP</div>
+          </div>
+          <button type="button" data-ex="Tlak nad hlavu s expandérem">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Landmine tlaky</b></div>
+            <div class="eq mono">eq: GYM</div>
+          </div>
+          <button type="button" data-ex="Landmine tlaky">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Thruster</b></div>
+            <div class="eq mono">eq: KTB / OSA</div>
+          </div>
+          <button type="button" data-ex="Thruster">detail()</button>
+        </div>
+        </div>
+    </li>
+    
+        
+    <li>
+      <div class="slot-title">
+        <div class="name">B3: Lunge / nohy (unilateral)</div>
+        <div class="tag mono">LUNGE • 4× 6–10 na nohu (cyklus 2:00)</div>
+      </div>
+      <div class="opts">
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Výpady vzad</b></div>
+            <div class="eq mono">eq: BW / KTB</div>
+          </div>
+          <button type="button" data-ex="Výpady vzad">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Výpady vpřed</b></div>
+            <div class="eq mono">eq: BW / KTB</div>
+          </div>
+          <button type="button" data-ex="Výpady vpřed">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Bulharské dřepy</b></div>
+            <div class="eq mono">eq: BW / KTB</div>
+          </div>
+          <button type="button" data-ex="Bulharské dřepy">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Split squat</b></div>
+            <div class="eq mono">eq: BW / KTB</div>
+          </div>
+          <button type="button" data-ex="Split squat">detail()</button>
+        </div>
+        </div>
+    </li>
+    
+        
+    <li>
+      <div class="slot-title">
+        <div class="name">B4: Postura / lopatky</div>
+        <div class="tag mono">POSTURA • 4× 10–15 (cyklus 2:00)</div>
+      </div>
+      <div class="opts">
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Facepull</b></div>
+            <div class="eq mono">eq: EXP / GYM</div>
+          </div>
+          <button type="button" data-ex="Facepull">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Rozpažky s expandérem</b></div>
+            <div class="eq mono">eq: EXP</div>
+          </div>
+          <button type="button" data-ex="Rozpažky s expandérem">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Přítahy vzhůru</b></div>
+            <div class="eq mono">eq: EXP / KTB</div>
+          </div>
+          <button type="button" data-ex="Přítahy vzhůru">detail()</button>
+        </div>
+        
+
+        <div class="opt">
+          <div class="left">
+            <div><span class="mono" style="color:var(--muted)">•</span> <b>Pullover</b></div>
+            <div class="eq mono">eq: KTB / EXP / GYM</div>
+          </div>
+          <button type="button" data-ex="Pullover">detail()</button>
+        </div>
+        </div>
+    </li>
+    
+      </ul>
+    </section>
+
+    <section class="card" style="margin-top:14px" id="faq">
+      <h2>FAQ (rychle)</h2>
+      <ul class="muted" style="margin:10px 0 0; padding-left:18px">
+        <li><b>Musím mít vybavení?</b> Ne. Ale když nechceš do fitka, <b>kettlebell + expander</b> je ideální minimum.</li>
+        <li><b>Chci delší trénink.</b> Přidej 5. cvik (core/kondice) nebo dej 5 sérií u 1–2 slotů.</li>
+        <li><b>Chci “víc cardio”.</b> Dej chůzi denně + 1× týdně HIIT (krátce), nebo výšlap.</li>
+        <li><b>Chci jen hubnout.</b> Pak je tohle pořád nejlepší – síla drží svaly a zrychlí “motor”.</li>
+      </ul>
+    </section>
+
+    <p class="footer">© ITFIT Vault • build 2026-01-24 • pozn.: popisy cviků jsou v knihovně. pro pokročilé varianty (zercher, vzpírání, atd.) → upgrade / coaching.</p>
+  </div>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <header>
+        <div>
+          <div class="mono" style="color:var(--muted); font-size:12px">cvik.detail()</div>
+          <h3 id="mTitle">—</h3>
+          <div id="mMeta" class="muted mono" style="font-size:12px;margin-top:4px"></div>
+        </div>
+        <button class="close" id="mClose">Zavřít</button>
+      </header>
+      <div class="body">
+        <div class="box">
+          <h4 class="mono">cues()</h4>
+          <ul id="mCues"></ul>
+        </div>
+        <div class="box">
+          <h4 class="mono">chyby()</h4>
+          <ul id="mMist"></ul>
+        </div>
+        <div class="box">
+          <h4 class="mono">regrese()</h4>
+          <div id="mReg" class="muted"></div>
+        </div>
+        <div class="box">
+          <h4 class="mono">progrese()</h4>
+          <div id="mProg" class="muted"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const EX = [
+      // WARM-UP / RESET
+      { name:"Deadbug (mrtvý brouk)", pattern:["WARMUP","CORE"], eq:["BW"], level:"CORE", purpose:"zapnutí trupu, stabilita", cues:["žebra dolů", "bedra neutrálně", "pomalu"], mistakes:["prohnutí beder","švihové pohyby"], regress:"menší rozsah", progress:"pauza v extenzi" },
+      { name:"Bird dog (ptakopes)", pattern:["WARMUP","CORE"], eq:["BW"], level:"CORE", purpose:"stabilita páteře, lopatky", cues:["pevný trup","dlouhá páteř"], mistakes:["rotace pánve","rychlost"], regress:"jen noha/jen ruka", progress:"pauza 2s" },
+      { name:"Hip raise / Glute bridge", pattern:["WARMUP","HINGE"], eq:["BW"], level:"BASE", purpose:"aktivace hýždí", cues:["tlač paty","neprohýbat bedra"], mistakes:["bolí bedra","kolena dovnitř"], regress:"kratší rozsah", progress:"1 noha" },
+      { name:"Bear crawl (lezení po 4)", pattern:["WARMUP","CORE","POSTURA"], eq:["BW"], level:"BASE", purpose:"ramena, core, koordinace", cues:["kolena nízko","tichý kroky","pevný střed"], mistakes:["prohnutí beder","spěch"], regress:"kratší úsek", progress:"delší interval" },
+      { name:"Inchworm", pattern:["WARMUP","CORE","POSTURA"], eq:["BW"], level:"BASE", purpose:"ramena, hamstringy, trup", cues:["pevný střed","neprohýbat"], mistakes:["propad v bedrech"], regress:"pokrčit kolena", progress:"push-up v prkně" },
+      { name:"Crucifix crunch (křížové zkracovačky)", pattern:["WARMUP","CORE"], eq:["BW"], level:"CORE", purpose:"kontrola břicha", cues:["žebra k pánvi","krk volně"], mistakes:["tahat za krk","švih"], regress:"menší rozsah", progress:"pomalejší tempo" },
+      { name:"Around the world (KTB okolo těla)", pattern:["WARMUP","CORE"], eq:["KTB"], level:"BASE", purpose:"core + koordinace", cues:["pevný trup","kontrola"], mistakes:["kroucení beder"], regress:"lehčí KB", progress:"víc kol" },
+      { name:"Halo (kotouč/KB okolo hlavy)", pattern:["WARMUP","POSTURA"], eq:["KTB","GYM"], level:"BASE", purpose:"ramena, lopatky", cues:["žebra dolů","pomalu"], mistakes:["prohnutí beder"], regress:"menší kruh", progress:"těžší váha" },
+
+      // SQUAT
+      { name:"Dřep – vlastní váha", pattern:["SQUAT"], eq:["BW"], level:"BASE", purpose:"nohy + core", cues:["kolena nad prsty","pevný střed"], mistakes:["kolena dovnitř","pata se zvedá"], regress:"box squat", progress:"pauza dole" },
+      { name:"Goblet squat", pattern:["SQUAT"], eq:["KTB","GYM"], level:"BASE", purpose:"dřepový vzor, core", cues:["lokty dolů","pevný střed"], mistakes:["kulatá záda","kolena dovnitř"], regress:"lehčí KB", progress:"tempo 3-1-1" },
+      { name:"Back squat (zadní dřep)", pattern:["SQUAT"], eq:["OSA","GYM"], level:"PRO", purpose:"síla nohou", cues:["bracing","kontrolovaný sestup"], mistakes:["kolaps trupu","ego váha"], regress:"goblet", progress:"pauza squat" },
+      { name:"Front squat (čelní dřep)", pattern:["SQUAT"], eq:["OSA","GYM"], level:"PRO", purpose:"core + kvadricepsy", cues:["lokty vysoko"], mistakes:["pád loktů","kulatá záda"], regress:"goblet", progress:"tempo" },
+      { name:"Landmine squat", pattern:["SQUAT"], eq:["GYM"], level:"BASE", purpose:"dřep šetrný pro záda", cues:["těžiště uprostřed"], mistakes:["pata pryč"], regress:"goblet", progress:"víc zátěž" },
+      { name:"Zombie squat", pattern:["SQUAT"], eq:["OSA","GYM"], level:"PRO", purpose:"postura + core", cues:["ruce vpřed, trup vzpřímeně"], mistakes:["kolaps trupu"], regress:"front squat lehce", progress:"pauza" },
+      { name:"Zercher squat", pattern:["SQUAT"], eq:["OSA","GYM"], level:"PRO", purpose:"core + přední řetězec", cues:["lokty u těla","bracing"], mistakes:["kulatá záda"], regress:"goblet", progress:"víc zátěž" },
+      { name:"Cossack squat", pattern:["SQUAT","MOBILITY"], eq:["BW","KTB"], level:"BASE", purpose:"mobilita kyčlí + nohy", cues:["tlač patu","kontroluj koleno"], mistakes:["padání na vnitřní hranu"], regress:"menší rozsah", progress:"drž KB" },
+
+      // LUNGE
+      { name:"Výpady vzad (reverse lunge)", pattern:["LUNGE"], eq:["BW","KTB","GYM"], level:"BASE", purpose:"nohy + stabilita", cues:["tlak přes přední nohu","tělo pevné"], mistakes:["koleno před", "houpání trupem"], regress:"kratší krok", progress:"KB v ruce" },
+      { name:"Výpady vpřed (forward lunge)", pattern:["LUNGE"], eq:["BW","KTB"], level:"BASE", purpose:"nohy + kontrola", cues:["kontrolovaný dopad"], mistakes:["koleno dovnitř"], regress:"výpad vzad", progress:"pauza dole" },
+      { name:"Split squat", pattern:["LUNGE"], eq:["BW","KTB","GYM"], level:"BASE", purpose:"síla nohou", cues:["trup pevný","koleno sleduje prsty"], mistakes:["krátký krok -> koleno moc vpředu"], regress:"opora rukou", progress:"zátěž" },
+      { name:"Bulharský dřep (Bulgarian split squat)", pattern:["LUNGE"], eq:["BW","KTB","GYM"], level:"PRO", purpose:"nohy + stabilita", cues:["dlouhý krok","kontrola dolů"], mistakes:["koleno dopředu","ztráta rovnováhy"], regress:"split squat", progress:"KB/DB" },
+
+      // HINGE
+      { name:"Kettlebell swing", pattern:["HINGE","KONDICE"], eq:["KTB"], level:"BASE", purpose:"posterior chain + kondice", cues:["kyčelní cvik","ruce jako háky","trojextenze"], mistakes:["dřepování","tahání rukama","kulatá záda"], regress:"hip hinge drill", progress:"víc objem / těžší KB" },
+      { name:"Deadlift (mrtvý tah)", pattern:["HINGE"], eq:["OSA","GYM"], level:"PRO", purpose:"síla zadního řetězce", cues:["bracing","osa u nohou"], mistakes:["kulatá záda","trhání"], regress:"RDL lehce", progress:"těžší váha" },
+      { name:"Sumo deadlift", pattern:["HINGE"], eq:["OSA","GYM"], level:"PRO", purpose:"hinge + kyčle", cues:["kolena ven","hrudník vysoko"], mistakes:["padání kolen"], regress:"RDL", progress:"těžší" },
+      { name:"Romanian deadlift (RDL)", pattern:["HINGE"], eq:["OSA","KTB","GYM"], level:"BASE", purpose:"hamstringy + hinge technika", cues:["boky dozadu","mírně kolena"], mistakes:["dřepování","kulatá záda"], regress:"lehčí váha", progress:"tempo" },
+      { name:"Hip thrust / Hip raise", pattern:["HINGE"], eq:["BW","GYM"], level:"BASE", purpose:"hýždě", cues:["tlač paty","neprohýbat bedra"], mistakes:["bolí bedra"], regress:"glute bridge", progress:"zátěž" },
+
+      // PUSH
+      { name:"Kliky (push-ups)", pattern:["PUSH"], eq:["BW"], level:"BASE", purpose:"tlak + core", cues:["tělo v prkně","lokty ~45°"], mistakes:["propad beder","krk"], regress:"incline/wall", progress:"nohy výš / tempo" },
+      { name:"Dipy (dips)", pattern:["PUSH"], eq:["GYM"], level:"PRO", purpose:"triceps + hrudník", cues:["ramena dolů","kontrola"], mistakes:["bolest ramene"], regress:"bench dips opatrně", progress:"zátěž" },
+      { name:"Bench press", pattern:["PUSH"], eq:["OSA","GYM"], level:"PRO", purpose:"horizontální tlak", cues:["lopatky stažené","nohy do země"], mistakes:["ramena vpřed"], regress:"floor press", progress:"víc zátěž" },
+      { name:"Floor press", pattern:["PUSH"], eq:["KTB","OSA","GYM"], level:"BASE", purpose:"tlak šetrný pro ramena", cues:["lokty kontrola"], mistakes:["odskok"], regress:"lehčí váha", progress:"jednoručně/KB" },
+      { name:"Tlak nad hlavu (OHP)", pattern:["PUSH","POSTURA"], eq:["KTB","OSA","EXP","GYM"], level:"BASE", purpose:"ramena + core", cues:["žebra dolů","neprohýbat"], mistakes:["hyperextenze beder"], regress:"half-kneeling", progress:"těžší" },
+      { name:"Landmine tlaky", pattern:["PUSH","POSTURA"], eq:["GYM"], level:"BASE", purpose:"tlak šetrný pro ramena", cues:["úhel, core"], mistakes:["prohnutí"], regress:"lehčí", progress:"víc zátěž" },
+
+      // PULL
+      { name:"Shyby (pull-ups)", pattern:["PULL"], eq:["GYM","BW"], level:"PRO", purpose:"záda + úchop", cues:["lopatky dolů","tah lokty"], mistakes:["kipping","ramena u uší"], regress:"negativní/assisted", progress:"zátěž" },
+      { name:"Přítahy v předklonu (row)", pattern:["PULL"], eq:["OSA","KTB","EXP","GYM"], level:"BASE", purpose:"záda", cues:["rovná záda","lokty u těla"], mistakes:["kulatá záda","houpání"], regress:"expander", progress:"těžší/tempo" },
+      { name:"Inverted rows", pattern:["PULL"], eq:["BW","GYM"], level:"BASE", purpose:"záda + core", cues:["tělo v přímce","tah hrudníkem"], mistakes:["propad beder","houpání"], regress:"kolena pokrčit", progress:"nohy výš" },
+      { name:"Přítahy vzhůru (upright pulls)", pattern:["PULL","POSTURA"], eq:["EXP","KTB","GYM"], level:"PRO", purpose:"trapézy/ramena", cues:["lokty výš než ruce"], mistakes:["bolest ramene"], regress:"facepull", progress:"kontrola" },
+
+      // POSTURA / SCAPULA
+      { name:"Facepull (expander/kladka)", pattern:["POSTURA","PULL"], eq:["EXP","GYM"], level:"BASE", purpose:"lopatky + zadní delty", cues:["lokty nahoře","kontrakce"], mistakes:["ramena u uší"], regress:"lehčí guma", progress:"pauza 1–2 s" },
+      { name:"Rozpažky s expanderem (band fly / pull-apart)", pattern:["POSTURA"], eq:["EXP"], level:"BASE", purpose:"otevření ramen", cues:["nepřetahovat přes osu"], mistakes:["škubání"], regress:"lehčí guma", progress:"pauza" },
+      { name:"Pullover (DB/KB/osa/exp)", pattern:["POSTURA","PULL"], eq:["KTB","OSA","EXP","GYM"], level:"BASE", purpose:"laty + hrudník + mobilita", cues:["lokty lehce pokrčené","kontrola"], mistakes:["moc hluboko","bolest ramen"], regress:"expander", progress:"těžší" },
+      { name:"Vis (dead hang)", pattern:["POSTURA"], eq:["GYM","BW"], level:"BASE", purpose:"dekomprese + úchop", cues:["ramena dolů","dýchej"], mistakes:["bolest ramen"], regress:"kratší čas", progress:"delší / aktivní vis" },
+      { name:"Kotouč nad hlavu (hold/raise)", pattern:["POSTURA","CORE"], eq:["GYM"], level:"BASE", purpose:"stabilita ramen + trup", cues:["žebra dolů","neprohýbat"], mistakes:["hyperextenze"], regress:"lehčí", progress:"delší hold" },
+
+      // CORE
+      { name:"Plank / Prkno", pattern:["CORE"], eq:["BW"], level:"BASE", purpose:"core stabilita", cues:["žebra dolů","zadek lehce"], mistakes:["propad beder"], regress:"kolena", progress:"delší/variace" },
+      { name:"Russian twist", pattern:["CORE"], eq:["BW","KTB"], level:"PRO", purpose:"rotace trupu", cues:["kontrola","nekroutit bedra"], mistakes:["švih"], regress:"menší rozsah", progress:"zátěž" },
+      { name:"Zkracovačky (crunch)", pattern:["CORE"], eq:["BW"], level:"BASE", purpose:"břicho", cues:["žebra dolů"], mistakes:["krk"], regress:"menší", progress:"tempo" },
+      { name:"Landmine rotace", pattern:["CORE","POSTURA"], eq:["GYM"], level:"BASE", purpose:"rotace + anti-rotace", cues:["boky stabilní"], mistakes:["točení v bedrech"], regress:"expander woodchop", progress:"víc zátěž" },
+      { name:"Woodchopper (expander rotace)", pattern:["CORE"], eq:["EXP"], level:"BASE", purpose:"rotace trupu", cues:["otáčej trup, ne ruce"], mistakes:["točení v bedrech"], regress:"lehčí guma", progress:"víc opak." },
+      { name:"TGU (Turkish get-up)", pattern:["CORE","POSTURA"], eq:["KTB"], level:"PRO", purpose:"fullbody stabilita", cues:["oko na KB","krok po kroku"], mistakes:["spěch"], regress:"bez váhy", progress:"těžší" },
+      { name:"L-sit", pattern:["CORE"], eq:["BW","GYM"], level:"PRO", purpose:"core + flexory kyčlí", cues:["ramena dolů"], mistakes:["propad"], regress:"tuck hold", progress:"delší" },
+      { name:"Ab wheel (kolečko)", pattern:["CORE"], eq:["GYM"], level:"PRO", purpose:"anti-extend core", cues:["žebra dolů","krátký rozsah"], mistakes:["prohnutí beder"], regress:"od zdi / menší rozsah", progress:"větší ROM" },
+
+      // KONDICE / POWER COMPLEX
+      { name:"Thruster", pattern:["KONDICE","PUSH","SQUAT"], eq:["KTB","OSA","GYM"], level:"PRO", purpose:"fullbody kondice", cues:["dřep -> tlak"], mistakes:["ztráta techniky"], regress:"menší váha", progress:"interval" },
+      { name:"Trh (snatch)", pattern:["KONDICE","HINGE","PUSH"], eq:["KTB","OSA","GYM"], level:"PRO", purpose:"výbušnost", cues:["síla z kyčlí"], mistakes:["tahat rukama"], regress:"swing", progress:"těžší" },
+      { name:"Přemístění (clean)", pattern:["KONDICE","HINGE"], eq:["KTB","OSA","GYM"], level:"PRO", purpose:"power + fullbody", cues:["kyčle","rack pozice"], mistakes:["tah rukama"], regress:"swing", progress:"complex" },
+      { name:"Přemístění + dřep", pattern:["KONDICE","HINGE","SQUAT"], eq:["KTB","OSA","GYM"], level:"PRO", purpose:"power complex", cues:["čistá technika"], mistakes:["spěch"], regress:"clean jen", progress:"víc kol" },
+      { name:"Sed-leh + tlak nad hlavu (sit-up to press)", pattern:["CORE","PUSH"], eq:["KTB","OSA","GYM"], level:"CORE", purpose:"core + tlak, stabilita ramen", cues:["zpevni trup, žebra dolů","tlač nad hlavu bez prohnutí","kontrolovaný sed-leh"], mistakes:["švih bez kontroly","prohnutí beder","ramena u uší"], regress:"sed-leh bez tlaku / floor press", progress:"1-arm tlak / těžší váha / tempo" },
+
+    ];
+
+    function findEx(name){
+      return EX.find(x => x.name.toLowerCase() === name.toLowerCase());
+    }
+
+    const overlay = document.getElementById("overlay");
+    const mTitle = document.getElementById("mTitle");
+    const mMeta = document.getElementById("mMeta");
+    const mCues = document.getElementById("mCues");
+    const mMist = document.getElementById("mMist");
+    const mReg = document.getElementById("mReg");
+    const mProg = document.getElementById("mProg");
+
+    function openModal(ex){
+      if(!ex) return;
+      mTitle.textContent = ex.name;
+      mMeta.textContent = (ex.pattern ? ex.pattern.join(" / ") : "") + " • " + (ex.eq ? ex.eq.join(", ") : "");
+      mCues.innerHTML = (ex.cues||[]).map(c=>`<li>${c}</li>`).join("") || "<li>—</li>";
+      mMist.innerHTML = (ex.mistakes||[]).map(c=>`<li>${c}</li>`).join("") || "<li>—</li>";
+      mReg.textContent = ex.regress || "—";
+      mProg.textContent = ex.progress || "—";
+      overlay.style.display = "flex";
+    }
+    function closeModal(){ overlay.style.display="none"; }
+
+    document.getElementById("mClose").addEventListener("click", closeModal);
+    overlay.addEventListener("click", (e)=>{ if(e.target === overlay) closeModal(); });
+    document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeModal(); });
+
+    document.querySelectorAll("[data-ex]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const name = btn.getAttribute("data-ex");
+        openModal(findEx(name));
+      });
+    });
+  </script>
+</body>
+</html>
