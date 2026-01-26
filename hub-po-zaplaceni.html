@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ITFIT VAULT • HUB</title>
+  <meta name="description" content="HUB rozcestník k materiálům ITFIT Vault: Mobilita, Základy tréninku, Tréninky A/B, Knihovna cviků, Hubnutí.">
+  <style>
+    :root{
+      --bg:#050b08;
+      --panel:#0b1410;
+      --panel2:#0e1a14;
+      --text:#e8fff0;
+      --muted:#a9cbb6;
+      --border:rgba(0,255,65,.18);
+      --accent:#00ff41;
+      --accent2:#00d936;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(0,255,65,.14), transparent 60%),
+        radial-gradient(900px 500px at 85% 0%, rgba(0,217,54,.10), transparent 55%),
+        linear-gradient(180deg, #040806, #050b08 35%, #040806);
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1120px; margin:0 auto; padding:22px 18px 46px}
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:14px 16px; border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(0,255,65,.06), rgba(0,0,0,.0));
+      border-radius:18px; box-shadow:var(--shadow);
+      position:sticky; top:0; backdrop-filter: blur(10px);
+      z-index:10;
+    }
+    .brand{display:flex; align-items:center; gap:10px}
+    .dot{
+      width:12px; height:12px; border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 18px rgba(0,255,65,.6);
+      flex:0 0 auto;
+    }
+    .brand b{letter-spacing:.6px}
+    .mini{color:var(--muted); font-size:13px}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border:1px solid var(--border);
+      border-radius:999px; font-size:12px; color:var(--muted);
+      background:rgba(0,255,65,.04);
+      box-shadow:0 0 0 1px rgba(0,255,65,.06) inset;
+      white-space:nowrap;
+    }
+
+    h1{
+      margin:18px 0 8px; line-height:1.15;
+      font-size:clamp(28px, 3.2vw, 40px);
+      letter-spacing:.2px;
+    }
+    .lead{margin:0; color:var(--muted); font-size:17px}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+    @media (max-width:980px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:640px){ .grid{grid-template-columns:1fr} }
+
+    .card{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(0,255,65,.06), rgba(0,0,0,.0));
+      box-shadow:var(--shadow);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:radial-gradient(500px 180px at 20% 0%, rgba(0,255,65,.14), transparent 60%);
+      opacity:.55;
+      pointer-events:none;
+    }
+    .card > *{position:relative}
+    .kicker{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:6px;
+    }
+    .tag{
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:4px 10px;
+      background:rgba(0,255,65,.04);
+      white-space:nowrap;
+    }
+    .title{
+      margin:0 0 6px;
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+    .desc{margin:0 0 12px; color:var(--muted); font-size:14px}
+    .btnrow{display:flex; flex-wrap:wrap; gap:10px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(0,255,65,.05);
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:.2px;
+      text-decoration:none;
+      box-shadow:0 0 0 1px rgba(0,255,65,.06) inset;
+    }
+    .btn:hover{
+      background:rgba(0,255,65,.09);
+      text-decoration:none;
+      border-color:rgba(0,255,65,.35);
+    }
+    .btn.secondary{color:var(--accent); font-weight:700}
+    .btn.small{padding:8px 10px; font-size:13px}
+
+    .section{
+      margin-top:22px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(0,255,65,.05), rgba(0,0,0,.0));
+      box-shadow:var(--shadow);
+      padding:14px;
+    }
+    .section h2{
+      margin:0 0 8px;
+      font-size:clamp(18px, 2.1vw, 24px);
+      letter-spacing:.2px;
+    }
+    .section p{margin:0 0 10px; color:var(--muted)}
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:12px;
+    }
+    @media (max-width:860px){ .steps{grid-template-columns:1fr} }
+    .step{
+      border:1px dashed rgba(0,255,65,.22);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(0,255,65,.04);
+    }
+    .step b{color:var(--text)}
+    .list{margin:0; padding-left:18px; color:var(--muted)}
+    .list li{margin:6px 0}
+    hr{border:none; border-top:1px solid var(--border); margin:16px 0}
+    .footer{margin:20px 0 0; text-align:center; color:var(--muted); font-size:13px}
+
+    .vault-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 16px 18px;
+      margin: 0 auto 18px;
+      max-width: 1050px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .vault-menu a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      background: rgba(0, 0, 0, 0.2);
+      opacity: 0.92;
+    }
+
+    .vault-menu a:hover {
+      opacity: 1;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .vault-menu .is-active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.25) inset;
+      opacity: 1;
+    }
+
+    .vault-hint {
+      max-width: 1050px;
+      margin: 0 auto 18px;
+      padding: 0 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="vault-menu" aria-label="Vault menu">
+    <a href="hub-po-zaplaceni.html">HUB</a>
+    <a href="zaklady-treninku.html">Základy</a>
+    <a href="mobilita.html">Mobilita</a>
+    <a href="treninky-a-b.html">Tréninky A/B</a>
+    <a href="knihovna-cviku.html">Knihovna cviků</a>
+    <a href="hubnuti-navzdy.html">Hubnutí</a>
+    <a href="bonus-ergonomie-a-sezeni.html">Ergonomie (Bonus)</a>
+  </nav>
+  <div class="vault-hint">V HUBu vždy začni těmito 3 kroky: Základy → Mobilita → Tréninky A/B.</div>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <b>ITFIT VAULT</b>
+          <div class="mini">HUB • rozcestník materiálů</div>
+        </div>
+      </div>
+      <span class="badge">✅ Start tady</span>
+    </div>
+
+    <header>
+      <h1>HUB (po přihlášení)</h1>
+      <p class="lead">Tady máš všechno na jednom místě. Doporučení: začni „Základy“, pak Mobilita, potom Tréninky A/B.</p>
+    </header>
+    <section class="section" id="zacni">
+      <h2>Začni tady (3 kroky)</h2>
+      <div class="steps">
+        <div class="step">
+          <b>1) Základy tréninku</b>
+          <p>Principy, bezpečnost, progres. Bez chaosu.</p>
+        </div>
+        <div class="step">
+          <b>2) Mobilita (denně)</b>
+          <p>10–15 min. Rychlý reset a lepší technika.</p>
+        </div>
+        <div class="step">
+          <b>3) Tréninky A/B (2× týdně minimum)</b>
+          <p>Jednoduchý systém A/B, kratší i delší verze. Když jdeš dobře, přidej 3. trénink.</p>
+        </div>
+      </div>
+      <div class="mt-4 text-gray-400">
+        Knihovna cviků = technika a náhrady. Hubnutí = pravidla + nouzovky. Ergonomie = sezení/volant/kancl.
+      </div>
+    </section>
+
+    <!-- Dlaždice -->
+    <section class="grid" aria-label="Rychlé odkazy">
+      <article class="card">
+        <div class="kicker">
+          <span class="tag">START</span>
+          <span class="tag">čti 5–10 min</span>
+        </div>
+        <h3 class="title">Uvod &amp; jak používat Vault</h3>
+        <p class="desc">Jak to celé funguje, jak si vybrat úroveň a jak držet konzistenci bez přepalů.</p>
+        <div class="btnrow">
+          <a class="btn" href="#zacni">Začni tady</a>
+          
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="kicker">
+          <span class="tag">ZÁKLAD</span>
+          <span class="tag">must-read</span>
+        </div>
+        <h3 class="title">Základy tréninku</h3>
+        <p class="desc">Principy, bezpečnost, progres, intenzita. Ať se to nepřekombinuje a drží to smysl.</p>
+        <div class="btnrow">
+          <a class="btn" href="zaklady-treninku.html">Otevřít</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="kicker">
+          <span class="tag">DENNĚ</span>
+          <span class="tag">10–15 min</span>
+        </div>
+        <h3 class="title">Mobilita (28 dní)</h3>
+        <p class="desc">Denní hygiena pohybu. Nejrychlejší způsob, jak zlepšit „tělo jako celek“.</p>
+        <div class="btnrow">
+          <a class="btn" href="mobilita.html">Otevřít</a>
+          <a class="btn secondary small" href="#minimum">Jak to poskládat do týdne</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="kicker">
+          <span class="tag">TRÉNINK</span>
+          <span class="tag">A/B</span>
+        </div>
+        <h3 class="title">Tréninky A/B</h3>
+        <p class="desc">Hotové tréninky (kratší i delší verze). 2× týdně minimum, 3× týdně ideál.</p>
+        <div class="btnrow">
+          <a class="btn" href="treninky-a-b.html">Otevřít</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="kicker">
+          <span class="tag">KNIHOVNA</span>
+          <span class="tag">technika</span>
+        </div>
+        <h3 class="title">Knihovna cviků</h3>
+        <p class="desc">Přehled cviků podle pohybových vzorců + regrese/progrese + tipy k technice.</p>
+        <div class="btnrow">
+          <a class="btn" href="knihovna-cviku.html">Otevřít</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="kicker">
+          <span class="tag">VÝŽIVA</span>
+          <span class="tag">hubnutí</span>
+        </div>
+        <h3 class="title">Hubnutí &amp; formování postavy</h3>
+        <p class="desc">Kalorická bilance, základní pravidla, nastavení očekávání a konzistence.</p>
+        <div class="btnrow">
+          <a class="btn" href="hubnuti-navzdy.html">Otevřít</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="kicker">
+          <span class="tag">BONUS</span>
+          <span class="tag">ergonomie</span>
+        </div>
+        <h3 class="title">Ergonomie &amp; sezení (Bonus)</h3>
+        <p class="desc">Setup pracovního místa + mikro-rutiny + checklisty pro sedavý režim.</p>
+        <div class="btnrow">
+          <a class="btn" href="bonus-ergonomie-a-sezeni.html">Otevřít</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="rutina">
+      <h2>Jak to poskládat do týdne (2× minimum, 3× ideál)</h2>
+      <p>Minimum funguje, když je konzistentní. Pokud máš rytmus, přidej třetí trénink.</p>
+
+      <ul class="list">
+        <li><b>Mobilita:</b> 10–15 min denně (ideálně ráno nebo večer)</li>
+        <li><b>Trénink:</b> 2× týdně A/B (minimum) → 3× týdně A/B/A (nebo B jako 3. trénink)</li>
+        <li><b>Kroky:</b> cílit průměrně 8–12k/den (ne honit maximum)</li>
+        <li><b>Spánek:</b> priorita (bez něj je všechno těžší)</li>
+      </ul>
+
+      <hr>
+
+      <h3>Šablony týdne (ať nemusíš přemýšlet)</h3>
+      <ul class="list">
+        <li><b>2× týdně:</b> Po A / Čt B (nebo Út–Pá)</li>
+        <li><b>3× týdně:</b> Po A / St B / Pá A (další týden B/A/B)</li>
+      </ul>
+
+      <hr>
+      <p class="small"><b>Tip:</b> Když nestíháš celý trénink, dej jen „krátkou verzi“ A/B a hotovo. Konzistence vyhrává.</p>
+      <p class="small"><b>Proč je to OK:</b> 2× týdně full-body A/B je pro běžnou populaci validní minimum. 3× týdně = víc objemu → rychlejší progres, ne povinnost.</p>
+    </section>
+
+
+    <section class="section" id="minimum">
+      <h2>Minimum, co funguje</h2>
+      <ul class="list">
+        <li><b>Mobilita:</b> 10–15 min denně</li>
+        <li><b>Trénink:</b> 2× týdně A/B</li>
+        <li><b>Kroky + spánek:</b> hlídej základní minimum</li>
+      </ul>
+    </section>
+
+    <p class="footer">© ITFIT VAULT • HUB</p>
+  </div>
+</body>
+</html>
