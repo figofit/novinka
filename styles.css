@@ -39,3 +39,45 @@ body {
 .blink {
   animation: blink 1s steps(1) infinite;
 }
+
+.vault-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 16px 18px;
+  margin: 0 auto 18px;
+  max-width: 1050px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.vault-menu a {
+  color: #ededed;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0.92;
+}
+
+.vault-menu a:hover {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.vault-menu .is-active {
+  border-color: #00ff41;
+  box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.25) inset;
+  opacity: 1;
+}
+
+.vault-hint {
+  max-width: 1050px;
+  margin: 0 auto 18px;
+  padding: 0 16px;
+  font-size: 13px;
+  color: #9aa49a;
+  font-family: 'Inter', sans-serif;
+}

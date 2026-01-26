@@ -129,9 +129,60 @@
       background:rgba(10,15,10,.7);
       display:inline-block;
     }
+
+    .vault-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 16px 18px;
+      margin: 0 auto 18px;
+      max-width: 1050px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .vault-menu a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      background: rgba(0, 0, 0, 0.2);
+      opacity: 0.92;
+    }
+
+    .vault-menu a:hover {
+      opacity: 1;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .vault-menu .is-active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.25) inset;
+      opacity: 1;
+    }
+
+    .vault-hint {
+      max-width: 1050px;
+      margin: 0 auto 18px;
+      padding: 0 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
+  <nav class="vault-menu" aria-label="Vault menu">
+    <a href="hub-po-zaplaceni.html">HUB</a>
+    <a href="zaklady-treninku.html">Základy</a>
+    <a href="mobilita.html">Mobilita</a>
+    <a href="treninky-a-b.html">Tréninky A/B</a>
+    <a href="knihovna-cviku.html">Knihovna cviků</a>
+    <a href="hubnuti-navzdy.html">Hubnutí</a>
+    <a href="bonus-ergonomie-a-sezeni.html">Ergonomie (Bonus)</a>
+  </nav>
+  <div class="vault-hint">Stačí malý setup + krátké reset pauzy během dne.</div>
   <div class="wrap">
     <div class="topbar">
       <div class="brand">
