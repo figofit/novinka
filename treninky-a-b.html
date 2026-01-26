@@ -67,12 +67,50 @@
     .box h4{margin:0 0 8px; font-size:13px; color:var(--muted)}
     .box ul{margin:0; padding-left:18px; color:var(--text)}
     .footer{margin-top:14px; color:var(--muted); font-size:12px}
+
+    .vault-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 16px 18px;
+      margin: 0 auto 18px;
+      max-width: 1050px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .vault-menu a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      background: rgba(0, 0, 0, 0.2);
+      opacity: 0.92;
+    }
+
+    .vault-menu a:hover {
+      opacity: 1;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .vault-menu .is-active {
+      border-color: var(--green);
+      box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.25) inset;
+      opacity: 1;
+    }
+
+    .vault-hint {
+      max-width: 1050px;
+      margin: 0 auto 18px;
+      padding: 0 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
   </style>
-  <link rel="stylesheet" href="auth.css">
-  <script src="auth.js" defer></script>
 </head>
 <body>
-  <div id="auth-bar" class="auth-bar"></div>
   <nav class="vault-menu" aria-label="Vault menu">
     <a href="hub-po-zaplaceni.html">HUB</a>
     <a href="zaklady-treninku.html">Základy</a>
@@ -104,11 +142,11 @@
       <div class="mono" style="color:var(--muted)"># status: READY_TO_TRAIN</div>
       <h1>Tréninky A/B – minimalistický protokol (30–35+ min)</h1>
       <p class="sub">
-        2 tréninky. 3× týdně. Komplexní cviky. Žádnej cirkus. <span class="mono">Nuda + konzistence = výsledky.</span>
+        2 tréninky. 2–3× týdně. Komplexní cviky. Žádnej cirkus. <span class="mono">Nuda + konzistence = výsledky.</span>
         Vybereš si variantu podle vybavení (BW / expandér / kettlebell / fitko). Klikni na cvik a otevře se technika.
       </p>
       <div class="row" style="margin-top:12px">
-        <span class="pill"><b>Doporučení</b> 3× týdně</span>
+        <span class="pill"><b>Doporučení</b> 2× minimum / 3× ideál</span>
         <span class="pill"><b>Default</b> 4 cviky / 4 série</span>
         <span class="pill"><b>Cyklus</b> 2:00 (set + pauza)</span>
         <span class="pill"><b>Cíl</b> zlepšit posturu + sílu</span>
@@ -120,7 +158,7 @@
       <section class="card" id="plan">
         <h2>Jak to jet v týdnu (jednoduše)</h2>
         <p class="muted" style="margin-top:6px">
-          Nejjednodušší rozpis: <span class="kbd">A / B / A</span> další týden <span class="kbd">B / A / B</span>.
+          Nejjednodušší rozpis: <span class="kbd">2× týdně</span> A/B nebo <span class="kbd">3× týdně</span> A/B/A (další týden B/A/B).
           Mezitím každý den 10–15 min mobilita + chůze.
         </p>
         <ul class="list">

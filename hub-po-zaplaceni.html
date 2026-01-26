@@ -160,13 +160,51 @@
     .list li{margin:6px 0}
     hr{border:none; border-top:1px solid var(--border); margin:16px 0}
     .footer{margin:20px 0 0; text-align:center; color:var(--muted); font-size:13px}
+
+    .vault-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 16px 18px;
+      margin: 0 auto 18px;
+      max-width: 1050px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .vault-menu a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      background: rgba(0, 0, 0, 0.2);
+      opacity: 0.92;
+    }
+
+    .vault-menu a:hover {
+      opacity: 1;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .vault-menu .is-active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.25) inset;
+      opacity: 1;
+    }
+
+    .vault-hint {
+      max-width: 1050px;
+      margin: 0 auto 18px;
+      padding: 0 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
   </style>
-  <link rel="stylesheet" href="auth.css">
-  <script src="auth.js" defer></script>
 </head>
 
 <body>
-  <div id="auth-bar" class="auth-bar"></div>
   <nav class="vault-menu" aria-label="Vault menu">
     <a href="hub-po-zaplaceni.html">HUB</a>
     <a href="zaklady-treninku.html">Základy</a>
@@ -205,8 +243,8 @@
           <p>10–15 min. Rychlý reset a lepší technika.</p>
         </div>
         <div class="step">
-          <b>3) Tréninky A/B (3× týdně)</b>
-          <p>Jednoduchý systém A/B, kratší i delší verze.</p>
+          <b>3) Tréninky A/B (2× týdně minimum)</b>
+          <p>Jednoduchý systém A/B, kratší i delší verze. Když jdeš dobře, přidej 3. trénink.</p>
         </div>
       </div>
       <div class="mt-4 text-gray-400">
@@ -260,7 +298,7 @@
           <span class="tag">A/B</span>
         </div>
         <h3 class="title">Tréninky A/B</h3>
-        <p class="desc">Hotové tréninky (kratší i delší verze). 3× týdně, jednoduchý systém.</p>
+        <p class="desc">Hotové tréninky (kratší i delší verze). 2× týdně minimum, 3× týdně ideál.</p>
         <div class="btnrow">
           <a class="btn" href="treninky-a-b.html">Otevřít</a>
         </div>
@@ -303,18 +341,27 @@
     </section>
 
     <section class="section" id="rutina">
-      <h2>Jak to poskládat do týdne (nejčistší minimum)</h2>
-      <p>Pro vytížené lidi: minimum, co funguje. Bez extrémů, bez „všechno nebo nic“.</p>
+      <h2>Jak to poskládat do týdne (2× minimum, 3× ideál)</h2>
+      <p>Minimum funguje, když je konzistentní. Pokud máš rytmus, přidej třetí trénink.</p>
 
       <ul class="list">
         <li><b>Mobilita:</b> 10–15 min denně (ideálně ráno nebo večer)</li>
-        <li><b>Trénink:</b> 3× týdně A/B/A (nebo B jako 3. trénink)</li>
+        <li><b>Trénink:</b> 2× týdně A/B (minimum) → 3× týdně A/B/A (nebo B jako 3. trénink)</li>
         <li><b>Kroky:</b> cílit průměrně 8–12k/den (ne honit maximum)</li>
         <li><b>Spánek:</b> priorita (bez něj je všechno těžší)</li>
       </ul>
 
       <hr>
+
+      <h3>Šablony týdne (ať nemusíš přemýšlet)</h3>
+      <ul class="list">
+        <li><b>2× týdně:</b> Po A / Čt B (nebo Út–Pá)</li>
+        <li><b>3× týdně:</b> Po A / St B / Pá A (další týden B/A/B)</li>
+      </ul>
+
+      <hr>
       <p class="small"><b>Tip:</b> Když nestíháš celý trénink, dej jen „krátkou verzi“ A/B a hotovo. Konzistence vyhrává.</p>
+      <p class="small"><b>Proč je to OK:</b> 2× týdně full-body A/B je pro běžnou populaci validní minimum. 3× týdně = víc objemu → rychlejší progres, ne povinnost.</p>
     </section>
 
 
@@ -322,7 +369,7 @@
       <h2>Minimum, co funguje</h2>
       <ul class="list">
         <li><b>Mobilita:</b> 10–15 min denně</li>
-        <li><b>Trénink:</b> 3× týdně A/B</li>
+        <li><b>Trénink:</b> 2× týdně A/B</li>
         <li><b>Kroky + spánek:</b> hlídej základní minimum</li>
       </ul>
     </section>
