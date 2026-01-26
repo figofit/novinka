@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ITFIT Vault | Knihovna cviků</title>
+
+  <!-- Tailwind CDN (rychlý prototyp) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ededed; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .caret { display:inline-block; width:0.6ch; color:#00ff41; }
+    @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+    .blink { animation: blink 1s steps(1) infinite; }
+  </style>
+  <link rel="stylesheet" href="auth.css">
+  <script src="auth.js" defer></script>
+</head>
+
+<body class="selection:bg-green-500 selection:text-black">
+  <div id="auth-bar" class="auth-bar"></div>
+
+  <!-- NAV -->
+  <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto">
+    <div class="mono text-xl font-bold tracking-tighter">IT.fit()</div>
+    <div class="space-x-6 text-sm mono hidden sm:block">
+      <a href="#knihovna" class="hover:text-green-400 transition">.knihovna</a>
+      <a href="#jak-pouzivat" class="hover:text-green-400 transition">.jak_používat</a>
+      <a href="#filtry" class="hover:text-green-400 transition">.filtry</a>
+      <a href="#faq" class="hover:text-green-400 transition">.faq</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="max-w-6xl mx-auto pt-10 pb-8 px-6">
+    <div class="rounded-2xl border border-gray-800 bg-gradient-to-b from-gray-900/60 to-black p-8">
+      <div class="mono text-xs text-gray-400 mb-2"># ITFIT_VAULT :: EXERCISE_LIBRARY</div>
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+        Knihovna cviků<span class="caret blink">_</span>
+      </h1>
+      <p class="text-gray-400 leading-relaxed max-w-3xl">
+        Tahle stránka je <span class="text-gray-200 font-semibold">reference</span>.
+        Ne “další plán”. Plán je pořád <span class="text-gray-200 font-semibold">A/B</span>.
+        Tady jen rychle najdeš <span class="text-gray-200 font-semibold">techniku, chyby, varianty</span> a podle vybavení si cvik přizpůsobíš.
+      </p>
+
+      <div class="mt-5 flex flex-wrap gap-2">
+        <span class="mono text-xs text-black bg-green-500 px-3 py-1 rounded-sm">MINIMALISMUS</span>
+        <span class="mono text-xs text-gray-300 border border-gray-800 px-3 py-1 rounded-sm">KOMPLEXNÍ CVIKY</span>
+        <span class="mono text-xs text-gray-300 border border-gray-800 px-3 py-1 rounded-sm">TECHNIKA &gt; EGO</span>
+        <span class="mono text-xs text-gray-300 border border-gray-800 px-3 py-1 rounded-sm">UDRŽITELNOST</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HOW TO USE -->
+  <section id="jak-pouzivat" class="max-w-6xl mx-auto px-6 py-8">
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="rounded-2xl border border-gray-800 bg-gray-900/30 p-6">
+        <div class="mono text-xs text-green-400 mb-2">01</div>
+        <h2 class="text-xl font-semibold mb-2">Nejprve A/B</h2>
+        <p class="text-gray-400 leading-relaxed">
+          A/B pokryje bohatě. Knihovna je tu jen proto, abys věděl <span class="text-gray-200 font-semibold">jak</span>, ne abys vymýšlel.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-gray-800 bg-gray-900/30 p-6">
+        <div class="mono text-xs text-green-400 mb-2">02</div>
+        <h2 class="text-xl font-semibold mb-2">Stavebnice (volitelně)</h2>
+        <p class="text-gray-400 leading-relaxed">
+          Když chceš obměnu: <span class="text-gray-200 font-semibold">1 dřep + 1 hinge + 1 tlak + 1 tah + core/postura</span>.
+          Nic víc.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-gray-800 bg-gray-900/30 p-6">
+        <div class="mono text-xs text-green-400 mb-2">03</div>
+        <h2 class="text-xl font-semibold mb-2">Progress bez cirkusu</h2>
+        <p class="text-gray-400 leading-relaxed">
+          Progres = přidat <span class="text-gray-200 font-semibold">opakování / zátěž / sérii / zkrátit pauzu / zpomalit tempo</span>.
+          Ne “nový fancy cvik každý týden”.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-2xl border border-gray-800 bg-black/40 p-6">
+      <div class="mono text-xs text-gray-400 mb-2">ITFIT RULE</div>
+      <p class="text-gray-300 leading-relaxed">
+        Pokud se u cviku <span class="text-gray-200 font-semibold">láme technika</span>, je to moc těžké.
+        Uprav variantu, rozsah, tempo – a pokračuj. Konzistence vyhrává.
+      </p>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <section id="filtry" class="max-w-6xl mx-auto px-6 py-6">
+    <div class="rounded-2xl border border-gray-800 bg-gray-900/30 p-6">
+      <div class="flex flex-col md:flex-row md:items-center gap-4 justify-between">
+        <div class="flex-1">
+          <label class="mono text-xs text-gray-400">SEARCH</label>
+          <input id="searchInput" type="text" placeholder="Hledej: swing, kliky, výpady, facepull..."
+                 class="w-full mt-2 bg-black/40 border border-gray-800 rounded-xl px-4 py-3 text-gray-200 placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500/40" />
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button data-filter-pattern="ALL" class="patternBtn mono text-xs border border-gray-800 px-3 py-2 rounded-xl hover:border-green-500/60 hover:text-green-400 transition">
+            ALL
+          </button>
+          <button data-filter-pattern="SQUAT" class="patternBtn mono text-xs border border-gray-800 px-3 py-2 rounded-xl hover:border-green-500/60 hover:text-green-400 transition">
+            SQUAT
+          </button>
+          <button data-filter-pattern="LUNGE" class="patternBtn mono text-xs border border-gray-800 px-3 py-2 rounded-xl hover:border-green-500/60 hover:text-green-400 transition">
+            LUNGE
+          </button>
+          <button data-filter-pattern="HINGE" class="patternBtn mono text-xs border border-gray-800 px-3 py-2 rounded-xl hover:border-green-500/60 hover:text-green-400 transition">
+            HINGE
+          </button>
+          <button data-filter-pattern="PUSH" class="patternBtn mono text-xs border border-gray-800 px-3 py-2 rounded-xl hover:border-green-500/60 hover:text-green-400 transition">
+            PUSH
+          </button>
+          <button data-filter-pattern="PULL" class="patternBtn mono text-xs border border-gray-800 px-3 py-2 rounded-xl hover:border-green-500/60 hover:text-green-400 transition">
+            PULL
+          </button>
+          <button data-filter-pattern="CORE" class="patternBtn mono text-xs border border-gray-800 px-3 py-2 rounded-xl hover:border-green-500/60 hover:text-green-400 transition">
+            CORE
+          </button>
+          <button data-filter-pattern="POSTURA" class="patternBtn mono text-xs border border-gray-800 px-3 py-2 rounded-xl hover:border-green-500/60 hover:text-green-400 transition">
+            POSTURA
+          </button>
+          <button data-filter-pattern="KONDICE" class="patternBtn mono text-xs border border-gray-800 px-3 py-2 rounded-xl hover:border-green-500/60 hover:text-green-400 transition">
+            KONDICE
+          </button>
+          <button data-filter-pattern="WARMUP" class="patternBtn mono text-xs border border-gray-800 px-3 py-2 rounded-xl hover:border-green-500/60 hover:text-green-400 transition">
+            WARMUP
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <button data-filter-eq="ALL" class="eqBtn mono text-xs bg-black/30 border border-gray-800 px-3 py-2 rounded-xl hover:border-blue-500/60 hover:text-blue-300 transition">
+          vybavení: ALL
+        </button>
+        <button data-filter-eq="BW" class="eqBtn mono text-xs bg-black/30 border border-gray-800 px-3 py-2 rounded-xl hover:border-blue-500/60 hover:text-blue-300 transition">
+          BW
+        </button>
+        <button data-filter-eq="EXP" class="eqBtn mono text-xs bg-black/30 border border-gray-800 px-3 py-2 rounded-xl hover:border-blue-500/60 hover:text-blue-300 transition">
+          EXPANDER
+        </button>
+        <button data-filter-eq="KTB" class="eqBtn mono text-xs bg-black/30 border border-gray-800 px-3 py-2 rounded-xl hover:border-blue-500/60 hover:text-blue-300 transition">
+          KETTLEBELL
+        </button>
+        <button data-filter-eq="OSA" class="eqBtn mono text-xs bg-black/30 border border-gray-800 px-3 py-2 rounded-xl hover:border-blue-500/60 hover:text-blue-300 transition">
+          OSA / ČINKA
+        </button>
+        <button data-filter-eq="GYM" class="eqBtn mono text-xs bg-black/30 border border-gray-800 px-3 py-2 rounded-xl hover:border-blue-500/60 hover:text-blue-300 transition">
+          GYM / LANDMINE
+        </button>
+      </div>
+
+      <div class="mt-4 text-sm text-gray-500">
+        <span class="mono">TIP:</span> klikni na pattern a pak na vybavení. Když něco nenajdeš, je to záměr — Vault je minimalistický.
+      </div>
+    </div>
+  </section>
+
+  <!-- LIBRARY -->
+  <section id="knihovna" class="max-w-6xl mx-auto px-6 py-10">
+    <div class="flex items-end justify-between gap-4 mb-6">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Cviky</h2>
+        <p class="text-gray-400">Jen to, co Michal reálně cvičí a používá s lidmi. Nic navíc.</p>
+      </div>
+      <div class="mono text-xs text-gray-500" id="resultCount">0 items</div>
+    </div>
+
+    <div id="cards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+
+    <div class="mt-10 rounded-2xl border border-gray-800 bg-gray-900/30 p-6">
+      <div class="mono text-xs text-gray-400 mb-2">POKROČILÉ VARIANTY</div>
+      <p class="text-gray-300 leading-relaxed">
+        U některých cviků uvidíš “PRO” varianty (např. Zercher squat, Zombie squat).
+        Jsou tu jen jako inspirace do budoucna. Pokud chceš fakt pokročilé věci, techniku a individuální progres → to je už upgrade / coaching.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="max-w-6xl mx-auto px-6 pb-16">
+    <div class="rounded-2xl border border-gray-800 bg-black/40 p-8">
+      <h2 class="text-2xl font-bold mb-6">FAQ</h2>
+
+      <div class="space-y-5">
+        <div>
+          <div class="mono text-xs text-green-400 mb-1">Q:</div>
+          <div class="text-gray-200 font-semibold">Mám do Vaultu dát všechny cviky světa?</div>
+          <div class="mono text-xs text-green-400 mt-2">A:</div>
+          <p class="text-gray-400 leading-relaxed">
+            Ne. Vault je “minimum, co funguje”. Čím víc větvíš, tím menší šance, že to lidi budou dělat. A/B + mobilita + chůze = základ.
+          </p>
+        </div>
+
+        <div>
+          <div class="mono text-xs text-green-400 mb-1">Q:</div>
+          <div class="text-gray-200 font-semibold">Co když chci trénovat delší dobu?</div>
+          <div class="mono text-xs text-green-400 mt-2">A:</div>
+          <p class="text-gray-400 leading-relaxed">
+            Použij A/B 60 min (víc sérií / 1 cvik navíc) nebo dej třetí trénink jako opakování A nebo B. Konzistence &gt; cirkus.
+          </p>
+        </div>
+
+        <div>
+          <div class="mono text-xs text-green-400 mb-1">Q:</div>
+          <div class="text-gray-200 font-semibold">Je OK mít kettlebell + expander jako “minimum vybavení”?</div>
+          <div class="mono text-xs text-green-400 mt-2">A:</div>
+          <p class="text-gray-400 leading-relaxed">
+            Ano. BW-only jde taky, ale expander je gamechanger pro tahy/ramena/posturu. KTB je top na hinge, kondici a fullbody sílu.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-gray-900 py-10 text-center text-sm text-gray-600">
+    <div class="mono">IT.fit() • Vault Library</div>
+  </footer>
+
+  <script>
+    // --- DATASET (vše, co jsi psal) ---
+    const EX = [
+      // WARM-UP / RESET
+      { name:"Deadbug (mrtvý brouk)", pattern:["WARMUP","CORE"], eq:["BW"], level:"CORE", purpose:"zapnutí trupu, stabilita", cues:["žebra dolů", "bedra neutrálně", "pomalu"], mistakes:["prohnutí beder","švihové pohyby"], regress:"menší rozsah", progress:"pauza v extenzi" },
+      { name:"Bird dog (ptakopes)", pattern:["WARMUP","CORE"], eq:["BW"], level:"CORE", purpose:"stabilita páteře, lopatky", cues:["pevný trup","dlouhá páteř"], mistakes:["rotace pánve","rychlost"], regress:"jen noha/jen ruka", progress:"pauza 2s" },
+      { name:"Hip raise / Glute bridge", pattern:["WARMUP","HINGE"], eq:["BW"], level:"BASE", purpose:"aktivace hýždí", cues:["tlač paty","neprohýbat bedra"], mistakes:["bolí bedra","kolena dovnitř"], regress:"kratší rozsah", progress:"1 noha" },
+      { name:"Bear crawl (lezení po 4)", pattern:["WARMUP","CORE","POSTURA"], eq:["BW"], level:"BASE", purpose:"ramena, core, koordinace", cues:["kolena nízko","tichý kroky","pevný střed"], mistakes:["prohnutí beder","spěch"], regress:"kratší úsek", progress:"delší interval" },
+      { name:"Inchworm", pattern:["WARMUP","CORE","POSTURA"], eq:["BW"], level:"BASE", purpose:"ramena, hamstringy, trup", cues:["pevný střed","neprohýbat"], mistakes:["propad v bedrech"], regress:"pokrčit kolena", progress:"push-up v prkně" },
+      { name:"Crucifix crunch (křížové zkracovačky)", pattern:["WARMUP","CORE"], eq:["BW"], level:"CORE", purpose:"kontrola břicha", cues:["žebra k pánvi","krk volně"], mistakes:["tahat za krk","švih"], regress:"menší rozsah", progress:"pomalejší tempo" },
+      { name:"Around the world (KTB okolo těla)", pattern:["WARMUP","CORE"], eq:["KTB"], level:"BASE", purpose:"core + koordinace", cues:["pevný trup","kontrola"], mistakes:["kroucení beder"], regress:"lehčí KB", progress:"víc kol" },
+      { name:"Halo (kotouč/KB okolo hlavy)", pattern:["WARMUP","POSTURA"], eq:["KTB","GYM"], level:"BASE", purpose:"ramena, lopatky", cues:["žebra dolů","pomalu"], mistakes:["prohnutí beder"], regress:"menší kruh", progress:"těžší váha" },
+
+      // SQUAT
+      { name:"Dřep – vlastní váha", pattern:["SQUAT"], eq:["BW"], level:"BASE", purpose:"nohy + core", cues:["kolena nad prsty","pevný střed"], mistakes:["kolena dovnitř","pata se zvedá"], regress:"box squat", progress:"pauza dole" },
+      { name:"Goblet squat", pattern:["SQUAT"], eq:["KTB","GYM"], level:"BASE", purpose:"dřepový vzor, core", cues:["lokty dolů","pevný střed"], mistakes:["kulatá záda","kolena dovnitř"], regress:"lehčí KB", progress:"tempo 3-1-1" },
+      { name:"Back squat (zadní dřep)", pattern:["SQUAT"], eq:["OSA","GYM"], level:"PRO", purpose:"síla nohou", cues:["bracing","kontrolovaný sestup"], mistakes:["kolaps trupu","ego váha"], regress:"goblet", progress:"pauza squat" },
+      { name:"Front squat (čelní dřep)", pattern:["SQUAT"], eq:["OSA","GYM"], level:"PRO", purpose:"core + kvadricepsy", cues:["lokty vysoko"], mistakes:["pád loktů","kulatá záda"], regress:"goblet", progress:"tempo" },
+      { name:"Landmine squat", pattern:["SQUAT"], eq:["GYM"], level:"BASE", purpose:"dřep šetrný pro záda", cues:["těžiště uprostřed"], mistakes:["pata pryč"], regress:"goblet", progress:"víc zátěž" },
+      { name:"Zombie squat", pattern:["SQUAT"], eq:["OSA","GYM"], level:"PRO", purpose:"postura + core", cues:["ruce vpřed, trup vzpřímeně"], mistakes:["kolaps trupu"], regress:"front squat lehce", progress:"pauza" },
+      { name:"Zercher squat", pattern:["SQUAT"], eq:["OSA","GYM"], level:"PRO", purpose:"core + přední řetězec", cues:["lokty u těla","bracing"], mistakes:["kulatá záda"], regress:"goblet", progress:"víc zátěž" },
+      { name:"Cossack squat", pattern:["SQUAT","MOBILITY"], eq:["BW","KTB"], level:"BASE", purpose:"mobilita kyčlí + nohy", cues:["tlač patu","kontroluj koleno"], mistakes:["padání na vnitřní hranu"], regress:"menší rozsah", progress:"drž KB" },
+
+      // LUNGE
+      { name:"Výpady vzad (reverse lunge)", pattern:["LUNGE"], eq:["BW","KTB","GYM"], level:"BASE", purpose:"nohy + stabilita", cues:["tlak přes přední nohu","tělo pevné"], mistakes:["koleno před", "houpání trupem"], regress:"kratší krok", progress:"KB v ruce" },
+      { name:"Výpady vpřed (forward lunge)", pattern:["LUNGE"], eq:["BW","KTB"], level:"BASE", purpose:"nohy + kontrola", cues:["kontrolovaný dopad"], mistakes:["koleno dovnitř"], regress:"výpad vzad", progress:"pauza dole" },
+      { name:"Split squat", pattern:["LUNGE"], eq:["BW","KTB","GYM"], level:"BASE", purpose:"síla nohou", cues:["trup pevný","koleno sleduje prsty"], mistakes:["krátký krok -> koleno moc vpředu"], regress:"opora rukou", progress:"zátěž" },
+      { name:"Bulharský dřep (Bulgarian split squat)", pattern:["LUNGE"], eq:["BW","KTB","GYM"], level:"PRO", purpose:"nohy + stabilita", cues:["dlouhý krok","kontrola dolů"], mistakes:["koleno dopředu","ztráta rovnováhy"], regress:"split squat", progress:"KB/DB" },
+
+      // HINGE
+      { name:"Kettlebell swing", pattern:["HINGE","KONDICE"], eq:["KTB"], level:"BASE", purpose:"posterior chain + kondice", cues:["kyčelní cvik","ruce jako háky","trojextenze"], mistakes:["dřepování","tahání rukama","kulatá záda"], regress:"hip hinge drill", progress:"víc objem / těžší KB" },
+      { name:"Deadlift (mrtvý tah)", pattern:["HINGE"], eq:["OSA","GYM"], level:"PRO", purpose:"síla zadního řetězce", cues:["bracing","osa u nohou"], mistakes:["kulatá záda","trhání"], regress:"RDL lehce", progress:"těžší váha" },
+      { name:"Sumo deadlift", pattern:["HINGE"], eq:["OSA","GYM"], level:"PRO", purpose:"hinge + kyčle", cues:["kolena ven","hrudník vysoko"], mistakes:["padání kolen"], regress:"RDL", progress:"těžší" },
+      { name:"Romanian deadlift (RDL)", pattern:["HINGE"], eq:["OSA","KTB","GYM"], level:"BASE", purpose:"hamstringy + hinge technika", cues:["boky dozadu","mírně kolena"], mistakes:["dřepování","kulatá záda"], regress:"lehčí váha", progress:"tempo" },
+      { name:"Hip thrust / Hip raise", pattern:["HINGE"], eq:["BW","GYM"], level:"BASE", purpose:"hýždě", cues:["tlač paty","neprohýbat bedra"], mistakes:["bolí bedra"], regress:"glute bridge", progress:"zátěž" },
+
+      // PUSH
+      { name:"Kliky (push-ups)", pattern:["PUSH"], eq:["BW"], level:"BASE", purpose:"tlak + core", cues:["tělo v prkně","lokty ~45°"], mistakes:["propad beder","krk"], regress:"incline/wall", progress:"nohy výš / tempo" },
+      { name:"Dipy (dips)", pattern:["PUSH"], eq:["GYM"], level:"PRO", purpose:"triceps + hrudník", cues:["ramena dolů","kontrola"], mistakes:["bolest ramene"], regress:"bench dips opatrně", progress:"zátěž" },
+      { name:"Bench press", pattern:["PUSH"], eq:["OSA","GYM"], level:"PRO", purpose:"horizontální tlak", cues:["lopatky stažené","nohy do země"], mistakes:["ramena vpřed"], regress:"floor press", progress:"víc zátěž" },
+      { name:"Floor press", pattern:["PUSH"], eq:["KTB","OSA","GYM"], level:"BASE", purpose:"tlak šetrný pro ramena", cues:["lokty kontrola"], mistakes:["odskok"], regress:"lehčí váha", progress:"jednoručně/KB" },
+      { name:"Tlak nad hlavu (OHP)", pattern:["PUSH","POSTURA"], eq:["KTB","OSA","EXP","GYM"], level:"BASE", purpose:"ramena + core", cues:["žebra dolů","neprohýbat"], mistakes:["hyperextenze beder"], regress:"half-kneeling", progress:"těžší" },
+      { name:"Landmine tlaky", pattern:["PUSH","POSTURA"], eq:["GYM"], level:"BASE", purpose:"tlak šetrný pro ramena", cues:["úhel, core"], mistakes:["prohnutí"], regress:"lehčí", progress:"víc zátěž" },
+
+      // PULL
+      { name:"Shyby (pull-ups)", pattern:["PULL"], eq:["GYM","BW"], level:"PRO", purpose:"záda + úchop", cues:["lopatky dolů","tah lokty"], mistakes:["kipping","ramena u uší"], regress:"negativní/assisted", progress:"zátěž" },
+      { name:"Přítahy v předklonu (row)", pattern:["PULL"], eq:["OSA","KTB","EXP","GYM"], level:"BASE", purpose:"záda", cues:["rovná záda","lokty u těla"], mistakes:["kulatá záda","houpání"], regress:"expander", progress:"těžší/tempo" },
+      { name:"Inverted rows", pattern:["PULL"], eq:["BW","GYM"], level:"BASE", purpose:"záda + core", cues:["tělo v přímce","tah hrudníkem"], mistakes:["propad beder","houpání"], regress:"kolena pokrčit", progress:"nohy výš" },
+      { name:"Přítahy vzhůru (upright pulls)", pattern:["PULL","POSTURA"], eq:["EXP","KTB","GYM"], level:"PRO", purpose:"trapézy/ramena", cues:["lokty výš než ruce"], mistakes:["bolest ramene"], regress:"facepull", progress:"kontrola" },
+
+      // POSTURA / SCAPULA
+      { name:"Facepull (expander/kladka)", pattern:["POSTURA","PULL"], eq:["EXP","GYM"], level:"BASE", purpose:"lopatky + zadní delty", cues:["lokty nahoře","kontrakce"], mistakes:["ramena u uší"], regress:"lehčí guma", progress:"pauza 1–2 s" },
+      { name:"Rozpažky s expanderem (band fly / pull-apart)", pattern:["POSTURA"], eq:["EXP"], level:"BASE", purpose:"otevření ramen", cues:["nepřetahovat přes osu"], mistakes:["škubání"], regress:"lehčí guma", progress:"pauza" },
+      { name:"Pullover (DB/KB/osa/exp)", pattern:["POSTURA","PULL"], eq:["KTB","OSA","EXP","GYM"], level:"BASE", purpose:"laty + hrudník + mobilita", cues:["lokty lehce pokrčené","kontrola"], mistakes:["moc hluboko","bolest ramen"], regress:"expander", progress:"těžší" },
+      { name:"Vis (dead hang)", pattern:["POSTURA"], eq:["GYM","BW"], level:"BASE", purpose:"dekomprese + úchop", cues:["ramena dolů","dýchej"], mistakes:["bolest ramen"], regress:"kratší čas", progress:"delší / aktivní vis" },
+      { name:"Kotouč nad hlavu (hold/raise)", pattern:["POSTURA","CORE"], eq:["GYM"], level:"BASE", purpose:"stabilita ramen + trup", cues:["žebra dolů","neprohýbat"], mistakes:["hyperextenze"], regress:"lehčí", progress:"delší hold" },
+
+      // CORE
+      { name:"Plank / Prkno", pattern:["CORE"], eq:["BW"], level:"BASE", purpose:"core stabilita", cues:["žebra dolů","zadek lehce"], mistakes:["propad beder"], regress:"kolena", progress:"delší/variace" },
+      { name:"Russian twist", pattern:["CORE"], eq:["BW","KTB"], level:"PRO", purpose:"rotace trupu", cues:["kontrola","nekroutit bedra"], mistakes:["švih"], regress:"menší rozsah", progress:"zátěž" },
+      { name:"Zkracovačky (crunch)", pattern:["CORE"], eq:["BW"], level:"BASE", purpose:"břicho", cues:["žebra dolů"], mistakes:["krk"], regress:"menší", progress:"tempo" },
+      { name:"Landmine rotace", pattern:["CORE","POSTURA"], eq:["GYM"], level:"BASE", purpose:"rotace + anti-rotace", cues:["boky stabilní"], mistakes:["točení v bedrech"], regress:"expander woodchop", progress:"víc zátěž" },
+      { name:"Woodchopper (expander rotace)", pattern:["CORE"], eq:["EXP"], level:"BASE", purpose:"rotace trupu", cues:["otáčej trup, ne ruce"], mistakes:["točení v bedrech"], regress:"lehčí guma", progress:"víc opak." },
+      { name:"TGU (Turkish get-up)", pattern:["CORE","POSTURA"], eq:["KTB"], level:"PRO", purpose:"fullbody stabilita", cues:["oko na KB","krok po kroku"], mistakes:["spěch"], regress:"bez váhy", progress:"těžší" },
+      { name:"L-sit", pattern:["CORE"], eq:["BW","GYM"], level:"PRO", purpose:"core + flexory kyčlí", cues:["ramena dolů"], mistakes:["propad"], regress:"tuck hold", progress:"delší" },
+      { name:"Ab wheel (kolečko)", pattern:["CORE"], eq:["GYM"], level:"PRO", purpose:"anti-extend core", cues:["žebra dolů","krátký rozsah"], mistakes:["prohnutí beder"], regress:"od zdi / menší rozsah", progress:"větší ROM" },
+
+      // KONDICE / POWER COMPLEX
+      { name:"Thruster", pattern:["KONDICE","PUSH","SQUAT"], eq:["KTB","OSA","GYM"], level:"PRO", purpose:"fullbody kondice", cues:["dřep -> tlak"], mistakes:["ztráta techniky"], regress:"menší váha", progress:"interval" },
+      { name:"Trh (snatch)", pattern:["KONDICE","HINGE","PUSH"], eq:["KTB","OSA","GYM"], level:"PRO", purpose:"výbušnost", cues:["síla z kyčlí"], mistakes:["tahat rukama"], regress:"swing", progress:"těžší" },
+      { name:"Přemístění (clean)", pattern:["KONDICE","HINGE"], eq:["KTB","OSA","GYM"], level:"PRO", purpose:"power + fullbody", cues:["kyčle","rack pozice"], mistakes:["tah rukama"], regress:"swing", progress:"complex" },
+      { name:"Přemístění + dřep", pattern:["KONDICE","HINGE","SQUAT"], eq:["KTB","OSA","GYM"], level:"PRO", purpose:"power complex", cues:["čistá technika"], mistakes:["spěch"], regress:"clean jen", progress:"víc kol" },
+      { name:"Sed-leh + tlak nad hlavu (sit-up to press)", pattern:["CORE","PUSH"], eq:["KTB","OSA","GYM"], level:"CORE", purpose:"core + tlak, stabilita ramen", cues:["zpevni trup, žebra dolů","tlač nad hlavu bez prohnutí","kontrolovaný sed-leh"], mistakes:["švih bez kontroly","prohnutí beder","ramena u uší"], regress:"sed-leh bez tlaku / floor press", progress:"1-arm tlak / těžší váha / tempo" },
+
+    ];
+
+    // --- UI STATE ---
+    let pattern = "ALL";
+    let eq = "ALL";
+    let query = "";
+
+    // --- RENDER ---
+    const cardsEl = document.getElementById("cards");
+    const countEl = document.getElementById("resultCount");
+    const searchInput = document.getElementById("searchInput");
+
+    function tagPill(text, accent=false){
+      const cls = accent
+        ? "mono text-[10px] bg-green-500 text-black px-2 py-1 rounded-lg"
+        : "mono text-[10px] border border-gray-800 text-gray-300 px-2 py-1 rounded-lg";
+      return `<span class="${cls}">${text}</span>`;
+    }
+
+    function card(ex){
+      const patterns = ex.pattern.map(p => tagPill(p, p==="BASE" || p==="CORE")).join(" ");
+      const eqs = ex.eq.map(e => tagPill(e)).join(" ");
+      const level = ex.level === "PRO"
+        ? `<span class="mono text-[10px] border border-yellow-600/40 text-yellow-200 px-2 py-1 rounded-lg">PRO</span>`
+        : `<span class="mono text-[10px] border border-gray-800 text-gray-300 px-2 py-1 rounded-lg">BASE</span>`;
+
+      const cues = (ex.cues || []).slice(0,3).map(c => `<li class="text-gray-400">• ${c}</li>`).join("");
+      const mistakes = (ex.mistakes || []).slice(0,3).map(m => `<li class="text-gray-500">• ${m}</li>`).join("");
+
+      return `
+        <article class="rounded-2xl border border-gray-800 bg-gray-900/20 p-6 hover:border-green-500/30 transition">
+          <div class="flex items-start justify-between gap-3">
+            <h3 class="text-lg font-semibold leading-snug">${ex.name}</h3>
+            ${level}
+          </div>
+
+          <div class="mt-3 flex flex-wrap gap-2">${patterns}</div>
+          <div class="mt-2 flex flex-wrap gap-2">${eqs}</div>
+
+          <p class="mt-4 text-gray-400 text-sm leading-relaxed">
+            <span class="text-gray-200 font-semibold">Proč:</span> ${ex.purpose || "—"}
+          </p>
+
+          <div class="mt-4 grid grid-cols-2 gap-4">
+            <div>
+              <div class="mono text-xs text-green-400 mb-2">Cues</div>
+              <ul class="text-sm space-y-1">${cues || `<li class="text-gray-500">• doplníš</li>`}</ul>
+            </div>
+            <div>
+              <div class="mono text-xs text-green-400 mb-2">Chyby</div>
+              <ul class="text-sm space-y-1">${mistakes || `<li class="text-gray-500">• doplníš</li>`}</ul>
+            </div>
+          </div>
+
+          <div class="mt-4 text-sm text-gray-500">
+            <span class="mono text-xs text-gray-400">Regrese:</span> ${ex.regress || "—"}<br>
+            <span class="mono text-xs text-gray-400">Progrese:</span> ${ex.progress || "—"}
+          </div>
+
+          <div class="mt-4 rounded-xl border border-gray-800 bg-black/30 p-3">
+            <div class="mono text-xs text-gray-400 mb-1">VIDEO</div>
+            <div class="text-sm text-gray-500">Sem vlož odkaz / embed (YouTube) až to natočíš.</div>
+          </div>
+        </article>
+      `;
+    }
+
+    function matches(ex){
+      const q = query.trim().toLowerCase();
+      const qMatch = !q || ex.name.toLowerCase().includes(q) || (ex.purpose||"").toLowerCase().includes(q);
+
+      const pMatch = pattern === "ALL" || ex.pattern.includes(pattern);
+      const eMatch = eq === "ALL" || ex.eq.includes(eq);
+
+      return qMatch && pMatch && eMatch;
+    }
+
+    function render(){
+      const filtered = EX.filter(matches);
+      cardsEl.innerHTML = filtered.map(card).join("");
+      countEl.textContent = `${filtered.length} items`;
+    }
+
+    // --- EVENTS ---
+    searchInput.addEventListener("input", (e) => {
+      query = e.target.value;
+      render();
+    });
+
+    document.querySelectorAll(".patternBtn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        pattern = btn.dataset.filterPattern;
+        document.querySelectorAll(".patternBtn").forEach(b => b.classList.remove("text-green-400","border-green-500/60"));
+        btn.classList.add("text-green-400","border-green-500/60");
+        render();
+      });
+    });
+
+    document.querySelectorAll(".eqBtn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        eq = btn.dataset.filterEq;
+        document.querySelectorAll(".eqBtn").forEach(b => b.classList.remove("text-blue-300","border-blue-500/60"));
+        btn.classList.add("text-blue-300","border-blue-500/60");
+        render();
+      });
+    });
+
+    // Default highlight ALL
+    document.querySelector('.patternBtn[data-filter-pattern="ALL"]').classList.add("text-green-400","border-green-500/60");
+    document.querySelector('.eqBtn[data-filter-eq="ALL"]').classList.add("text-blue-300","border-blue-500/60");
+
+    render();
+  </script>
+</body>
+</html>
