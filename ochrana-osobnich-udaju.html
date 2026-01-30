@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ITFIT • Ochrana osobních údajů</title>
+  <style>
+    :root{
+      --bg:#050b08;
+      --panel:#0b1410;
+      --text:#e8fff0;
+      --muted:#a9cbb6;
+      --border:rgba(0,255,65,.18);
+      --accent:#00ff41;
+      --shadow:0 14px 36px rgba(0,0,0,.4);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font:16px/1.7 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(0,255,65,.16), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(0,217,54,.12), transparent 55%),
+        linear-gradient(180deg, #040806, #050b08 35%, #040806);
+    }
+    .wrap{max-width:920px; margin:0 auto; padding:32px 20px 64px;}
+    .card{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:24px;
+      background:linear-gradient(180deg, rgba(0,255,65,.06), rgba(0,0,0,.0));
+      box-shadow:var(--shadow);
+    }
+    h1{margin:0 0 8px; font-size:clamp(28px, 4vw, 38px);}
+    h2{margin:24px 0 10px; font-size:20px;}
+    p{margin:0 0 10px; color:var(--muted);}
+    ul{margin:8px 0 0 18px; color:var(--muted);}
+    li{margin:6px 0;}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 12px; border-radius:999px; border:1px solid var(--border);
+      background:rgba(0,255,65,.06); color:var(--muted); font-size:12px;
+    }
+    .footer{
+      margin-top:32px; text-align:center; color:var(--muted); font-size:13px;
+    }
+    a{color:inherit}
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <div class="pill">ITFIT • GDPR</div>
+    <div class="card">
+      <h1>Zásady ochrany osobních údajů</h1>
+      <p>web itfit.cz</p>
+
+      <h2>1. Kdo je správce</h2>
+      <p>Správcem osobních údajů je:</p>
+      <ul>
+        <li>Jméno/název: [DOPLNIT]</li>
+        <li>IČO: [DOPLNIT]</li>
+        <li>Sídlo/adresa: [DOPLNIT]</li>
+        <li>E-mail: [DOPLNIT]</li>
+      </ul>
+
+      <h2>2. Jaké údaje zpracováváme</h2>
+      <p>Typicky zpracováváme:</p>
+      <ul>
+        <li>identifikační a kontaktní údaje (jméno, e-mail, telefon)</li>
+        <li>fakturační údaje (adresa, IČO/DIČ u podnikatelů)</li>
+        <li>údaje o objednávkách a platbách</li>
+        <li>údaje o přístupu do členské sekce (uživatelský účet, logy)</li>
+        <li>marketingové údaje (souhlas se zasíláním, otevření e-mailů, prokliky – pokud používáš Ecomail)</li>
+        <li>technické údaje (cookies, IP adresa, zařízení – pokud používáš analytiku)</li>
+      </ul>
+
+      <h2>3. Proč údaje zpracováváme a na jakém základě</h2>
+      <p>3.1. Plnění smlouvy – vyřízení objednávky, zpřístupnění obsahu, zákaznická podpora.</p>
+      <p>3.2. Právní povinnost – účetnictví a daňové doklady.</p>
+      <p>3.3. Oprávněný zájem – ochrana před zneužitím, zabezpečení webu, základní statistiky provozu (v rozumném rozsahu).</p>
+      <p>3.4. Souhlas – newsletter / marketing, personalizace, volitelné cookies (dle nastavení cookie lišty).</p>
+
+      <h2>4. Newsletter a e-mail marketing</h2>
+      <p>4.1. Pokud se přihlásíš k odběru (např. „ITFIT 5denní Reset“), budeme ti zasílat související e-maily dle rozsahu souhlasu.</p>
+      <p>4.2. Odhlášení je možné kdykoli přes odkaz v e-mailu.</p>
+
+      <h2>5. Kdo má k údajům přístup (zpracovatelé)</h2>
+      <p>Údaje mohou být předávány zpracovatelům, kteří pro nás zajišťují technické služby, typicky:</p>
+      <ul>
+        <li>e-mailingový nástroj: Ecomail</li>
+        <li>platební brána / platby: [DOPLNIT – např. Stripe / SimpleShop / banka]</li>
+        <li>hosting a správa webu: [DOPLNIT – např. Websupport / Wedos]</li>
+        <li>účetnictví: [DOPLNIT, pokud máš externí účetní]</li>
+        <li>analytika / reklama: [DOPLNIT – Google Analytics / Meta Pixel]</li>
+      </ul>
+
+      <h2>6. Jak dlouho údaje uchováváme</h2>
+      <ul>
+        <li>účetní a daňové doklady: obvykle 10 let</li>
+        <li>objednávky a zákaznická komunikace: obvykle 3–5 let (kvůli právním nárokům)</li>
+        <li>newsletter: do odvolání souhlasu / odhlášení</li>
+        <li>cookies: dle typu cookies a nastavení prohlížeče / cookie lišty</li>
+      </ul>
+
+      <h2>7. Tvá práva</h2>
+      <p>Máš právo:</p>
+      <ul>
+        <li>na přístup k údajům, opravu, výmaz</li>
+        <li>na omezení zpracování, přenositelnost</li>
+        <li>vznést námitku proti zpracování z oprávněného zájmu</li>
+        <li>kdykoli odvolat souhlas (u marketingu)</li>
+        <li>podat stížnost u ÚOOÚ</li>
+      </ul>
+
+      <h2>8. Zabezpečení</h2>
+      <p>Používáme přiměřená technická a organizační opatření pro ochranu osobních údajů (zabezpečený přístup, aktualizace systému, omezení přístupů).</p>
+
+      <h2>9. Cookies</h2>
+      <p>9.1. Web může používat nezbytné cookies pro správné fungování.</p>
+      <p>9.2. Analytické a marketingové cookies používáme pouze, pokud k tomu udělíš souhlas (pokud máš cookie lištu).</p>
+      <p>9.3. Nastavení cookies můžeš změnit v prohlížeči nebo v cookie liště (pokud je nasazená).</p>
+
+      <h2>Účinnost od</h2>
+      <p>[DOPLNIT DATUM]</p>
+
+      <div class="footer">© ITFIT • Ochrana osobních údajů</div>
+    </div>
+  </div>
+</body>
+</html>

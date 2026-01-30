@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ITFIT Vault – LOG</title>
+  <style>
+    :root{
+      --bg:#070a07; --panel:#0d120d; --text:#e7ece7; --muted:#9aa49a; --green:#00ff41; --border:#1b241b;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans","Liberation Sans",sans-serif;
+      background:
+        radial-gradient(1200px 700px at 15% 15%, rgba(0,255,65,.07), transparent 55%),
+        radial-gradient(900px 600px at 85% 10%, rgba(0,255,65,.05), transparent 50%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:var(--green); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+    .wrap{max-width:1050px; margin:0 auto; padding:28px 18px 90px;}
+    .card{
+      border:1px solid var(--border); background:rgba(13,18,13,.6); border-radius:18px; padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .vault-menu {
+      display: flex; flex-wrap: wrap; gap: 10px; padding: 12px 16px 18px; margin: 0 auto 18px; max-width: 1050px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    .vault-menu a {
+      color: var(--text); text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 12px; border-radius: 10px; font-size: 13px; background: rgba(0, 0, 0, 0.2); opacity: 0.92;
+    }
+    .vault-menu a:hover { opacity: 1; border-color: rgba(255, 255, 255, 0.25); }
+    .vault-menu .is-active {
+      border-color: var(--green); box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.25) inset; opacity: 1;
+    }
+    .vault-hint {
+      max-width: 1050px; margin: 0 auto 18px; padding: 0 16px; font-size: 13px; color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <nav class="vault-menu" aria-label="Vault menu">
+    <a href="hub-po-zaplaceni.html">HUB</a>
+    <a href="zaklady-treninku.html">Základy</a>
+    <a href="mobilita.html">Mobilita</a>
+    <a href="treninky-a-b.html">Tréninky A/B</a>
+    <a href="knihovna-cviku.html">Knihovna cviků</a>
+    <a href="strava-zaklady.html">Strava (Základy)</a>
+    <a href="hubnuti.html">Hubnutí</a>
+    <a href="hub-po-zaplaceni.html#bonusy">Bonusy</a>
+    <a href="bonus-ergonomie-a-sezeni.html">Ergonomie (Bonus)</a>
+    <a class="is-active" href="log.html">LOG</a>
+  </nav>
+  <div class="vault-hint">Místo pro logování verzí a změn (v1).</div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1 class="mono">vault_log()</h1>
+      <p>Placeholder pro log změn a update poznámky. Doplníme postupně.</p>
+      <p><a href="hub-po-zaplaceni.html">Další krok: zpět do HUBu</a></p>
+    </div>
+  </div>
+</body>
+</html>

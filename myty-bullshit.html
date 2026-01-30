@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ITFIT Vault – Mýty & Bullshit filtr</title>
+  <meta name="description" content="Rychlý filtr na nejčastější fitness a výživové mýty. Co je důležité, co je detail a co je čistý bullshit." />
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --text:#eaf2ff;
+      --muted:#a9b7cc;
+      --border:rgba(255,255,255,.10);
+      --accent:#00e5ff;
+      --accent2:#7cff6b;
+      --warning:#ffcc66;
+      --shadow: 0 16px 40px rgba(0,0,0,.45);
+      --radius:16px;
+      --radius2:22px;
+      --max: 980px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--font);
+      background:
+        radial-gradient(1100px 520px at 12% -10%, rgba(0,229,255,.18), transparent 60%),
+        radial-gradient(900px 450px at 90% 0%, rgba(124,255,107,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 70px}
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      padding:12px 14px; border:1px solid var(--border); border-radius:999px;
+      background:rgba(255,255,255,.03);
+      backdrop-filter: blur(10px);
+    }
+    .crumbs{display:flex; gap:10px; align-items:center; color:var(--muted); font-size:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      font-size:13px; color:var(--muted);
+      text-decoration:none;
+    }
+    .pill strong{color:var(--text); font-weight:650}
+    .hero{
+      margin-top:18px;
+      padding:26px 18px;
+      border:1px solid var(--border);
+      border-radius:var(--radius2);
+      background:linear-gradient(135deg, rgba(0,229,255,.12), rgba(124,255,107,.07) 45%, rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+    }
+    .hero h1{margin:0 0 10px; font-size:28px; letter-spacing:-.02em}
+    .hero p{margin:0; color:var(--muted); max-width:74ch}
+    .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:650;
+    }
+    .btn.primary{
+      border-color:rgba(0,229,255,.35);
+      background:linear-gradient(180deg, rgba(0,229,255,.18), rgba(0,229,255,.08));
+    }
+    .card{
+      margin-top:14px;
+      padding:18px 16px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    }
+    .card h2{margin:0 0 10px; font-size:18px; letter-spacing:-.01em}
+    .muted{color:var(--muted)}
+    .hl{
+      border-left:3px solid rgba(0,229,255,.45);
+      padding:12px 12px;
+      background:rgba(0,229,255,.06);
+      border-radius:12px;
+      margin:12px 0;
+      color:var(--muted);
+    }
+    .warn{border-left-color: rgba(255,204,102,.6); background: rgba(255,204,102,.08);}
+    .good{border-left-color: rgba(124,255,107,.55); background: rgba(124,255,107,.07);}
+    .grid{display:grid; gap:14px}
+    @media (min-width:900px){ .grid{grid-template-columns:1fr 1fr} }
+    details{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:14px;
+      padding:12px 12px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:700;
+      list-style:none;
+      outline:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:4px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      font-size:12px; color:var(--muted);
+      background:rgba(255,255,255,.02);
+      margin-left:10px;
+      font-weight:650;
+    }
+    .b-red{border-color:rgba(255,204,102,.35)}
+    .b-green{border-color:rgba(124,255,107,.35)}
+    .b-cyan{border-color:rgba(0,229,255,.35)}
+    .list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .list li{margin:6px 0}
+    .footerNav{
+      margin-top:16px;
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="crumbs">
+        <span style="font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">ITFIT</span>
+        <span style="opacity:.55">/</span>
+        <span class="muted">Vault</span>
+        <span style="opacity:.55">/</span>
+        <span>Mýty & Bullshit filtr</span>
+      </div>
+      <a class="pill" href="/vault">
+        <span>←</span><strong>Zpět do HUBu</strong>
+      </a>
+    </div>
+
+    <section class="hero">
+      <h1>Mýty & Bullshit filtr</h1>
+      <p>
+        Rychlá orientace: co je <strong>podstatné</strong>, co je jen <strong>detail</strong> a co je <strong>čistý bullshit</strong>.
+        Ideální pro vytížené lidi – nemáš čas řešit nesmysly.
+      </p>
+      <div class="ctaRow">
+        <a class="btn primary" href="#pravidla">Pravidla filtru</a>
+        <a class="btn" href="#myty">Nejčastější mýty</a>
+        <a class="btn" href="#check">Checklist</a>
+      </div>
+    </section>
+
+    <section class="card" id="pravidla">
+      <h2>3 pravidla filtru (ITFIT)</h2>
+      <div class="hl good">
+        <strong>1) Základy vyhrávají:</strong> protein, zelenina, kroky, 2–4 tréninky týdně, spánek.
+      </div>
+      <div class="hl">
+        <strong>2) Detaily řeš až potom:</strong> timing, “super potraviny”, suplementy, biohacking.
+      </div>
+      <div class="hl warn">
+        <strong>3) Pokud to vyžaduje 18 podmínek, není to systém:</strong> reálný život má děti, práci a stres.
+      </div>
+    </section>
+
+    <section class="card" id="myty">
+      <h2>Nejčastější mýty (klikni a otevři)</h2>
+      <p class="muted">U každého máš “verdikt” + co dělat prakticky.</p>
+
+      <div class="grid">
+        <details>
+          <summary>„Detox“ ti pročistí tělo <span class="badge b-red">Bullshit</span></summary>
+          <div class="hl">
+            <strong>Verdikt:</strong> tělo má játra, ledviny, střevo. “Detox kúra” je často jen marketing.
+          </div>
+          <ul class="list">
+            <li><strong>Dělej:</strong> spánek, hydratace, bílkoviny, vláknina, pohyb.</li>
+            <li><strong>Nedělej:</strong> hladovky a “čaje na detox” jako zázrak.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>„Po 18:00 přibíráš“ <span class="badge b-red">Bullshit</span></summary>
+          <div class="hl">
+            <strong>Verdikt:</strong> přibírání je primárně o celkovém příjmu a dlouhodobém chování.
+          </div>
+          <ul class="list">
+            <li><strong>Dělej:</strong> hlídej večerní “cravings” systémem (protein + plán).</li>
+            <li><strong>Tip:</strong> večer nejez “jen sladké” → ráno to doženeš.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>„Anabolické okno 30 minut“ <span class="badge b-cyan">Detail</span></summary>
+          <div class="hl">
+            <strong>Verdikt:</strong> není to tak úzké. Důležitější je <strong>celkový protein</strong> za den.
+          </div>
+          <ul class="list">
+            <li><strong>Dělej:</strong> dej si protein v rozumném okně po tréninku (klidně 1–3 h).</li>
+            <li><strong>Nestresuj:</strong> když to někdy nedáš, nic se neděje.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>„Fasting je nutný pro hubnutí“ <span class="badge b-cyan">Záleží</span></summary>
+          <div class="hl">
+            <strong>Verdikt:</strong> fasting je jen nástroj. Někomu pomůže držet kalorie, jiného rozbije (přejídání večer).
+          </div>
+          <ul class="list">
+            <li><strong>Dělej:</strong> vyber systém, který udržíš bez utrpení.</li>
+            <li><strong>Nedělej:</strong> forcing fastingu, když pak sežereš půl lednice.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>„Sacharidy jsou zlo“ <span class="badge b-red">Bullshit</span></summary>
+          <div class="hl">
+            <strong>Verdikt:</strong> sacharidy jsou energie. Pro výkon jsou často plus. Pro hubnutí hlídej množství.
+          </div>
+          <ul class="list">
+            <li><strong>Dělej:</strong> přílohu dávkuj podle cíle (víc výkon / míň hubnutí).</li>
+            <li><strong>Tip:</strong> kombi protein + vláknina stabilizuje chutě.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>„Musíš jíst každé 2–3 hodiny“ <span class="badge b-red">Bullshit</span></summary>
+          <div class="hl">
+            <strong>Verdikt:</strong> důležitější je denní příjem a kvalita. Frekvence je individuální.
+          </div>
+          <ul class="list">
+            <li><strong>Dělej:</strong> jez tak, aby ses nepřejídal večer.</li>
+            <li><strong>Pro IT:</strong> když zapomínáš jíst → dej si “kotvy” (snídaně/oběd).</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>„Bez doplňků to nejde“ <span class="badge b-red">Bullshit</span></summary>
+          <div class="hl">
+            <strong>Verdikt:</strong> doplňky jsou až po základech. Jinak jen kupuješ placebo.
+          </div>
+          <ul class="list">
+            <li><strong>Dělej:</strong> minimum (D / omega-3 / Mg) podle situace.</li>
+            <li><strong>Nečekej:</strong> že kapsle nahradí systém.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>„Když necítíš svalovku, trénink byl na nic“ <span class="badge b-red">Bullshit</span></summary>
+          <div class="hl">
+            <strong>Verdikt:</strong> svalovka není měřítko progresu. Progres je objem/technika/konzistence.
+          </div>
+          <ul class="list">
+            <li><strong>Dělej:</strong> progresuj v cvicích (opakování / zátěž / kontrola).</li>
+            <li><strong>Nedělej:</strong> hunt svalovku každou jednotku.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <section class="card" id="check">
+      <h2>Checklist: na co se ptát, když vidíš “nový hack”</h2>
+      <ul class="list">
+        <li>Pomůže mi to, i když spím 6 hodin a mám stres?</li>
+        <li>Dá se to dělat 3 měsíce bez utrpení?</li>
+        <li>Je to základ (protein, pohyb, spánek), nebo detail?</li>
+        <li>Neprodává mi to někdo jako “zázrak”?</li>
+        <li>Co je nejmenší krok, který udělám dnes?</li>
+      </ul>
+
+      <div class="hl good">
+        <strong>ITFIT pravidlo:</strong> Když si nejsi jistý/á, vrať se k základům. Vždycky vyhrají.
+      </div>
+
+      <div class="footerNav">
+        <a class="btn" href="/vault/strava-zaklady">← Základy stravy</a>
+        <a class="btn" href="/vault/nocni-rezim">Noční režim →</a>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

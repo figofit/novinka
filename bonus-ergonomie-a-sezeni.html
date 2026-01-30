@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ITFIT Vault – Ergonomie & sezení (Bonus)</title>
+  <style>
+    :root{
+      --bg:#070a07;
+      --panel:#0d120d;
+      --panel2:#0a0f0a;
+      --text:#e7ece7;
+      --muted:#9aa49a;
+      --muted2:#7f8a7f;
+      --green:#00ff41;
+      --border:#1b241b;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background: radial-gradient(1200px 700px at 15% 15%, rgba(0,255,65,.07), transparent 55%),
+                  radial-gradient(900px 600px at 85% 10%, rgba(0,255,65,.05), transparent 50%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
+    a{color:var(--green); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1050px; margin:0 auto; padding:28px 18px 80px;}
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      border:1px solid var(--border); background:rgba(13,18,13,.65);
+      border-radius:14px; padding:14px 16px; box-shadow:var(--shadow);
+      position:sticky; top:12px; backdrop-filter: blur(8px); z-index:10;
+    }
+    .brand{display:flex; gap:12px; align-items:center;}
+    .dot{width:10px; height:10px; border-radius:99px; background:var(--green); box-shadow:0 0 20px rgba(0,255,65,.35);}
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      border:1px solid var(--border); padding:6px 10px; border-radius:999px;
+      color:var(--muted); font-size:12px;
+      background:rgba(10,15,10,.75);
+      white-space:nowrap;
+    }
+    .title{
+      margin:26px 0 6px;
+      font-size:36px; line-height:1.15; letter-spacing:-.02em;
+    }
+    .subtitle{color:var(--muted); margin:0 0 18px; max-width:90ch}
+    .grid{
+      display:grid; gap:14px;
+      grid-template-columns: 1.15fr .85fr;
+    }
+    @media (max-width: 920px){ .grid{grid-template-columns:1fr;} .topbar{position:relative; top:auto;} }
+    .card{
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(13,18,13,.78), rgba(10,15,10,.78));
+      border-radius:16px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      margin-top:14px;
+    }
+    .card h2{margin:0 0 10px; font-size:20px}
+    .card h3{margin:18px 0 8px; font-size:16px}
+    .muted{color:var(--muted)}
+    .small{font-size:13px; color:var(--muted)}
+    .k{color:var(--green)}
+    .toc a{display:block; padding:6px 0; color:var(--muted)}
+    .toc a:hover{color:var(--text)}
+    .hr{height:1px; background:var(--border); margin:14px 0;}
+    .pill{
+      display:inline-block;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(0,255,65,.08);
+      color:var(--text);
+      font-size:12px;
+    }
+    ul{margin:8px 0 0 18px}
+    li{margin:6px 0}
+    table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:12px; border:1px solid var(--border)}
+    th,td{padding:10px 10px; border-bottom:1px solid var(--border); vertical-align:top; font-size:13px}
+    th{background:rgba(0,255,65,.06); text-align:left; color:var(--text)}
+    tr:last-child td{border-bottom:none}
+    .two{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media (max-width: 920px){ .two{grid-template-columns:1fr;} }
+    .callout{
+      border:1px dashed rgba(0,255,65,.35);
+      background:rgba(0,255,65,.06);
+      padding:14px; border-radius:14px;
+    }
+    .checklist label{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:8px 10px; border:1px solid var(--border);
+      border-radius:12px; background:rgba(10,15,10,.55);
+      margin:8px 0;
+    }
+    .checklist input{accent-color: var(--green); margin-top:3px}
+    .anchor{scroll-margin-top:90px;}
+    .footer{
+      margin-top:22px; color:var(--muted2); font-size:12px;
+      border-top:1px solid var(--border); padding-top:16px;
+    }
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;}
+    @media (max-width: 900px){ .grid2{grid-template-columns:1fr;} }
+    .box{border:1px solid var(--border); background:rgba(10,15,10,.55); border-radius:16px; padding:12px;}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px; border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(0,255,65,.08);
+      color:var(--text);
+      font-weight:700;
+      cursor:pointer;
+    }
+    .btn:hover{filter:brightness(1.05)}
+    .note{border-left:3px solid rgba(0,255,65,.45); padding-left:10px; color:var(--muted)}
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size:12px;
+      border:1px solid var(--border);
+      padding:2px 6px;
+      border-radius:8px;
+      color:var(--text);
+      background:rgba(10,15,10,.7);
+      display:inline-block;
+    }
+
+    .vault-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 16px 18px;
+      margin: 0 auto 18px;
+      max-width: 1050px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .vault-menu a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      background: rgba(0, 0, 0, 0.2);
+      opacity: 0.92;
+    }
+
+    .vault-menu a:hover {
+      opacity: 1;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .vault-menu .is-active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.25) inset;
+      opacity: 1;
+    }
+
+    .vault-hint {
+      max-width: 1050px;
+      margin: 0 auto 18px;
+      padding: 0 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <nav class="vault-menu" aria-label="Vault menu">
+    <a href="hub-po-zaplaceni.html">HUB</a>
+    <a href="zaklady-treninku.html">Základy</a>
+    <a href="mobilita.html">Mobilita</a>
+    <a href="treninky-a-b.html">Tréninky A/B</a>
+    <a href="knihovna-cviku.html">Knihovna cviků</a>
+    <a href="strava-zaklady.html">Strava (Základy)</a>
+    <a href="hubnuti.html">Hubnutí</a>
+    <a href="hub-po-zaplaceni.html#bonusy">Bonusy</a>
+    <a href="bonus-ergonomie-a-sezeni.html">Ergonomie (Bonus)</a>
+    <a href="log.html">LOG</a>
+  </nav>
+  <div class="vault-hint">Stačí malý setup + krátké reset pauzy během dne.</div>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <div>
+          <div class="mono" style="font-weight:800; letter-spacing:.02em;">ITFIT<span class="k">_VAULT</span></div>
+          <div class="small">Bonus modul • ergonomie, sezení, mikro-pohyb</div>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;">
+        <span class="badge"><span class="dot" style="width:8px;height:8px;"></span> minimální změny = velký efekt</span>
+        <span class="badge">verze <span class="k mono">v1</span></span>
+      </div>
+    </div>
+
+    <h1 class="title">Ergonomie &amp; sezení</h1>
+    <p class="subtitle">
+      Pokud většinu dne sedíš, tak tohle je <span class="k">nejlevnější „upgrade výkonu“</span>.
+      Nejde o dokonalou pozici. Jde o <b>méně bolesti</b>, lepší dýchání, lepší držení těla a víc energie na trénink.
+      <span class="small">(A hlavně: ergonomie bez pohybu je polovina. Proto tu máš i mikro-rutiny.)</span>
+    </p>
+
+    <div class="grid">
+      <!-- MAIN -->
+      <div>
+        <section class="card anchor" id="principy">
+          <h2>1) Principy (nepřekombinovat)</h2>
+          <div class="two">
+            <div class="box">
+              <span class="pill">Pravidlo #1</span>
+              <h3>Neexistuje „jedna“ správná poloha</h3>
+              <p class="muted">Tělo chce <b>měnit pozice</b>. Když sedíš „správně“ 5 hodin bez pohybu, stejně to bude problém.</p>
+              <ul>
+                <li>Ergonomie = <b>nastavení</b> + <b>mikro-pohyb</b>.</li>
+                <li>Každých 30–60 min aspoň <b>20–60 s</b> změna polohy.</li>
+                <li>Záda a krk milují „<b>variabilitu</b>“, ne rigiditu.</li>
+              </ul>
+            </div>
+            <div class="box">
+              <span class="pill">Pravidlo #2</span>
+              <h3>Hlava nad hrudníkem, žebra nad pánví</h3>
+              <p class="muted">Cíl je jednoduchý: <b>neviset</b> v předklonu a netlačit krkem dopředu.</p>
+              <ul>
+                <li>„Dlouhý krk“ (brada lehce dozadu, ne nahoru).</li>
+                <li>Žebra dolů (ne vysunutý hrudník a prohnutá bedra).</li>
+                <li>Opora chodidel = stabilní pánev = klidnější bedra.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout" style="margin-top:12px;">
+            <b>Mini mantra:</b> <span class="k mono">SETUP</span> (nastavit) + <span class="k mono">RESET</span> (průběžně rozhýbat).
+            Když máš málo času, vyhraje reset.
+          </div>
+        </section>
+
+        <section class="card anchor" id="setup">
+          <h2>2) Rychlé nastavení pracovního místa (desktop / kancelář)</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Oblast</th>
+                <th>Doporučení</th>
+                <th>Nejčastější fail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Židle</b></td>
+                <td>
+                  Výška tak, aby <b>chodidla byla celá na zemi</b> (ne na špičkách).
+                  Kolena cca <b>90–110°</b>. Zadek až dozadu, opora pánve.
+                </td>
+                <td>Vysoká židle → visíš ve vzduchu, přetížené kyčle a bedra.</td>
+              </tr>
+              <tr>
+                <td><b>Stůl / lokty</b></td>
+                <td>
+                  Lokty blízko těla, úhel lokte cca <b>90–110°</b>. Ramena dole (ne u uší).
+                </td>
+                <td>Stůl moc vysoko → zvedáš ramena a trapézy jedou celý den.</td>
+              </tr>
+              <tr>
+                <td><b>Monitor</b></td>
+                <td>
+                  Horní hrana monitoru cca <b>v úrovni očí</b>. Vzdálenost přibližně <b>na délku paže</b>.
+                </td>
+                <td>Monitor nízko → hlava dopředu, krk pálí, hrudník se zavírá.</td>
+              </tr>
+              <tr>
+                <td><b>Klávesnice / myš</b></td>
+                <td>
+                  Blízko těla. Zápěstí neutrálně (ne zlomené nahoru).
+                </td>
+                <td>Myš daleko → přetížení ramene, přední delty, krk.</td>
+              </tr>
+              <tr>
+                <td><b>Opěrka zad</b></td>
+                <td>
+                  Klidně lehká opora, ale <b>nestůj na ní celý den</b>. Občas „aktivní sed“.
+                </td>
+                <td>Opřený hrb → kulatá záda, povolený střed, hlava letí dopředu.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="grid2">
+            <div class="box">
+              <h3>Nejrychlejší fix (30 s)</h3>
+              <ul>
+                <li>Chodidla na zem.</li>
+                <li>Zadek dozadu, pánev stabilní.</li>
+                <li>Žebra dolů (lehce).</li>
+                <li>Brada lehce dozadu = „dlouhý krk“.</li>
+                <li>Monitor výš / blíž.</li>
+              </ul>
+              <p class="small note">Tip: když si nejseš jistý, zeptej se: „Kde mám hlavu?“ Pokud je před hrudníkem → problém.</p>
+            </div>
+            <div class="box">
+              <h3>Notebook-only setup</h3>
+              <ul>
+                <li>Ideál: <b>stojánek</b> + externí klávesnice + myš.</li>
+                <li>Když nic nemáš: podlož notebook (knihy) a <b>sedni blíž</b> (ať nevystrkuješ hlavu).</li>
+                <li>Každých 30–45 min udělej 60 s reset.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="card anchor" id="reset">
+          <h2>3) Mikro-pauzy (RESET) – prakticky</h2>
+          <p class="muted">Ergonomie bez resetu je jak trénink bez regenerace. Tohle je „hygiena“ během dne.</p>
+
+          <div class="two">
+            <div class="box">
+              <h3>Protokol 60 sekund (kdykoliv)</h3>
+              <ul>
+                <li><b>10 s</b>: postavit se, nádech nosem, výdech (žebra dolů)</li>
+                <li><b>20 s</b>: <b>chin tuck</b> (brada dozadu) + uvolnit ramena</li>
+                <li><b>20 s</b>: otevření hrudníku (ruce za hlavu / za záda)</li>
+                <li><b>10 s</b>: pár kroků / napít se</li>
+              </ul>
+              <p class="small">Cíl: ne „protahovat se na krev“, ale <b>změnit pozici</b>.</p>
+            </div>
+            <div class="box">
+              <h3>Protokol 3 minuty (když tuhneš)</h3>
+              <ul>
+                <li><b>30 s</b>: hrudní rotace ve stoje (jemně)</li>
+                <li><b>60 s</b>: výpad + protažení flexorů kyčlí (L + P)</li>
+                <li><b>60 s</b>: hamstring hinge (předklon z kyčlí, měkká kolena)</li>
+                <li><b>30 s</b>: „shake out“ – ruce, ramena, dýchání</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout" style="margin-top:12px;">
+            <b>Pravidlo:</b> když cítíš, že „to začíná“ (krk, bedra, kyčle), nečekej hodinu.
+            Dej reset hned – <span class="k">ušetří ti to večerní bolest</span>.
+          </div>
+        </section>
+
+        <section class="card anchor" id="mini-rutiny">
+          <h2>4) Mini-rutiny (5–8 minut) – ideální ráno / během dne</h2>
+          <div class="grid2">
+            <div class="box">
+              <h3>Varianta A: „Sedím celý den“ (5 min)</h3>
+              <ul>
+                <li>1 min: dýchání + žebra dolů (stoj)</li>
+                <li>1 min: výpad + ruce nahoru (L + P)</li>
+                <li>1 min: hrudní rotace (L + P)</li>
+                <li>1 min: hinge (předklon z kyčlí) + uvolnit šíji</li>
+                <li>1 min: lopatky – stáhnout dolů/dozadu (bez přehánění)</li>
+              </ul>
+              <p class="small note">Pokud máš v ITFIT mobilitě svoje cviky, tohle je jen „rychlá kancelářská verze“.</p>
+            </div>
+            <div class="box">
+              <h3>Varianta B: „Krk & ramena“ (6–8 min)</h3>
+              <ul>
+                <li>2 min: chin tuck (krk) + nádech do žeber</li>
+                <li>2 min: otevření hrudníku (ruce za hlavu / dveřní rám)</li>
+                <li>2 min: scapula control (kroužení ramen dozadu, pomalu)</li>
+                <li>volitelně: 1–2 min vis na hrazdě (pokud máš a sedí ti)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="card anchor" id="auto-telefon">
+          <h2>5) Auto, telefon, gauč – skryté problémy</h2>
+          <div class="two">
+            <div class="box">
+              <h3>Auto</h3>
+              <ul>
+                <li>Sedadlo spíš <b>blíž</b> (ať nevystrkuješ hlavu k volantu).</li>
+                <li>Opora beder ok, ale <b>nehrbit</b> se do ní.</li>
+                <li>Po delší jízdě: 2 min výpad + rotace hrudníku.</li>
+              </ul>
+            </div>
+            <div class="box">
+              <h3>Telefon</h3>
+              <ul>
+                <li>Telefon výš – <b>ne hlava níž</b>.</li>
+                <li>Hlasovky / volání = ideální chvíle na chůzi.</li>
+                <li>Když scrolluješ: každých pár minut „dlouhý krk“.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="card anchor" id="pozn">
+          <h2>6) Poznámka (bez strašení)</h2>
+          <p class="muted">
+            Tohle není medicína a nenahrazuje řešení akutních stavů. Pokud máš ostrou bolest, brnění, vystřelování do končetin
+            nebo se to zhoršuje, řeš to s odborníkem. Pro běžný „IT krk/bedra“ ale udělá nejvíc:
+            <b>nastavení + mikro-pohyb + pravidelný trénink</b>.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>Další krok</h2>
+          <p class="muted">Chceš řešit jídlo a režim? Otevři Stravu – Základy.</p>
+          <a href="strava-zaklady.html">Otevřít: Strava (Základy)</a>
+        </section>
+
+        <div class="footer">
+          © ITFIT Vault • Bonus modul: Ergonomie & sezení • <span class="mono">v1</span>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside>
+        <section class="card toc">
+          <h2>Obsah</h2>
+          <div class="hr"></div>
+          <a href="#principy">1) Principy</a>
+          <a href="#setup">2) Setup</a>
+          <a href="#reset">3) RESET mikro-pauzy</a>
+          <a href="#mini-rutiny">4) Mini-rutiny</a>
+          <a href="#auto-telefon">5) Auto & telefon</a>
+          <a href="#pozn">6) Poznámka</a>
+          <div class="hr"></div>
+          <p class="small">Tip: přidej si tuhle stránku do HUBu jako <span class="k">Bonus</span>.</p>
+        </section>
+
+        <section class="card anchor" id="checklist-setup">
+          <h2>Checklist: Nastavení (2 min)</h2>
+          <p class="small muted">Odškrtni a zůstane ti to uložené (localStorage).</p>
+
+          <div class="checklist" data-store="itfit_ergo_setup_v1">
+            <label><input type="checkbox" data-key="feet"> <span><b>Chodidla</b> celá na zemi (ne na špičkách).</span></label>
+            <label><input type="checkbox" data-key="hips"> <span><b>Pánev</b> stabilní, zadek dozadu (ne skluz dopředu).</span></label>
+            <label><input type="checkbox" data-key="ribs"> <span><b>Žebra</b> lehce dolů (ne vystřelený hrudník).</span></label>
+            <label><input type="checkbox" data-key="chin"> <span><b>Brada</b> lehce dozadu (dlouhý krk).</span></label>
+            <label><input type="checkbox" data-key="monitor"> <span><b>Monitor</b> výš / blíž (horní hrana v úrovni očí).</span></label>
+            <label><input type="checkbox" data-key="mouse"> <span><b>Myš</b> a klávesnice blízko těla (lokty u těla).</span></label>
+          </div>
+
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn" type="button" data-reset="itfit_ergo_setup_v1">Reset checklistu</button>
+            <span class="small muted">Tip: udělej tohle 1× ráno a pak jen RESETy.</span>
+          </div>
+        </section>
+
+        <section class="card anchor" id="checklist-reset">
+          <h2>Checklist: RESET během dne</h2>
+          <p class="small muted">Cíl: 6–10 mini resetů/den. (Ne hrdinství, konzistence.)</p>
+
+          <div class="checklist" data-store="itfit_ergo_resets_v1">
+            <label><input type="checkbox" data-key="r1"> <span>RESET 1 (ráno)</span></label>
+            <label><input type="checkbox" data-key="r2"> <span>RESET 2</span></label>
+            <label><input type="checkbox" data-key="r3"> <span>RESET 3</span></label>
+            <label><input type="checkbox" data-key="r4"> <span>RESET 4</span></label>
+            <label><input type="checkbox" data-key="r5"> <span>RESET 5</span></label>
+            <label><input type="checkbox" data-key="r6"> <span>RESET 6</span></label>
+            <label><input type="checkbox" data-key="r7"> <span>RESET 7 (volitelně)</span></label>
+            <label><input type="checkbox" data-key="r8"> <span>RESET 8 (volitelně)</span></label>
+            <label><input type="checkbox" data-key="r9"> <span>RESET 9 (volitelně)</span></label>
+            <label><input type="checkbox" data-key="r10"> <span>RESET 10 (volitelně)</span></label>
+          </div>
+
+          <div class="hr"></div>
+          <p class="small muted">
+            Rychlý hack: nastav si připomínku v telefonu každých <span class="kbd">45 min</span> na <span class="kbd">60 s</span>.
+            Hotovo.
+          </p>
+
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn" type="button" data-reset="itfit_ergo_resets_v1">Vynulovat RESETy</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>TL;DR</h2>
+          <ul>
+            <li><b>Setup</b> ráno (2 min)</li>
+            <li><b>Reset</b> každých 30–60 min (60 s)</li>
+            <li><b>Mini-rutina</b> 5–8 min, když tuhneš</li>
+          </ul>
+          <p class="small muted">Tohle je přesně ten typ „nudného“ bonusu, který udělá největší rozdíl.</p>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+    // Checklist localStorage
+    function loadChecklist(storeKey, root){
+      try{
+        const raw = localStorage.getItem(storeKey);
+        const data = raw ? JSON.parse(raw) : {};
+        root.querySelectorAll('input[type="checkbox"][data-key]').forEach(cb=>{
+          cb.checked = !!data[cb.dataset.key];
+        });
+      }catch(e){}
+    }
+    function saveChecklist(storeKey, root){
+      const data = {};
+      root.querySelectorAll('input[type="checkbox"][data-key]').forEach(cb=>{
+        data[cb.dataset.key] = cb.checked;
+      });
+      try{ localStorage.setItem(storeKey, JSON.stringify(data)); }catch(e){}
+    }
+
+    document.querySelectorAll('.checklist[data-store]').forEach(root=>{
+      const storeKey = root.getAttribute('data-store');
+      loadChecklist(storeKey, root);
+      root.addEventListener('change', ()=> saveChecklist(storeKey, root));
+    });
+
+    // Reset buttons
+    document.querySelectorAll('[data-reset]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const storeKey = btn.getAttribute('data-reset');
+        try{ localStorage.removeItem(storeKey); }catch(e){}
+        const root = document.querySelector(`.checklist[data-store="${storeKey}"]`);
+        if(root){
+          root.querySelectorAll('input[type="checkbox"][data-key]').forEach(cb=> cb.checked = false);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ITFIT Vault – Noční režim / směny</title>
+  <meta name="description" content="Praktický systém pro noční režim a směny: jídlo, kofein, světlo, spánek, krizové situace. Bez extrémů." />
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --surface:#0f1620;
+      --text:#eaf2ff;
+      --muted:#a9b7cc;
+      --border:rgba(255,255,255,.10);
+      --accent:#00e5ff;
+      --accent2:#7cff6b;
+      --warning:#ffcc66;
+      --shadow: 0 16px 40px rgba(0,0,0,.45);
+      --radius:16px;
+      --radius2:22px;
+      --max: 980px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--font);
+      background:
+        radial-gradient(1100px 520px at 12% -10%, rgba(0,229,255,.18), transparent 60%),
+        radial-gradient(900px 450px at 90% 0%, rgba(255,204,102,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 70px}
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      padding:12px 14px; border:1px solid var(--border); border-radius:999px;
+      background:rgba(255,255,255,.03);
+      backdrop-filter: blur(10px);
+    }
+    .crumbs{display:flex; gap:10px; align-items:center; color:var(--muted); font-size:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      font-size:13px; color:var(--muted);
+      text-decoration:none;
+    }
+    .pill strong{color:var(--text); font-weight:650}
+    .hero{
+      margin-top:18px;
+      padding:26px 18px;
+      border:1px solid var(--border);
+      border-radius:var(--radius2);
+      background:linear-gradient(135deg, rgba(0,229,255,.12), rgba(255,204,102,.07) 45%, rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+    }
+    .hero h1{margin:0 0 10px; font-size:28px; letter-spacing:-.02em}
+    .hero p{margin:0; color:var(--muted); max-width:72ch}
+    .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:650;
+    }
+    .btn.primary{
+      border-color:rgba(0,229,255,.35);
+      background:linear-gradient(180deg, rgba(0,229,255,.18), rgba(0,229,255,.08));
+    }
+    .card{
+      margin-top:14px;
+      padding:18px 16px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    }
+    .card h2{margin:0 0 10px; font-size:18px; letter-spacing:-.01em}
+    .card h3{margin:18px 0 8px; font-size:16px}
+    .muted{color:var(--muted)}
+    .list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .list li{margin:6px 0}
+    .hl{
+      border-left:3px solid rgba(0,229,255,.45);
+      padding:12px 12px;
+      background:rgba(0,229,255,.06);
+      border-radius:12px;
+      margin:12px 0;
+      color:var(--muted);
+    }
+    .warn{border-left-color: rgba(255,204,102,.6); background: rgba(255,204,102,.08);}
+    .good{border-left-color: rgba(124,255,107,.55); background: rgba(124,255,107,.07);}
+    .grid{display:grid; gap:14px}
+    @media (min-width:900px){ .grid{grid-template-columns:1fr 1fr} }
+    .checklist{display:grid; gap:10px; margin-top:10px}
+    .check{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:12px;
+    }
+    .check input{margin-top:3px}
+    .footerNav{
+      margin-top:16px;
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="crumbs">
+        <span style="font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">ITFIT</span>
+        <span style="opacity:.55">/</span>
+        <span class="muted">Vault</span>
+        <span style="opacity:.55">/</span>
+        <span>Noční režim</span>
+      </div>
+      <a class="pill" href="/vault">
+        <span>←</span><strong>Zpět do HUBu</strong>
+      </a>
+    </div>
+
+    <section class="hero">
+      <h1>Noční režim / směny</h1>
+      <p>
+        Když jedeš směny, klasické “rady z internetu” často nefungují. Tady máš systém, který drží energii,
+        minimalizuje cravings a pomůže ti přežít i real life: práce, stres, únava, děti.
+      </p>
+      <div class="ctaRow">
+        <a class="btn primary" href="#system">Systém v kostce</a>
+        <a class="btn" href="#jidlo">Jídlo na směně</a>
+        <a class="btn" href="#kofein">Kofein & světlo</a>
+      </div>
+    </section>
+
+    <section class="card" id="system">
+      <h2>Systém v kostce (ITFIT)</h2>
+      <p class="muted">Neřešíme dokonalost. Řešíme, aby ses nerozpadl/a a zítra zase fungoval/a.</p>
+
+      <div class="hl good">
+        <strong>3 pilíře nočního režimu:</strong><br/>
+        1) protein v jídlech, 2) řízený kofein, 3) ochrana spánku po směně.
+      </div>
+
+      <div class="checklist">
+        <label class="check"><input type="checkbox"/><div><strong>Jídlo = plán.</strong><div class="muted">Bez plánu vyhraje automat, rohlík, sladké.</div></div></label>
+        <label class="check"><input type="checkbox"/><div><strong>Kofein má cut-off.</strong><div class="muted">Když to přeženeš pozdě, spánek je rozbitý.</div></div></label>
+        <label class="check"><input type="checkbox"/><div><strong>Po směně chráníš spánek.</strong><div class="muted">Světlo, teplota, ticho, rutina.</div></div></label>
+      </div>
+
+      <div class="hl warn">
+        <strong>Pravidlo přežití:</strong> když nemáš kapacitu, udělej jen “minimum”: protein + voda + spánek.
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card" id="jidlo">
+        <h2>Jídlo na směně (prakticky)</h2>
+        <p class="muted">Cíl je stabilní energie, minimum “cukrových výkyvů”.</p>
+
+        <h3>Šablona jídel</h3>
+        <ul class="list">
+          <li><strong>Jídlo 1 (před směnou):</strong> normální porce + protein (ať nejdeš hladový/á)</li>
+          <li><strong>Jídlo 2 (na směně):</strong> protein + příloha + zelenina (nejlepší)</li>
+          <li><strong>Jídlo 3 (na směně / konec):</strong> lehčí, ale s proteinem (ať doma nevyluxuješ lednici)</li>
+        </ul>
+
+        <div class="hl">
+          <strong>Nouzovky (když nestíháš):</strong> proteinový jogurt / tvaroh, tuňák, šunka + pečivo, ořechy, ovoce.
+        </div>
+
+        <h3>Co nejčastěji rozbije směny</h3>
+        <ul class="list">
+          <li>dlouho bez jídla → večer “sežeru všechno”</li>
+          <li>sladké jako hlavní zdroj energie → crash a chutě</li>
+          <li>jídlo jen “po cestě” bez proteinu → nikdy nejsi sytý/á</li>
+        </ul>
+      </section>
+
+      <section class="card" id="kofein">
+        <h2>Kofein & světlo (aby šel spánek)</h2>
+        <p class="muted">Nejde o to nepít kávu. Jde o timing.</p>
+
+        <h3>Kofein – jednoduché pravidlo</h3>
+        <div class="hl good">
+          <strong>Kofein nejpozději 6–8 hodin před plánovaným spánkem.</strong><br/>
+          Pokud končíš v 6:00 a chceš spát v 8:00 → kofein raději už jen brzy v noci.
+        </div>
+
+        <h3>Světlo – proč to řešit</h3>
+        <ul class="list">
+          <li><strong>Na směně:</strong> víc světla = lepší bdělost</li>
+          <li><strong>Po směně:</strong> méně světla = snazší usnutí (brýle/čepice/kapuce pomůžou)</li>
+          <li><strong>Ložnice:</strong> tma + chlad + ticho (nebo špunty / white noise)</li>
+        </ul>
+
+        <div class="hl warn">
+          <strong>Největší zabiják:</strong> po směně mobil a denní světlo → mozek si myslí “je den, nespíme”.
+        </div>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Mini-plány podle typu směny</h2>
+      <div class="grid">
+
+        <div class="hl">
+          <strong>Noční (typicky 22:00–6:00)</strong><br/>
+          <span class="muted">
+            19:00 jídlo (protein + příloha) → 23:30 lehčí jídlo → 3:00 protein + něco → doma lehké jídlo / sprcha → spánek.
+          </span>
+        </div>
+
+        <div class="hl">
+          <strong>Večerní (14:00–22:00)</strong><br/>
+          <span class="muted">
+            12:30 jídlo → 17:00 jídlo → 21:30 lehčí jídlo (s proteinem) → doma klid / spánek.
+          </span>
+        </div>
+
+      </div>
+
+      <div class="footerNav">
+        <a class="btn" href="/vault/strava-zaklady">← Zpět: Základy stravy</a>
+        <a class="btn" href="/vault">Zpět do HUBu</a>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ITFIT Vault – Základy stravy</title>
+  <meta name="description" content="Jednoduché a praktické základy stravování pro vytížené lidi: 80/20 pravidla, nákupní systém, orientační kalorie, suplementy (minimum)." />
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --surface:#0f1620;
+      --surface2:#121c29;
+      --text:#eaf2ff;
+      --muted:#a9b7cc;
+      --border:rgba(255,255,255,.10);
+      --accent:#00e5ff;
+      --accent2:#7cff6b;
+      --warning:#ffcc66;
+      --shadow: 0 16px 40px rgba(0,0,0,.45);
+      --radius:16px;
+      --radius2:22px;
+      --max: 980px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--font);
+      background:
+        radial-gradient(1200px 500px at 15% -10%, rgba(0,229,255,.18), transparent 60%),
+        radial-gradient(900px 400px at 85% 0%, rgba(124,255,107,.10), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 70px}
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      padding:12px 14px; border:1px solid var(--border); border-radius:999px;
+      background:rgba(255,255,255,.03);
+      backdrop-filter: blur(10px);
+    }
+    .crumbs{display:flex; gap:10px; align-items:center; color:var(--muted); font-size:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      font-size:13px; color:var(--muted);
+      text-decoration:none;
+    }
+    .pill strong{color:var(--text); font-weight:650}
+    .hero{
+      margin-top:18px;
+      padding:26px 18px;
+      border:1px solid var(--border);
+      border-radius:var(--radius2);
+      background:linear-gradient(135deg, rgba(0,229,255,.14), rgba(124,255,107,.06) 45%, rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+    }
+    .hero h1{margin:0 0 10px; font-size:28px; letter-spacing:-.02em}
+    .hero p{margin:0; color:var(--muted); max-width:70ch}
+    .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:650;
+    }
+    .btn.primary{
+      border-color:rgba(0,229,255,.35);
+      background:linear-gradient(180deg, rgba(0,229,255,.18), rgba(0,229,255,.08));
+    }
+    .grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:16px}
+    @media (min-width:880px){ .grid{grid-template-columns:1.2fr .8fr} }
+    .card{
+      padding:18px 16px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    }
+    .card h2{margin:0 0 10px; font-size:18px; letter-spacing:-.01em}
+    .card h3{margin:18px 0 8px; font-size:16px}
+    .muted{color:var(--muted)}
+    .list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .list li{margin:6px 0}
+    .mini{
+      display:flex; flex-wrap:wrap; gap:8px; margin-top:10px
+    }
+    .tag{
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      padding:6px 10px; border-radius:999px
+    }
+    .hl{
+      border-left:3px solid rgba(0,229,255,.45);
+      padding:12px 12px;
+      background:rgba(0,229,255,.06);
+      border-radius:12px;
+      margin:12px 0;
+      color:var(--muted);
+    }
+    .warn{
+      border-left:3px solid rgba(255,204,102,.6);
+      background:rgba(255,204,102,.08);
+    }
+    .good{
+      border-left:3px solid rgba(124,255,107,.55);
+      background:rgba(124,255,107,.07);
+    }
+    .checklist{
+      margin:10px 0 0;
+      display:grid; gap:10px;
+    }
+    .check{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:12px;
+    }
+    .check input{margin-top:3px}
+    .kcalGrid{
+      display:grid; gap:10px; margin-top:10px;
+    }
+    @media (min-width:700px){ .kcalGrid{grid-template-columns:1fr 1fr} }
+    code, .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+    .footerNav{
+      margin-top:16px;
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center
+    }
+    .divider{
+      height:1px; background:var(--border); margin:18px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="crumbs">
+        <span class="mono">ITFIT</span>
+        <span style="opacity:.55">/</span>
+        <span class="muted">Vault</span>
+        <span style="opacity:.55">/</span>
+        <span>Základy stravy</span>
+      </div>
+      <a class="pill" href="/vault">
+        <span>←</span><strong>Zpět do HUBu</strong>
+      </a>
+    </div>
+
+    <section class="hero">
+      <h1>Základy stravy (ITFIT minimum)</h1>
+      <p>
+        Jednoduchý systém pro vytížené lidi. Bez dietních extrémů, bez počítání každého gramu.
+        Cíl je stabilní energie, lepší výkon a kontrola – ať už chceš hubnout, nebo jen fungovat.
+      </p>
+      <div class="ctaRow">
+        <a class="btn primary" href="#start">Začít teď (5 minut)</a>
+        <a class="btn" href="#kcal">Kalorie – rychlá poučka</a>
+        <a class="btn" href="#supp">Suplementy (minimum)</a>
+      </div>
+      <div class="mini">
+        <span class="tag">80/20 pravidlo</span>
+        <span class="tag">Nákupní systém</span>
+        <span class="tag">Kcal orientačně</span>
+        <span class="tag">Suplementy: jen základ</span>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card" id="start">
+        <h2>Start: 3 věci, které uděláš hned</h2>
+        <p class="muted">Tohle je MVP. Když uděláš jen tohle, už se to zlepší.</p>
+
+        <div class="checklist">
+          <label class="check">
+            <input type="checkbox" />
+            <div>
+              <strong>Každé hlavní jídlo postav na bílkovině.</strong>
+              <div class="muted">Maso/ryba/vejce/tvaroh/luštěniny/tofu. Cíl: “jsem sytý a klidný”.</div>
+            </div>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" />
+            <div>
+              <strong>1× denně zelenina/ovoce “bez přemýšlení”.</strong>
+              <div class="muted">Ideál: 2× denně. Prakticky: salát, mražená zelenina, jablko, banán.</div>
+            </div>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" />
+            <div>
+              <strong>Vyber si 2–3 “kotvy” jídel a toč je dokola.</strong>
+              <div class="muted">Nemusíš vymýšlet nový recept každý den. Systém porazí motivaci.</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>ITFIT pravidla (80/20)</h3>
+        <ul class="list">
+          <li><strong>80 %</strong> jídel je “normální jídlo”: bílkovina + příloha + zelenina.</li>
+          <li><strong>20 %</strong> je život: restaurace, sladké, oslava. Bez výčitek, ale s mírou.</li>
+          <li><strong>Neřeš perfektní plán.</strong> Řeš opakovatelnost: “zvládnu to i v úterý večer”.</li>
+          <li><strong>Tekuté kalorie jsou past:</strong> slazené nápoje, džusy, alkohol (když chceš výsledek).</li>
+          <li><strong>Protein + vláknina</strong> = nejlepší “hack” proti chutím.</li>
+        </ul>
+
+        <div class="hl good">
+          <strong>Pravidlo talíře:</strong> ½ zelenina, ¼ bílkovina, ¼ příloha (rýže/brambory/pečivo).
+          Když sportuješ víc → přidej přílohu. Když chceš hubnout → uber přílohu.
+        </div>
+
+      </section>
+
+      <aside class="card">
+        <h2>Rychlé kotvy jídel (bez vaření na 2 hodiny)</h2>
+        <ul class="list">
+          <li><strong>Ráno:</strong> tvaroh/skýr + ovoce + ořechy / vejce + pečivo</li>
+          <li><strong>Oběd:</strong> kuře/tuňák/tofu + rýže/brambory + zelenina</li>
+          <li><strong>Večer:</strong> salát + protein / polévka + protein / “zbytky” z meal-prepu</li>
+          <li><strong>Nouzovky:</strong> proteinový jogurt, šunka + pečivo, tuňák, ořechy, ovoce</li>
+        </ul>
+
+        <div class="hl">
+          <strong>TIP:</strong> když máš v lednici “protein + zeleninu”, vždycky dáš dohromady jídlo.
+          Když máš “jen pečivo a sladké”, vždycky to ujede.
+        </div>
+
+        <h3>Nákupní systém (rychle)</h3>
+        <ul class="list">
+          <li><strong>Protein:</strong> kuře, krůta, hovězí, vejce, ryby, tvaroh/skýr, luštěniny</li>
+          <li><strong>Příloha:</strong> rýže, brambory, kuskus, oves, pečivo (rozumně)</li>
+          <li><strong>Zelenina:</strong> mražená mix, salát, rajčata, okurka</li>
+          <li><strong>Tuky:</strong> olivový olej, ořechy, avokádo</li>
+        </ul>
+      </aside>
+    </div>
+
+    <section class="card" id="kcal" style="margin-top:14px;">
+      <h2>Kalorie – orientační poučka (bez paniky)</h2>
+      <p class="muted">
+        Nemusíš počítat přesně. Potřebuješ jen rámec, aby sis ověřil, že nejdeš úplně mimo.
+      </p>
+
+      <div class="kcalGrid">
+        <div class="hl">
+          <strong>Rychlý odhad udržovačky:</strong><br/>
+          <span class="mono">váha (kg) × 30–35</span> = kcal/den (orientačně).<br/>
+          Sedavější → spíš 30. Aktivnější → spíš 35.
+        </div>
+
+        <div class="hl warn">
+          <strong>Chceš hubnout?</strong><br/>
+          Začni <span class="mono">−300 až −500 kcal/den</span> nebo uber 1 “přílohu” denně.<br/>
+          Cíl je udržitelnost, ne hladovění.
+        </div>
+      </div>
+
+      <div class="hl good">
+        <strong>Nejjednodušší kontrola bez počítání:</strong><br/>
+        1) protein v každém hlavním jídle, 2) zelenina denně, 3) příloha podle cíle (víc výkon / míň hubnutí).
+      </div>
+
+      <h3>Jak poznáš, že to funguje</h3>
+      <ul class="list">
+        <li>Energie přes den je stabilnější, menší chutě večer.</li>
+        <li>Váha (když hubneš) jde dolů v průměru týdně, ne denně.</li>
+        <li>Jsi schopný/á to držet i v týdnu s prací/stressem.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="supp" style="margin-top:14px;">
+      <h2>Suplementy (minimum) – jen co dává smysl</h2>
+      <p class="muted">Tohle není povinné. Priorita je spánek, jídlo, pohyb. Suplement je až potom.</p>
+
+      <div class="hl warn">
+        <strong>Disclaimer:</strong> nejsem lékař. Pokud řešíš zdravotní stav, léky, krevní tlak apod., konzultuj to s doktorem.
+      </div>
+
+      <ul class="list">
+        <li><strong>Vitamin D3</strong> (zejména podzim–jaro) – často dává smysl.</li>
+        <li><strong>Omega-3</strong> (když nejíš ryby 2× týdně).</li>
+        <li><strong>Hořčík</strong> (spánek / stres / křeče – individuální).</li>
+        <li><strong>Vláknina</strong> (když jíš málo zeleniny/luštěnin – pomáhá sytosti i trávení).</li>
+        <li><strong>Zinek</strong> (spíš cyklicky / když dává smysl).</li>
+      </ul>
+
+      <div class="hl">
+        <strong>Jedna věta:</strong> suplementy nejsou kouzlo. Jsou to “drobné procenta” navíc, když máš vyřešený základ.
+      </div>
+
+      <div class="hl good">
+        <strong>Volitelné (podle cíle):</strong> kreatin (výkon/svaly/brain), elektrolyty (pocení/léto), ashwagandha (spánek/stres – pokud sedí).
+      </div>
+
+      <div class="footerNav">
+        <a class="btn" href="/vault/hubnuti">Pokračovat → Modul Hubnutí</a>
+        <a class="btn" href="/vault/nocni-rezim">Bonus → Noční režim / směny</a>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

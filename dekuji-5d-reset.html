@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ITFIT – 5denní Reset (Plán)</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root{
+      --bg:#0b0f14; --card:#0f1620; --text:#eaf0ff; --muted:#a8b3c7;
+      --line:rgba(255,255,255,.10); --accent:#7c4dff; --accent2:#00e5ff;
+      --shadow: 0 20px 60px rgba(0,0,0,.45); --radius: 18px; --max: 980px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--text); background:var(--bg);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial;
+      line-height:1.55;
+      background: radial-gradient(900px 500px at 10% -10%, rgba(124,77,255,.22), transparent 60%),
+                  radial-gradient(800px 500px at 90% 10%, rgba(0,229,255,.16), transparent 55%),
+                  var(--bg);
+    }
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+    .card{
+      border:1px solid var(--line);
+      background: rgba(15,22,32,.65);
+      border-radius:16px; padding:16px; box-shadow: var(--shadow);
+    }
+    .top{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:14px}
+    .pill{font-size:12px; color:var(--muted); border:1px solid var(--line); padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.03)}
+    h1{margin:0 0 8px 0; font-size:32px; letter-spacing:-.4px}
+    h2{margin:0 0 8px 0; font-size:18px}
+    p{margin:0 0 10px 0}
+    .muted{color:var(--muted)}
+    .grid{display:grid; gap:12px; margin-top:12px}
+    .day{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px;
+      background: rgba(255,255,255,.02);
+    }
+    .dayhead{display:flex; justify-content:space-between; gap:10px; align-items:baseline}
+    .dayhead strong{font-size:16px}
+    ul{margin:10px 0 0 18px}
+    .note{
+      margin-top:12px;
+      border:1px dashed rgba(255,255,255,.18);
+      padding:12px;
+      border-radius:14px;
+      color:var(--muted);
+      background: rgba(255,255,255,.02);
+    }
+    .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    a.btn{
+      text-decoration:none; font-weight:900; color:#0b0f14;
+      padding:10px 12px; border-radius:14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display:inline-block;
+    }
+    a.link{color:var(--text)}
+    .anchor{scroll-margin-top: 16px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="pill">ITFIT 5denní Reset • Plán</div>
+      <div class="pill">Ulož si stránku do záložek</div>
+    </div>
+
+    <div class="card">
+      <h1>Jdeme na to. Tady je plán na 5 dní.</h1>
+      <p class="muted">
+        Pravidlo týdne: <strong>nespekulovat</strong>. Odjeď základ. Postupně. Cílem je konzistence.
+      </p>
+
+      <div class="note">
+        <strong>Nouzová verze (když nestíháš):</strong><br>
+        10 min mobilita + 1 hlavní cvik (dřep nebo hinge) + 10 min chůze. Hotovo.
+      </div>
+
+      <div class="btnrow">
+        <a class="btn" href="#den1">Začít Den 1</a>
+        <a class="link" href="#tyden">Zobrazit celý týden</a>
+      </div>
+    </div>
+
+    <div class="grid card anchor" id="tyden" style="margin-top:14px;">
+      <h2>Mapa týdne (Po–Pá)</h2>
+      <p class="muted">Po/St/Pá = trénink. Každý den = 10 min mobilita.</p>
+
+      <div class="day"><div class="dayhead"><strong>Pondělí</strong><span class="muted">A + mobilita + kroky</span></div></div>
+      <div class="day"><div class="dayhead"><strong>Úterý</strong><span class="muted">mobilita + kroky</span></div></div>
+      <div class="day"><div class="dayhead"><strong>Středa</strong><span class="muted">B + mobilita + kroky</span></div></div>
+      <div class="day"><div class="dayhead"><strong>Čtvrtek</strong><span class="muted">mobilita + dech</span></div></div>
+      <div class="day"><div class="dayhead"><strong>Pátek</strong><span class="muted">A (lehčí) + mobilita</span></div></div>
+    </div>
+
+    <div class="grid" style="margin-top:14px;">
+      <div class="day anchor" id="den1">
+        <div class="dayhead"><strong>Den 1 – Trénink A</strong><span class="muted">25–35 min</span></div>
+        <ul>
+          <li><strong>Mobilita 10 min</strong> (kyčle + hrudník + záda)</li>
+          <li><strong>Trénink A</strong>: dřepový vzor • hinge • tlak • tah + core/carry</li>
+          <li><strong>Kroky</strong>: 10–30 min chůze (podle času)</li>
+        </ul>
+        <div class="note"><strong>Intenzita:</strong> nech ~2 opakování v rezervě.</div>
+      </div>
+
+      <div class="day anchor" id="den2">
+        <div class="dayhead"><strong>Den 2 – Mobilita + pohyb</strong><span class="muted">10–30 min</span></div>
+        <ul>
+          <li><strong>Mobilita 10 min</strong></li>
+          <li><strong>Pohyb</strong>: chůze / kroky 20–30 min (nebo aspoň 10 min)</li>
+        </ul>
+      </div>
+
+      <div class="day anchor" id="den3">
+        <div class="dayhead"><strong>Den 3 – Trénink B</strong><span class="muted">25–35 min</span></div>
+        <ul>
+          <li><strong>Mobilita 10 min</strong></li>
+          <li><strong>Trénink B</strong>: varianta dřepu • varianta hinge • varianta tlaku • varianta tahu + core/carry</li>
+          <li><strong>Kroky</strong>: 10–30 min</li>
+        </ul>
+      </div>
+
+      <div class="day anchor" id="den4">
+        <div class="dayhead"><strong>Den 4 – Mobilita + dech</strong><span class="muted">10–15 min</span></div>
+        <ul>
+          <li><strong>Mobilita 10 min</strong></li>
+          <li><strong>Dech 3–5 min</strong> (nosem, pomalu – zklidnění)</li>
+        </ul>
+      </div>
+
+      <div class="day anchor" id="den5">
+        <div class="dayhead"><strong>Den 5 – Trénink A (lehčí) + pokračování</strong><span class="muted">25–35 min</span></div>
+        <ul>
+          <li><strong>Mobilita 10 min</strong></li>
+          <li><strong>Trénink A</strong> (o chlup lehčí než Den 1 – ať končíš s energií)</li>
+          <li><strong>Další týden:</strong> Po A / St B / Pá A (a pak točíš)</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="muted" style="margin-top:14px; text-align:center;">
+      Tip: v e-mailech ti budu posílat vysvětlivky + zkrácené verze. Tuhle stránku ber jako „manuál“.
+    </p>
+  </div>
+</body>
+</html>
