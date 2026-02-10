@@ -5,28 +5,31 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ITFIT VAULT • HUB</title>
   <meta name="description" content="HUB rozcestník k materiálům ITFIT Vault: Mobilita, Základy tréninku, Tréninky A/B, Knihovna cviků, Strava a režim.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#050b08;
-      --panel:#0b1410;
-      --panel2:#0e1a14;
-      --text:#e8fff0;
-      --muted:#a9cbb6;
-      --border:rgba(0,255,65,.18);
+      --bg:#0a0a0a;
+      --panel:#121212;
+      --panel2:#171717;
+      --text:#ededed;
+      --muted:#9aa49a;
+      --border:rgba(255,255,255,.12);
       --accent:#00ff41;
       --accent2:#00d936;
       --shadow: 0 12px 30px rgba(0,0,0,.35);
       --radius:18px;
     }
     *{box-sizing:border-box}
+    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
     body{
       margin:0;
-      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+      font:16px/1.6 "Inter", system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
       color:var(--text);
       background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(0,255,65,.14), transparent 60%),
-        radial-gradient(900px 500px at 85% 0%, rgba(0,217,54,.10), transparent 55%),
-        linear-gradient(180deg, #040806, #050b08 35%, #040806);
+        radial-gradient(1200px 600px at 20% -10%, rgba(0,255,65,.10), transparent 60%),
+        radial-gradient(900px 500px at 85% 0%, rgba(59,130,246,.08), transparent 55%),
+        linear-gradient(180deg, #070707, #0a0a0a 35%, #070707);
     }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
@@ -204,14 +207,14 @@
   </style>
 </head>
 
-<body>
+<body class="selection:bg-green-500 selection:text-black">
   <nav class="vault-menu" aria-label="Vault menu">
     <a href="hub-po-zaplaceni.html">HUB</a>
     <a href="zaklady-treninku.html">Základy</a>
     <a href="mobilita.html">Mobilita</a>
     <a href="treninky-a-b.html">Tréninky A/B</a>
     <a href="knihovna-cviku.html">Knihovna cviků</a>
-    <a href="strava-zaklady.html">Strava (Základy)</a>
+    <a href="strava-zaklady.html">Strava (komplet)</a>
     <a href="rezim.html">Režim</a>
     <a href="bonus-ergonomie-a-sezeni.html">Ergonomie (Bonus)</a>
   </nav>
@@ -221,7 +224,7 @@
       <div class="brand">
         <span class="dot" aria-hidden="true"></span>
         <div>
-          <b>ITFIT VAULT</b>
+          <b class="mono">ITFIT VAULT</b>
           <div class="mini">HUB • rozcestník materiálů</div>
         </div>
       </div>
