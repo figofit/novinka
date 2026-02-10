@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ITFIT Vault – Režim & regenerace</title>
+  <meta name="description" content="Základy režimu pro IT: spánek, cirkadiánní rytmus, večerní světlo, noční režim obrazovek a regenerace.">
+  <style>
+    :root{
+      --bg:#050b08;--panel:#0b1410;--panel2:#0e1a14;--text:#e8fff0;--muted:#a9cbb6;
+      --border:rgba(0,255,65,.18);--accent:#00ff41;--shadow:0 12px 30px rgba(0,0,0,.35);--radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;color:var(--text);
+      background:radial-gradient(1200px 600px at 20% -10%, rgba(0,255,65,.14), transparent 60%),
+      radial-gradient(900px 500px at 85% 0%, rgba(0,217,54,.10), transparent 55%),linear-gradient(180deg,#040806,#050b08 35%,#040806);
+    }
+    .wrap{max-width:1050px;margin:0 auto;padding:22px 18px 46px}
+    .vault-menu{display:flex;flex-wrap:wrap;gap:10px;padding:12px 16px 18px;margin:0 auto 18px;max-width:1050px;
+      border-bottom:1px solid rgba(255,255,255,.08);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    .vault-menu a{color:var(--text);text-decoration:none;border:1px solid rgba(255,255,255,.12);padding:8px 12px;border-radius:10px;font-size:13px;background:rgba(0,0,0,.2);opacity:.92}
+    .vault-menu .is-active{border-color:var(--accent);box-shadow:0 0 0 1px rgba(0,255,65,.25) inset;opacity:1}
+    .topbar,.card{border:1px solid var(--border);border-radius:var(--radius);background:linear-gradient(180deg, rgba(0,255,65,.06), rgba(0,0,0,.0));box-shadow:var(--shadow)}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px}
+    .dot{width:12px;height:12px;border-radius:999px;background:var(--accent);box-shadow:0 0 18px rgba(0,255,65,.6)}
+    .mini{color:var(--muted);font-size:13px}.badge{font-size:12px;color:var(--muted);border:1px solid var(--border);padding:6px 10px;border-radius:999px}
+    h1{margin:18px 0 8px;font-size:clamp(28px,3.2vw,40px)} .lead{margin:0;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}@media (max-width:820px){.grid{grid-template-columns:1fr}}
+    .card{padding:16px}.card h2{margin:0 0 10px;font-size:20px}.card p{margin:0 0 8px;color:var(--muted)}
+    ul{margin:0;padding-left:18px;color:var(--muted)}li{margin:6px 0}
+    .call{margin-top:12px;border:1px dashed rgba(0,255,65,.3);border-radius:12px;padding:12px;background:rgba(0,255,65,.04)}
+  </style>
+</head>
+<body>
+  <nav class="vault-menu" aria-label="Vault menu">
+    <a href="hub-po-zaplaceni.html">HUB</a>
+    <a href="zaklady-treninku.html">Základy</a>
+    <a href="mobilita.html">Mobilita</a>
+    <a href="treninky-a-b.html">Tréninky A/B</a>
+    <a href="knihovna-cviku.html">Knihovna cviků</a>
+    <a href="strava-zaklady.html">Strava (komplet)</a>
+    <a class="is-active" href="rezim.html">Režim</a>
+    <a href="bonus-ergonomie-a-sezeni.html">Ergonomie (Bonus)</a>
+  </nav>
+  <div class="wrap">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:10px"><span class="dot"></span><div><b>ITFIT VAULT</b><div class="mini">Režim • regenerace • IT hygiena</div></div></div>
+      <span class="badge">✅ pro lidi od obrazovek</span>
+    </div>
+
+    <h1>Režim: bez něj tělo i hlava laguje</h1>
+    <p class="lead">Pokud sedíš dlouho u monitoru, režim rozhoduje víc než „perfektní trénink“. Tohle je minimum, které drží energii, spánek a regeneraci.</p>
+
+    <div class="grid">
+      <section class="card">
+        <h2>1) Spánek je priorita</h2>
+        <ul>
+          <li>Cílit 7–9 hodin, ideálně podobný čas usnutí a vstávání.</li>
+          <li>Poslední 2–3 hodiny před spaním sniž mentální i světelný stimul.</li>
+          <li>Kofein ideálně stop 8+ hodin před spánkem.</li>
+        </ul>
+        <div class="call"><b>Minimum:</b> i když je den chaos, drž čas vstávání. Tělo miluje rytmus.</div>
+      </section>
+
+      <section class="card">
+        <h2>2) Cirkadiánní rytmus</h2>
+        <ul>
+          <li>Ráno: denní světlo do očí (10–20 min chůze venku).</li>
+          <li>Přes den: pravidelné mikro-pauzy + krátký pohyb každou hodinu.</li>
+          <li>Večer: tlumit světlo, zpomalit tempo, neeskalovat stres.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>3) Modré světlo a obrazovky</h2>
+        <ul>
+          <li>Zapni noční režim na monitoru/mobilu po západu slunce.</li>
+          <li>Sniž jas obrazovek večer, ideálně teplejší barvy osvětlení místnosti.</li>
+          <li>Posledních 30–60 min před spaním bez telefonu/laptopu.</li>
+        </ul>
+        <div class="call"><b>IT pravidlo:</b> nedělej „ještě poslední task" těsně před spaním.</div>
+      </section>
+
+      <section class="card">
+        <h2>4) Regenerace pro sedavý režim</h2>
+        <ul>
+          <li>Mobilita 10–15 min denně (krk, hrudník, kyčle).</li>
+          <li>Kroky 8–12k/den jako základní „odvzdušnění" systému.</li>
+          <li>Trénink 2× týdně minimum, 3× týdně ideál.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
