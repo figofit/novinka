@@ -1,540 +1,171 @@
 <!DOCTYPE html>
-<html lang="cs" class="scroll-smooth">
+<html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ITFIT Vault | Michal Dokoupil – Optimalizace lidského hardwaru</title>
-
-  <!-- Tailwind CDN (rychlý prototyp) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STĚHUJEME OLOMOUC | Moderní stěhování 2026</title>
+  <meta name="description" content="Prémiová stěhovací firma v Olomouci. Rychlé termíny, férový ceník podle dispozice bytu/domu, pojištění a profesionální tým." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
 
-<body class="selection:bg-green-500 selection:text-black">
-  <!-- NAV -->
-  <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto">
-    <div class="mono text-xl font-bold tracking-tighter">IT.fit()</div>
-    <div class="space-x-6 text-sm mono hidden sm:block">
-      <a href="#vault" class="hover:text-green-400 transition">.vault</a>
-      <a href="#longevity" class="hover:text-green-400 transition">.longevity</a>
-      <a href="#recenze" class="hover:text-green-400 transition">.recenze</a>
-      <a href="#upgrade" class="hover:text-green-400 transition">.upgrade</a>
-      <a href="#obsah" class="hover:text-green-400 transition">.obsah</a>
-      <a href="#prokoho" class="hover:text-green-400 transition">.pro_koho</a>
-      <a href="#faq" class="hover:text-green-400 transition">.faq</a>
-      <a href="https://partnerweb.cz" class="text-gray-500 hover:text-white transition">Partnerweb.cz</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header class="max-w-6xl mx-auto py-16 md:py-20 px-6">
-    <div class="grid md:grid-cols-2 gap-10 items-start">
-      <div>
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
-          Váš kód je čistý.<br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
-            Ale co váš hardware<span class="caret blink">_</span>
-          </span>
-        </h1>
-        <div class="inline-flex items-center gap-2 mb-6">
-          <span class="mono text-xs text-black bg-green-500 px-3 py-1 rounded-sm">FITNESS • POSTURA • ENERGIE</span>
-          <span class="mono text-xs text-gray-400 border border-gray-800 px-3 py-1 rounded-sm">UDRŽITELNOST • PŘENOSITELNOST • LONGEVITY</span>
-          <span class="mono text-xs text-gray-400 border border-gray-800 px-3 py-1 rounded-sm">30+ min</span>
-        </div>
-
-        <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-xl leading-relaxed">
-          Zapomeňte na „fitness“. <span class="text-gray-200 font-semibold">ITFIT je systémová optimalizace těla</span> pro lidi, co sedí 8+ hodin (u PC i za volantem).
-          Debugujeme <span class="text-gray-200 font-semibold">špatnou posturu</span> a <span class="text-gray-200 font-semibold">lagující energii</span>
-          pomocí <span class="text-gray-200 font-semibold">mobility + komplexních cviků</span> a jednoduchých pravidel pro váhu.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center mb-10">
-          <a href="#vault" class="bg-white text-black px-8 py-4 font-bold rounded-sm hover:bg-green-400 transition duration-300 inline-block mono">
-            &gt; Odemknout_Vault (lifetime)
-          </a>
-          <a href="#obsah" class="px-8 py-4 font-semibold rounded-sm border border-gray-800 hover:border-gray-600 transition inline-block mono text-sm">
-            Zobrazit_obsah()
-          </a>
-        </div>
-
-        <div class="text-sm text-gray-500 leading-relaxed">
-          <span class="mono text-green-400">core:</span> mobilita 10–15 min denně + trénink 2× týdně (minimum, co funguje) → pro rychlejší progres 3× týdně (A/B full-body)<br>
-          <span class="mono text-green-400">bonus:</span> cokoliv navíc (kroky, sport, trampolínky) – jen jako přídavek<br>
-          <span class="mono text-green-400">vybavení:</span> 0 vybavení (start) • guma/expander • kettlebell • fitko (volitelně)
-        </div>
-
-        <div class="mt-6 bg-gray-900/30 border border-gray-800 rounded-lg p-4">
-          <div class="mono text-green-400 text-xs mb-2">symptoms()</div>
-          <p class="text-sm text-gray-300 leading-relaxed">
-            Sedíš dlouho → <span class="text-gray-200 font-semibold">ramena dopředu</span>, <span class="text-gray-200 font-semibold">krk a záda</span> protestují,
-            <span class="text-gray-200 font-semibold">core je offline</span>. ITFIT tě vrací zpátky do „funkčního módu“.
-          </p>
-        </div>
-
-      </div>
-
-      <div class="bg-gray-900/50 p-6 md:p-8 border border-gray-800 rounded-lg">
-        <div class="w-full rounded-lg border border-gray-800 mb-6 bg-black/40 p-6 text-center text-sm text-gray-500">
-          Placeholder image removed
-        </div>
-
-        <div class="flex items-center justify-between gap-4 mb-4">
-          <div>
-            <p class="mono text-green-400 text-sm">v1.0 | Stable Release</p>
-            <h2 class="text-2xl font-bold">ITFIT Vault</h2>
-          </div>
-          <div class="text-right">
-            <div class="mono text-3xl font-bold">2 499 Kč</div>
-            <div class="text-xs text-gray-500">jednorázově • doživotní přístup</div>
-          </div>
-        </div>
-
-        <ul class="space-y-3 text-gray-300 text-sm mb-6">
-          <li class="flex items-start gap-2">
-            <span class="text-green-500 mono">[+]</span>
-            6 sekcí: Základy • Mobilita • Tréninky A/B • Knihovna • Hubnutí • Ergonomie
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-green-500 mono">[+]</span>
-            A/B full-body plán (2–4 komplexní cviky) + jednoduchá progrese
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-green-500 mono">[+]</span>
-            Knihovna “core” cviků (krátká videa: setup / provedení / chyby) + varianty s gumou/expanderem
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-green-500 mono">[+]</span>
-            Hubnutí bez dietního cirkusu: 2–3 pravidla + nouzovky
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-green-500 mono">[+]</span>
-            Nadstavby a coaching se odemykají až uvnitř (kdo chce víc)
-          </li>
-        </ul>
-
-        <div class="flex flex-col sm:flex-row items-center gap-3">
-          <a href="#checkout" class="w-full sm:w-auto bg-green-500 text-black px-10 py-4 font-bold rounded-sm hover:bg-green-400 transition mono text-center">
-            OBJEDNAT VAULT
-          </a>
-          <div class="text-xs text-gray-500">
-            Žádné členství. Žádné “každý měsíc”. Jednou koupíš → jedeš.
-          </div>
-        </div>
-      </div>
-    </div>
+  <header class="topbar">
+    <a class="logo" href="#hero">STĚHUJEME <span>OLOMOUC</span></a>
+    <nav>
+      <a href="#sluzby">Služby</a>
+      <a href="#cenik">Ceník</a>
+      <a href="#recenze">Recenze</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="cta-mini" href="#kontakt">Nezávazná poptávka</a>
   </header>
 
-  <!-- STORY -->
-  <section id="prokoho" class="max-w-6xl mx-auto py-16 px-6 border-t border-gray-900">
-    <div class="grid md:grid-cols-2 gap-10">
-      <div class="accent-border pl-6">
-        <h3 class="mono text-2xl mb-4"># pro_koho_to_je</h3>
-        <ul class="space-y-3 text-gray-300">
-          <li>✅ sedíš u PC / řídíš / makáš hlavou (IT, office, manažeři, podnikání, doktoři, řidiči…)</li>
-          <li>✅ chceš <span class="text-gray-200 font-semibold">systém</span>, ne motivaci</li>
-          <li>✅ chceš minimum, co funguje, a umí to běžet měsíce a roky</li>
-          <li>✅ chceš komplexní cviky a rychlé tréninky bez přemýšlení</li>
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-copy glass">
+        <p class="tag">Design 2026 • AI plánování tras • Profi servis</p>
+        <h1>Top stěhování v Olomouci.<br />Rychle, klidně a bez stresu.</h1>
+        <p>
+          Kompletní stěhovací servis pro byty, domy i firmy. Přijedeme včas,
+          chráníme majetek a držíme domluvený rozpočet.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#kontakt">Objednat termín</a>
+          <a class="btn btn-ghost" href="#cenik">Zobrazit ceník</a>
+        </div>
+      </div>
+
+      <div class="hero-card glass">
+        <h2>Proč právě my</h2>
+        <ul>
+          <li><span>✓</span> Pojištěné stěhování do 10 mil. Kč</li>
+          <li><span>✓</span> Vlastní obalový materiál a ochranné fólie</li>
+          <li><span>✓</span> Večerní i víkendové termíny</li>
+          <li><span>✓</span> Pomoc s demontáží a montáží nábytku</li>
         </ul>
       </div>
+    </section>
 
-      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <h3 class="mono text-2xl mb-4"># pro_koho_to_neni</h3>
-        <ul class="space-y-3 text-gray-300">
-          <li>❌ chceš striktní dietu na gramy a přesné jídelníčky</li>
-          <li>❌ chceš plán 4× týdně s vybavením + sledovat 10 metod</li>
-          <li>❌ chceš “wow” program každý týden a zábavní park místo procesu</li>
-          <li>✅ trampolínky? klidně. <span class="text-gray-200 font-semibold">Ale jen jako bonus pohyb navíc.</span></li>
-        </ul>
+    <section id="sluzby" class="section">
+      <div class="section-head">
+        <p class="tag">Co umíme</p>
+        <h2>Výčet služeb</h2>
       </div>
-    </div>
-
-    <div class="mt-10 text-gray-400">
-      <span class="mono text-green-400">poznámka:</span> nuda je feature, ne bug.
-      Stejně jako v kódu – konzistence a stabilní release porazí chaos.
-    </div>
-  </section>
-
-  <!-- VAULT SECTION -->
-  <section id="vault" class="max-w-6xl mx-auto py-16 px-6 border-t border-gray-900">
-    <div class="grid lg:grid-cols-2 gap-10 items-start">
-      <div>
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Co je ITFIT Vault?</h2>
-        <p class="text-gray-400 leading-relaxed mb-6">
-          Vault je <span class="text-gray-200 font-semibold">základní systém</span>, který používám, když s někým začínám.
-          Dostaneš vše podstatné: co dělat, jak to dělat a proč to funguje.
-          Pak už je to hlavně o tom, jestli to <span class="text-gray-200 font-semibold">odjedeš</span>.
-        </p>
-
-        <!-- ABOUT / AUTHOR -->
-        <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6 mb-6">
-          <div class="flex items-start justify-between gap-6 flex-col md:flex-row">
-            <div class="min-w-[220px]">
-              <div class="mono text-green-400 text-sm mb-2">author()</div>
-              <h3 class="text-xl font-bold">Michal Dokoupil</h3>
-              <p class="text-sm text-gray-400 mt-1">9+ let praxe • trénink • studium pohybu</p>
-            </div>
-
-            <div class="text-gray-300 text-sm leading-relaxed">
-              <p class="mb-3">
-                ITFIT není “motivační program”. Je to <span class="text-gray-200 font-semibold">opakovatelný protokol</span> pro lidi,
-                co sedí 8+ hodin a mají plnou hlavu (IT, office, manažeři, řidiči).
-              </p>
-              <ul class="space-y-2 text-gray-300">
-                <li><span class="mono text-green-500">[+]</span> <span class="mono text-green-400">tested_in_production()</span> jen to, co sám dělám a mám ověřeno na lidech</li>
-                <li><span class="mono text-green-500">[+]</span> laděno roky na reálný život: málo času, stres, sezení</li>
-                <li><span class="mono text-green-500">[+]</span> mobilita + komplexní cviky + konzistence (žádný cirkus)</li>
-                <li><span class="mono text-green-500">[+]</span> víc detailů / coaching se řeší až uvnitř (dobrovolně)</li>
-              </ul>
-
-              <div class="mt-4 text-gray-500 text-xs">
-                Obsah a vibe: <span class="mono">@figofit</span> (Instagram)
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6 mb-6">
-          <div class="mono text-green-400 text-sm mb-2">core_protocol()</div>
-          <p class="text-gray-300">
-            <span class="kbd mono">10–15 min</span> mobilita denně +
-            <span class="kbd mono">2×</span> týdně (minimum) / <span class="kbd mono">3×</span> týdně (ideál) <span class="kbd mono">30+ min</span> A/B full-body
-            + jednoduchý nutriční setup pro udržitelné hubnutí.
-          </p>
-        </div>
-
-        <div class="text-gray-400">
-          Chceš víc? Striktnější dietu, detailní tracking, 4× týdně tréninky, form-checky, další metody?
-          <span class="text-gray-200 font-semibold">To je nadstavba</span> a odemyká se až uvnitř Vaultu (volitelně).
-        </div>
+      <div class="grid services-grid">
+        <article class="service glass">
+          <h3>Stěhování bytů a domů</h3>
+          <p>Od garsonky po vícegenerační dům. Včetně balení, odnosu a vykládky.</p>
+        </article>
+        <article class="service glass">
+          <h3>Stěhování firem</h3>
+          <p>Minimalizujeme výpadek provozu. Přesuny kanceláří i archivů přes noc.</p>
+        </article>
+        <article class="service glass">
+          <h3>Těžká břemena</h3>
+          <p>Klavíry, trezory, serverové racky i citlivá technika se speciálním jištěním.</p>
+        </article>
+        <article class="service glass">
+          <h3>Vyklízení a odvoz</h3>
+          <p>Ekologický odvoz starého nábytku, spotřebičů a odpadu na sběrný dvůr.</p>
+        </article>
       </div>
+    </section>
 
-      <div class="bg-gray-900/50 p-8 border border-gray-800 rounded-lg">
-        <h3 class="text-2xl font-bold mb-2">Co tím získáš</h3>
-        <p class="mono text-green-400 mb-6">Minimalismus • Konzistence • Výsledek</p>
-
-        <div class="space-y-4 text-gray-300">
-          <div class="flex gap-3">
-            <div class="mono text-green-500">01</div>
-            <div>
-              <div class="font-semibold">Jasný plán bez rozhodování</div>
-              <div class="text-sm text-gray-400">Otevřeš → uděláš → hotovo. Žádné “co mám dnes cvičit?”</div>
-            </div>
-          </div>
-
-          <div class="flex gap-3">
-            <div class="mono text-green-500">02</div>
-            <div>
-              <div class="font-semibold">Komplexní cviky = nejvíc efektu za nejmíň času</div>
-              <div class="text-sm text-gray-400">Dřep / hinge / tlak / tah / core–carry. Stále dokola. A právě proto to funguje.</div>
-            </div>
-          </div>
-
-          <div class="flex gap-3">
-            <div class="mono text-green-500">03</div>
-            <div>
-              <div class="font-semibold">Hubnutí bez cirkusu</div>
-              <div class="text-sm text-gray-400">2–3 pravidla + nouzovky pro dny, kdy nestíháš.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-8 border-t border-gray-800 pt-6 text-sm text-gray-400">
-          <span class="mono text-green-400">tip:</span> když chceš dělat trampolínky, sport, kruháč –
-          dělej. Jen to ber jako <span class="text-gray-200 font-semibold">bonus pohyb navíc</span>, ne core.
-        </div>
+    <section id="cenik" class="section">
+      <div class="section-head">
+        <p class="tag">Férová cena</p>
+        <h2>Ceník podle dispozice</h2>
       </div>
-    </div>
-  </section>
-
-  <!-- CONTENT / MODULES -->
-  <section id="obsah" class="max-w-6xl mx-auto py-16 px-6 border-t border-gray-900">
-    <h2 class="text-3xl md:text-4xl font-bold mb-10">Obsah Vaultu (v1.0)</h2>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-gray-900/40 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-sm mb-2">module_1</div>
-        <h3 class="text-2xl font-bold mb-3">Základy tréninku</h3>
-        <p class="text-gray-400 text-sm mb-5">Principy, bezpečnost, progres. Ať se to nepřekombinuje.</p>
+      <div class="grid price-grid">
+        <article class="price glass">
+          <h3>1+kk / 1+1</h3>
+          <p class="price-value">od 4 900 Kč</p>
+          <p>Ideální pro startovací byty, studentské přesuny a menší domácnosti.</p>
+        </article>
+        <article class="price glass highlight">
+          <h3>2+kk / 2+1</h3>
+          <p class="price-value">od 7 900 Kč</p>
+          <p>Nejčastější stěhování v Olomouci. Včetně základního balicího materiálu.</p>
+        </article>
+        <article class="price glass">
+          <h3>3+kk / 3+1</h3>
+          <p class="price-value">od 10 900 Kč</p>
+          <p>Rodinné stěhování s možností demontáže nábytku a odvozu odpadu.</p>
+        </article>
+        <article class="price glass">
+          <h3>4+kk a větší</h3>
+          <p class="price-value">individuálně</p>
+          <p>Po krátké konzultaci připravíme přesnou cenovou nabídku do 60 minut.</p>
+        </article>
       </div>
-      <div class="bg-gray-900/40 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-sm mb-2">module_2</div>
-        <h3 class="text-2xl font-bold mb-3">Mobilita (28 dní)</h3>
-        <p class="text-gray-400 text-sm mb-5">Denní hygiena pohybu. 10–15 min, lepší technika, méně bolesti.</p>
+      <p class="pricing-note">Cena se odvíjí od dispozice, patra, přístupu k objektu a doplňkových služeb.</p>
+    </section>
+
+    <section id="recenze" class="section">
+      <div class="section-head">
+        <p class="tag">Důvěra klientů</p>
+        <h2>Recenze</h2>
       </div>
-      <div class="bg-gray-900/40 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-sm mb-2">module_3</div>
-        <h3 class="text-2xl font-bold mb-3">Tréninky A/B</h3>
-        <p class="text-gray-400 text-sm mb-5">Full-body plán ve kratší i delší verzi. Jednoduše 2–3× týdně.</p>
+      <div class="grid reviews-grid">
+        <blockquote class="glass review">
+          „Nejlepší stěhování, které jsme zažili. Příjezd na minutu přesně a vše bez jediného škrábance.“
+          <cite>— Petra K., Nová Ulice</cite>
+        </blockquote>
+        <blockquote class="glass review">
+          „Stěhovali nám kanceláře o víkendu. V pondělí jsme mohli normálně fungovat.“
+          <cite>— Martin H., Olomouc centrum</cite>
+        </blockquote>
+        <blockquote class="glass review">
+          „Skvělá komunikace, jasná cena předem a super přístup týmu. Doporučuji všem." 
+          <cite>— Lenka V., Slavonín</cite>
+        </blockquote>
       </div>
-      <div class="bg-gray-900/40 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-sm mb-2">module_4</div>
-        <h3 class="text-2xl font-bold mb-3">Knihovna cviků</h3>
-        <p class="text-gray-400 text-sm mb-5">Technika, chyby a náhrady cviků podle vybavení.</p>
+    </section>
+
+    <section id="kontakt" class="section">
+      <div class="section-head">
+        <p class="tag">Napište nám</p>
+        <h2>Kontaktní formulář</h2>
       </div>
-      <div class="bg-gray-900/40 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-sm mb-2">module_5</div>
-        <h3 class="text-2xl font-bold mb-3">Hubnutí &amp; formování postavy</h3>
-        <p class="text-gray-400 text-sm mb-5">Kalorická bilance, pravidla, nouzovky a kontrola pokroku.</p>
-      </div>
-      <div class="bg-gray-900/40 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-sm mb-2">module_6</div>
-        <h3 class="text-2xl font-bold mb-3">Ergonomie &amp; sezení (bonus)</h3>
-        <p class="text-gray-400 text-sm mb-5">Setup pracovního místa, mikro-rutiny a checklisty.</p>
-      </div>
-    </div>
+      <form class="glass contact-form">
+        <label>
+          Jméno a příjmení
+          <input type="text" name="name" placeholder="Např. Jan Novák" required />
+        </label>
+        <label>
+          E-mail
+          <input type="email" name="email" placeholder="jan@email.cz" required />
+        </label>
+        <label>
+          Telefon
+          <input type="tel" name="phone" placeholder="+420 777 000 000" required />
+        </label>
+        <label>
+          Dispozice
+          <select name="layout" required>
+            <option value="">Vyberte dispozici</option>
+            <option>1+kk / 1+1</option>
+            <option>2+kk / 2+1</option>
+            <option>3+kk / 3+1</option>
+            <option>4+kk a větší</option>
+            <option>Firma / kancelář</option>
+          </select>
+        </label>
+        <label class="full">
+          Zpráva
+          <textarea name="message" rows="5" placeholder="Termín stěhování, adresa, patro, výtah, speciální požadavky..." required></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Odeslat poptávku</button>
+      </form>
+    </section>
+  </main>
 
-    <div class="mt-6 bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-      <div class="mono text-green-400 text-sm mb-2">bonus_modules()</div>
-      <h3 class="text-xl font-bold">Bonusy (uvnitř Vaultu)</h3>
-      <ul class="mt-3 space-y-2 text-gray-300 text-sm">
-        <li><span class="mono text-green-500">[+]</span> Ergonomie &amp; sezení: nastavení pracovního místa, mikro-rutiny a checklisty (IT-friendly)</li>
-        <li><span class="mono text-green-500">[+]</span> Mini protokoly na krk/ramena/bedra pro sedavou práci</li>
-      </ul>
-    </div>
-
-    <div class="mt-6 bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-      <div class="mono text-green-400 text-sm mb-2">jak_to_funguje()</div>
-      <ul class="space-y-2 text-gray-300 text-sm">
-        <li><span class="mono text-green-500">[+]</span> Denně: Mobilita 10–15 min (28 dní)</li>
-        <li><span class="mono text-green-500">[+]</span> 2× týdně minimum / 3× týdně ideál: Tréninky A/B (kratší i delší verze)</li>
-        <li><span class="mono text-green-500">[+]</span> Podpora podle potřeby: Knihovna cviků / Hubnutí / Ergonomie</li>
-      </ul>
-    </div>
-
-<div class="mt-8 bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-      <div class="flex items-center justify-between flex-wrap gap-3">
-        <div>
-          <div class="mono text-green-400 text-sm mb-1">equipment_profiles()</div>
-          <h3 class="text-xl font-bold">4 profily vybavení (aby to šlo odjet všude)</h3>
-        </div>
-        <div class="mono text-green-400 text-sm">0 → guma → KB → fitko</div>
-      </div>
-
-      <p class="text-gray-400 text-sm mt-3 leading-relaxed">
-        Vault tě nenechá stát, když nemáš činky. Každý pohybový vzor má variantu:
-        <span class="text-gray-200 font-semibold">vlastní váha</span>,
-        <span class="text-gray-200 font-semibold">guma/expander</span>,
-        <span class="text-gray-200 font-semibold">kettlebell</span> nebo
-        <span class="text-gray-200 font-semibold">fitko</span>.
-        Cíl je stejný: <span class="text-gray-200 font-semibold">nuda + konzistence</span>.
-      </p>
-
-      <div class="mt-4 grid md:grid-cols-2 gap-3 text-sm text-gray-300">
-        <div class="bg-black/30 border border-gray-800 rounded-lg p-4">
-          <div class="mono text-green-500 text-xs mb-1">expander_use_cases</div>
-          <ul class="space-y-1">
-            <li><span class="mono text-green-500">[+]</span> tahy na záda (row, face pull)</li>
-            <li><span class="mono text-green-500">[+]</span> core (Pallof press, anti-rotace)</li>
-            <li><span class="mono text-green-500">[+]</span> aktivace ramen/lopatek (externí rotace)</li>
-          </ul>
-        </div>
-        <div class="bg-black/30 border border-gray-800 rounded-lg p-4">
-          <div class="mono text-green-500 text-xs mb-1">travel_friendly</div>
-          <p class="text-gray-400 text-sm">
-            Guma je nejlevnější “upgrade” do auta/batohu. Pro řidiče a cestování ideál.
-          </p>
-        </div>
-      </div>
-    </div>
-
-      </section>
-
-  <!-- PRICING / CHECKOUT -->
-
-  <!-- LONGEVITY -->
-  <section id="longevity" class="max-w-6xl mx-auto py-16 px-6 border-t border-gray-900">
-    <div class="flex items-end justify-between flex-wrap gap-6 mb-10">
-      <div>
-        <div class="mono text-green-400 text-sm mb-2">longevity()</div>
-        <h2 class="text-3xl md:text-4xl font-bold">Udržitelnost. Přenositelnost. Svaly proti stáří.</h2>
-      </div>
-      <div class="text-gray-500 text-sm max-w-xl">
-        ITFIT je postavený tak, aby to šlo <span class="text-gray-200 font-semibold">odjet roky</span> – ne jen “na 4 týdny”.
-        Systém musí fungovat v práci, na cestách i v běžném životě.
-      </div>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-xs mb-2">sustainability</div>
-        <h3 class="text-xl font-bold mb-2">Udržitelnost</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Minimum, které reálně odjedeš: mobilita 10–15 min denně + 2× týdně 30+ min trénink.
-          Ideál: 3× týdně, když chceš rychlejší progres.
-          Žádný cirkus. Jen konzistence.
-        </p>
-      </div>
-
-      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-xs mb-2">transfer_to_life</div>
-        <h3 class="text-xl font-bold mb-2">Přenositelnost</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Doma, v kanclu, na hotelu, mezi směnama. Vybavení je volitelné (0 / guma / KB / fitko),
-          ale princip zůstává stejný.
-        </p>
-      </div>
-
-      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-xs mb-2">muscle_insurance</div>
-        <h3 class="text-xl font-bold mb-2">Svaly vs. stáří</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Síla a svaly jsou “pojištění” proti stárnutí: lepší postura, stabilita, výkonnost.
-          Nejde jen o vzhled – jde o funkční tělo.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="recenze" class="max-w-6xl mx-auto py-16 px-6 border-t border-gray-900">
-    <h2 class="text-3xl md:text-4xl font-bold mb-10">Recenze z praxe</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-xs mb-2">review_01</div>
-        <p class="text-gray-300 text-sm leading-relaxed mb-4">
-          „Po 2 týdnech jsem přestal řešit krk a lopatky. 30+ min dám i po práci, protože je to jednoduché.“
-        </p>
-        <div class="text-gray-500 text-xs">— Petr, vývojář (office 9h)</div>
-      </div>
-      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-xs mb-2">review_02</div>
-        <p class="text-gray-300 text-sm leading-relaxed mb-4">
-          „Konečně systém. Ne motivace. Otevřu, odjedu A/B a mám hotovo. Energie stabilnější.“
-        </p>
-        <div class="text-gray-500 text-xs">— Tomáš, manažer (schůzky + auto)</div>
-      </div>
-      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <div class="mono text-green-400 text-xs mb-2">review_03</div>
-        <p class="text-gray-300 text-sm leading-relaxed mb-4">
-          „Jezdím dlouhé trasy. Mobilita a guma/expander jsou top. Záda nejsou po směně mrtvý.“
-        </p>
-        <div class="text-gray-500 text-xs">— Martin, řidič (8–12h volant)</div>
-      </div>
-    </div>
-
-    <div class="mt-6 text-gray-500 text-sm">
-      <span class="mono text-green-400">pozn.:</span> Demo recenze – kdykoliv je vyměníme za tvoje reálné (ideálně krátké a konkrétní).
-    </div>
-  </section>
-
-  <!-- UPGRADE / COACHING -->
-  <section id="upgrade" class="max-w-6xl mx-auto py-12 px-6 border-t border-gray-900">
-    <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6 flex items-start justify-between gap-6 flex-col md:flex-row">
-      <div>
-        <div class="mono text-green-400 text-sm mb-2">upgrade()</div>
-        <h3 class="text-xl font-bold mb-2">1:1 coaching (volitelně)</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Pro lidi, co chtějí rychlejší progres, kontrolu techniky a vedení.
-          <span class="text-gray-200 font-semibold">Dostupné až po vstupu do Vaultu</span> (omezená kapacita).
-        </p>
-      </div>
-      <div class="mono text-green-400 text-sm">
-        after_purchase_only = true
-      </div>
-    </div>
-  </section>
-
-  <section id="checkout" class="max-w-6xl mx-auto py-16 px-6 border-t border-gray-900">
-    <div class="bg-gray-900/50 border border-gray-800 rounded-lg p-8 md:p-12 grid lg:grid-cols-2 gap-10 items-center">
-      <div>
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Odemkni Vault</h2>
-        <p class="text-gray-400 leading-relaxed mb-6">
-          Jednorázový nákup. Doživotní přístup. Aktualizace a drobné dropy obsahu v čase.
-          Nadstavby a coaching se řeší až uvnitř, pokud budeš chtít.
-          Po přihlášení uvidíš HUB a doporučené pořadí: Základy → Mobilita → Tréninky A/B. Knihovna a hubnutí jsou podle potřeby.
-        </p>
-
-        <div class="flex items-end gap-4 mb-6">
-          <div class="mono text-5xl font-bold">2 499</div>
-          <div class="text-gray-400 mb-1">Kč</div>
-        </div>
-
-        <ul class="space-y-2 text-gray-300 text-sm mb-8">
-          <li><span class="mono text-green-500">[+]</span> Základy + Mobilita + Tréninky A/B</li>
-          <li><span class="mono text-green-500">[+]</span> A/B plán + progrese</li>
-          <li><span class="mono text-green-500">[+]</span> core knihovna cviků</li>
-          <li><span class="mono text-green-500">[+]</span> hubnutí: pravidla + nouzovky</li>
-        </ul>
-
-        <button class="w-full sm:w-auto bg-green-500 text-black px-10 py-4 font-bold rounded-sm hover:bg-green-400 transition mono">
-          POKRAČOVAT K PLATBĚ
-        </button>
-
-        <div class="mt-4 text-xs text-gray-500">
-          *Tlačítko je zatím placeholder. Napojíš ho na Stripe/platební bránu nebo checkout v platformě.
-        </div>
-      </div>
-
-      <div class="bg-black/40 border border-gray-800 rounded-lg p-6">
-        <h3 class="mono text-green-400 text-sm mb-2">unlockables()</h3>
-        <h4 class="text-2xl font-bold mb-4">Co se odemyká uvnitř (dobrovolně)</h4>
-
-        <ul class="space-y-3 text-gray-300 text-sm">
-          <li><span class="mono text-green-500">[+]</span> více tréninků / detailnější cykly (kdo chce víc času)</li>
-          <li><span class="mono text-green-500">[+]</span> striktnější stravování / tracking (kdo chce jít hardcore)</li>
-          <li><span class="mono text-green-500">[+]</span> form-checky, technické “debug” konzultace</li>
-          <li><span class="mono text-green-500">[+]</span> coaching (limitované kapacity)</li>
-          <li><span class="mono text-green-500">[+]</span> bonus knihovna cviků a variant (pro “hračičky”)</li>
-        </ul>
-
-        <div class="mt-6 text-gray-500 text-sm">
-          Cíl Vaultu je, abys nepotřeboval nic navíc. Nadstavby jsou jen pro ty, co chtějí.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="max-w-6xl mx-auto py-16 px-6 border-t border-gray-900">
-    <h2 class="text-3xl md:text-4xl font-bold mb-10">FAQ</h2>
-
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <h3 class="font-semibold mb-2">Musím mít fitko?</h3>
-        <p class="text-gray-400 text-sm">
-          Ne. Startuješ bez vybavení. Volitelně můžeš přidat <span class="text-gray-200 font-semibold">gumu/expander</span> nebo kettlebell. Pokud máš fitko, použiješ “fitko variantu” cviků.
-        </p>
-      </div>
-
-      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <h3 class="font-semibold mb-2">Kolik času to reálně zabere?</h3>
-        <p class="text-gray-400 text-sm">
-          Core je mobilita 10–15 min denně + 2× týdně 30+ min (minimum). Když chceš rychlejší progres, dej 3× týdně.
-        </p>
-      </div>
-
-      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <h3 class="font-semibold mb-2">Je to “nuda” schválně?</h3>
-        <p class="text-gray-400 text-sm">
-          Jo. Nuda znamená opakovatelnost. A opakovatelnost znamená výsledek.
-        </p>
-      </div>
-
-      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <h3 class="font-semibold mb-2">A co když chci trampolínky / sport?</h3>
-        <p class="text-gray-400 text-sm">
-          Super – ber to jako bonus pohyb navíc. Core ITFIT se nemění.
-        </p>
-      </div>
-    </div>
-
-    <div class="mt-10 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
-      <a href="#checkout" class="bg-white text-black px-8 py-4 font-bold rounded-sm hover:bg-green-400 transition duration-300 inline-block mono">
-        &gt; Odemknout_Vault()
-      </a>
-      <div class="text-sm text-gray-500">Nastavíš systém jednou. Pak už jen jedeš.</div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="py-16 text-center text-gray-600 border-t border-gray-900">
-    <p class="mono text-sm">&copy; 2026 ITFIT | Michal Dokoupil</p>
-    <p class="text-xs mt-2 uppercase tracking-widest">Upgrade your body. Keep coding.</p>
+  <footer>
+    <p>STĚHUJEME OLOMOUC • +420 777 123 456 • info@stehujeme-olomouc.cz</p>
   </footer>
-
 </body>
 </html>
