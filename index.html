@@ -1,120 +1,231 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#10271c" />
-  <title>TipLiga — MS ve fotbale 2026</title>
-  <meta name="description" content="Soukromá tipovací liga pro mistrovství světa ve fotbale 2026." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#12385F">
+<title>Autoškola Stella | Kroměříž, Olomouc, Prostějov</title>
+<meta name="description" content="Moderní autoškola pro skupinu B, B L17, automat a kondiční jízdy.">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#" aria-label="TipLiga domů">
-      <span class="brand-mark">TL</span>
-      <span>TipLiga <small>MS 2026</small></span>
-    </a>
-    <nav class="view-switch" aria-label="Přepnout pohled">
-      <button class="switch-btn active" data-view="player">Moje tipy</button>
-      <button class="switch-btn" data-view="admin">Administrace</button>
-    </nav>
-    <button class="avatar" aria-label="Profil">JK</button>
-  </header>
-
-  <main>
-    <section id="player-view" class="view active">
-      <div class="hero player-hero">
-        <div>
-          <p class="eyebrow"><span class="live-dot"></span> Tipování je otevřené</p>
-          <h1>Ahoj, Jakube.<br /><span>Jdeme na titul?</span></h1>
-          <p class="hero-copy">Vyplň své tipy na skupinovou fázi a bonusové otázky. První zápas začíná za <strong>6 dní</strong>.</p>
-        </div>
-        <div class="progress-card">
-          <div class="progress-top"><span>Vyplněno</span><strong id="progress-label">0 / 6</strong></div>
-          <div class="progress-track"><span id="progress-bar"></span></div>
-          <p>Tipy můžeš měnit až do výkopu každého zápasu.</p>
-        </div>
-      </div>
-
-      <div class="page-grid">
-        <div class="main-column">
-          <section class="content-section">
-            <div class="section-title">
-              <div><p class="eyebrow">Skupinová fáze</p><h2>Nejbližší zápasy</h2></div>
-              <span class="count-pill">4 zápasy</span>
-            </div>
-            <form id="tips-form" class="match-list"></form>
-          </section>
-
-          <section class="content-section bonus-section">
-            <div class="section-title">
-              <div><p class="eyebrow">Za extra body</p><h2>Bonusové otázky</h2></div>
-              <span class="points-pill">+ 8 bodů</span>
-            </div>
-            <div id="bonus-list" class="bonus-list"></div>
-          </section>
-
-          <div class="save-panel">
-            <p><span class="status-icon">✓</span><span><strong id="save-status">Tipy jsou připravené</strong><small>Uložíme je pod tvým unikátním odkazem.</small></span></p>
-            <button id="save-tips" class="primary-btn">Uložit všechny tipy <span>→</span></button>
-          </div>
-        </div>
-
-        <aside class="sidebar">
-          <div class="side-card league-card">
-            <p class="eyebrow">Tvoje liga</p>
-            <h3>Kancl United</h3>
-            <div class="rank"><strong>4.</strong><span>místo z 12 hráčů<small>zatím bez bodů</small></span></div>
-            <button class="text-btn">Zobrazit žebříček <span>→</span></button>
-          </div>
-          <div class="side-card rules-card">
-            <div class="icon-box">i</div>
-            <h3>Jak se boduje?</h3>
-            <ul><li><strong>3 body</strong> za přesný výsledek</li><li><strong>1 bod</strong> za správného vítěze</li><li><strong>+ body</strong> za bonusové otázky</li></ul>
-            <a href="#">Kompletní pravidla</a>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="admin-view" class="view">
-      <div class="admin-heading">
-        <div><p class="eyebrow">Administrace ligy</p><h1>Kancl United</h1><p>Spravuj zápasy, účastníky a výsledky na jednom místě.</p></div>
-        <button id="export-btn" class="secondary-btn">↓ Exportovat tipy CSV</button>
-      </div>
-      <div class="stats-grid">
-        <article><span class="stat-icon">♟</span><p>Účastníci</p><strong id="participant-count">4</strong><small>unikátní odkazy</small></article>
-        <article><span class="stat-icon">✓</span><p>Odevzdané tipy</p><strong id="submission-count">1</strong><small>z celkových 4</small></article>
-        <article><span class="stat-icon">⚽</span><p>Zápasy</p><strong>4</strong><small>čekají na výsledek</small></article>
-        <article><span class="stat-icon">★</span><p>Bonusové otázky</p><strong>2</strong><small>celkem 8 bodů</small></article>
-      </div>
-
-      <div class="admin-grid">
-        <section class="admin-card">
-          <div class="card-head"><div><p class="eyebrow">Správa účastníků</p><h2>Unikátní odkazy</h2></div><button id="add-participant" class="primary-btn small">+ Přidat účastníka</button></div>
-          <div id="participants-list" class="participants-list"></div>
-        </section>
-        <section class="admin-card quick-card">
-          <p class="eyebrow">Rychlé akce</p><h2>Obsah tipovačky</h2>
-          <button id="add-match" class="action-row"><span class="action-icon">+</span><span><strong>Přidat zápas</strong><small>Soupeři, termín a uzávěrka</small></span><b>→</b></button>
-          <button id="add-question" class="action-row"><span class="action-icon">?</span><span><strong>Přidat bonusovou otázku</strong><small>Text, možnosti a počet bodů</small></span><b>→</b></button>
-          <button id="open-ranking" class="action-row"><span class="action-icon">#</span><span><strong>Bodování a žebříček</strong><small>Připraveno pro automatizaci</small></span><b>→</b></button>
-        </section>
-      </div>
-    </section>
-  </main>
-
-  <div id="toast" class="toast" role="status"></div>
-  <dialog id="app-dialog">
-    <form method="dialog" id="dialog-form">
-      <div class="dialog-head"><div><p class="eyebrow">Administrace</p><h2 id="dialog-title">Přidat účastníka</h2></div><button type="button" class="close-btn" aria-label="Zavřít">×</button></div>
-      <div id="dialog-fields"></div>
-      <div class="dialog-actions"><button type="button" class="secondary-btn dialog-cancel">Zrušit</button><button id="dialog-submit" class="primary-btn" type="submit">Uložit</button></div>
-    </form>
-  </dialog>
-  <script src="app.js"></script>
+<div class="topbar">
+<div class="container">
+<div class="topbar-left">
+<a href="tel:+420732831665">📞 <strong>732 831 665</strong>
+</a>
+<a href="mailto:info@autoskola-stella.cz">✉️ info@autoskola-stella.cz</a>
+</div>
+<div class="topbar-right">
+<span>📍 Kroměříž • Olomouc • Prostějov</span>
+<a href="online-prihlaseni.html">
+<strong>Online přihlášení</strong>
+</a>
+</div>
+</div>
+</div>
+<nav class="nav">
+<div class="container">
+<a class="brand" href="index.html">
+<span class="brand-badge">
+</span>
+<span>
+<span class="brand-title">Autoškola Stella</span>
+<span class="brand-sub">šťastné návraty z cest</span>
+</span>
+</a>
+<div class="menu">
+<div class="menu-item">
+<a class="menu-link" href="index.html#kurzy">Kurzy ▾</a>
+<div class="dropdown">
+<a href="skupina-b.html">Skupina B <small>klasický řidičák na osobní auto</small>
+</a>
+<a href="b-l17.html">B L17 <small>řízení od 17 let s doprovodem</small>
+</a>
+<a href="automat.html">Automat <small>výuka s automatickou převodovkou</small>
+</a>
+<a href="kondicni-jizdy.html">Kondiční jízdy <small>návrat za volant a větší jistota</small>
+</a>
+</div>
+</div>
+<div class="menu-item">
+<a class="menu-link" href="index.html#lokality">Lokality ▾</a>
+<div class="dropdown">
+<a href="autoskola-kromeriz.html">Kroměříž <small>učebna, místo výuky, praktické info</small>
+</a>
+<a href="autoskola-olomouc.html">Olomouc <small>informace pro zájemce z Olomouce</small>
+</a>
+<a href="autoskola-prostejov.html">Prostějov <small>výuka, jízdy a autotrenažér</small>
+</a>
+</div>
+</div>
+<a class="menu-link" href="cenik.html">Ceník</a>
+<a class="menu-link" href="index.html#proc">Proč Stella</a>
+<a class="menu-link" href="kontakt.html">Kontakt</a>
+</div>
+<a class="nav-cta" href="online-prihlaseni.html">Online přihlášení</a>
+</div>
+</nav>
+<main>
+<header class="hero">
+<div class="container">
+<div class="hero-shell">
+<div class="hero-grid">
+<div>
+<div class="eyebrow">
+<i>
+</i> Autoškola pro šťastné návraty z cest</div>
+<h1>Řidičák klidně, jasně a bez zbytečného chaosu.</h1>
+<p class="hero-lead">Skupina B, B L17, automat i kondiční jízdy v Kroměříži, Olomouci a Prostějově.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="online-prihlaseni.html">Online přihlášení →</a>
+<a class="btn btn-secondary" href="cenik.html">Zobrazit ceník</a>
+</div>
+<div class="hero-note">Přehledný web pro výběr kurzu, lokality a rychlé odeslání přihlášky.</div>
+</div>
+<div class="hero-visual" aria-label="Automobilový motiv">
+<div class="road-card">
+<div class="sun">
+</div>
+<div class="city-sign">Kroměříž • Olomouc • Prostějov <span>výuka a jízdy podle domluvy</span>
+</div>
+<div class="car">
+<div class="car-body">
+</div>
+<div class="wheel left">
+</div>
+<div class="wheel right">
+</div>
+</div>
+</div>
+<div class="instructor-card">
+<b>Jízdy v klidu</b>
+<span>jasné informace, lidská domluva a přehledný postup</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<section id="kurzy">
+<div class="container">
+<div class="section-head">
+<div class="kicker">Kurzy</div>
+<h2>Vyberte typ kurzu. Detail je na samostatné stránce.</h2>
+<p>Každý kurz má jasně popsaný průběh, pro koho je vhodný a co udělat jako první.</p>
+</div>
+<div class="grid-4">
+<article class="card">
+<div class="icon">B</div>
+<h3>Skupina B</h3>
+<p>Klasický řidičák na osobní automobil.</p>
+<a href="skupina-b.html">Zjistit více →</a>
+</article>
+<article class="card">
+<div class="icon">17</div>
+<h3>B L17</h3>
+<p>Řízení od 17 let s doprovodem.</p>
+<a href="b-l17.html">Zjistit více →</a>
+</article>
+<article class="card">
+<div class="icon">A</div>
+<h3>Automat</h3>
+<p>Výuka s automatickou převodovkou.</p>
+<a href="automat.html">Zjistit více →</a>
+</article>
+<article class="card">
+<div class="icon">↻</div>
+<h3>Kondiční jízdy</h3>
+<p>Pro návrat za volant a větší jistotu.</p>
+<a href="kondicni-jizdy.html">Zjistit více →</a>
+</article>
+</div>
+</div>
+</section>
+<section class="locations" id="lokality">
+<div class="container">
+<div class="section-head">
+<div class="kicker">Lokality</div>
+<h2>Autoškola ve třech městech</h2>
+<p>Vyberte město a podívejte se na praktické informace k výuce.</p>
+</div>
+<div class="grid-3">
+<article class="card">
+<div class="icon">KM</div>
+<h3>Kroměříž</h3>
+<p>Praktické informace k výuce a kurzům v Kroměříži.</p>
+<a href="autoskola-kromeriz.html">Autoškola Kroměříž →</a>
+</article>
+<article class="card">
+<div class="icon">OL</div>
+<h3>Olomouc</h3>
+<p>Informace pro zájemce z Olomouce a okolí.</p>
+<a href="autoskola-olomouc.html">Autoškola Olomouc →</a>
+</article>
+<article class="card">
+<div class="icon">PV</div>
+<h3>Prostějov</h3>
+<p>Výuka, jízdy, automat a autotrenažér v Prostějově.</p>
+<a href="autoskola-prostejov.html">Autoškola Prostějov →</a>
+</article>
+</div>
+</div>
+</section>
+<section id="proc">
+<div class="container">
+<div class="logic-box">
+<div>
+<div class="kicker" style="color:#FFD978">Proč Stella</div>
+<h2>Nejdřív směr. Potom detail. Nakonec přihláška.</h2>
+<p>Jednoduché kroky, trpělivý přístup instruktorů a přehledná komunikace od prvního kontaktu.</p>
+</div>
+<div class="logic-list">
+<div class="logic-item">
+<b>Kurzy mají vlastní stránky</b>
+<span>Skupina B, B L17, automat a kondiční jízdy.</span>
+</div>
+<div class="logic-item">
+<b>Lokality mají vlastní stránky</b>
+<span>Města, výuka, mapy a praktické informace.</span>
+</div>
+<div class="logic-item">
+<b>Ceník je samostatně</b>
+<span>Cenu najdete rychle a bez hledání.</span>
+</div>
+<div class="logic-item">
+<b>Online přihlášení</b>
+<span>Hlavní cesta pro rychlý start kurzu.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="final-cta">
+<div class="container">
+<div class="cta-box">
+<div>
+<h2>Chcete začít s řidičákem?</h2>
+<p>Vyberte typ kurzu, lokalitu a odešlete online přihlášení.</p>
+</div>
+<div class="hero-actions">
+<a class="btn btn-primary" href="online-prihlaseni.html">Online přihlášení</a>
+<a class="btn btn-secondary" href="cenik.html">Ceník</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer id="kontakt">
+<div class="container footer-inner">
+<div>
+<strong style="color:var(--blue-900)">Autoškola Stella</strong>
+<br>Kroměříž • Olomouc • Prostějov</div>
+<div>📞 732 831 665 &nbsp;&nbsp; ✉️ info@autoskola-stella.cz</div>
+</div>
+</footer>
+<div class="mobile-actions">
+<a class="mobile-call" href="tel:+420732831665">Zavolat</a>
+<a class="mobile-apply" href="online-prihlaseni.html">Přihláška</a>
+</div>
 </body>
 </html>
