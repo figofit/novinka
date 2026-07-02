@@ -1,120 +1,131 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#10271c" />
-  <title>TipLiga — MS ve fotbale 2026</title>
-  <meta name="description" content="Soukromá tipovací liga pro mistrovství světa ve fotbale 2026." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
+  <title>Knihovna cviků | ITFIT</title>
+  <meta name="description" content="Čistá knihovna prvních pěti cviků: Rumunský tah, Suitcase Hold, Klik, Plank a Výpad vzad.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#" aria-label="TipLiga domů">
-      <span class="brand-mark">TL</span>
-      <span>TipLiga <small>MS 2026</small></span>
-    </a>
-    <nav class="view-switch" aria-label="Přepnout pohled">
-      <button class="switch-btn active" data-view="player">Moje tipy</button>
-      <button class="switch-btn" data-view="admin">Administrace</button>
-    </nav>
-    <button class="avatar" aria-label="Profil">JK</button>
-  </header>
-
-  <main>
-    <section id="player-view" class="view active">
-      <div class="hero player-hero">
-        <div>
-          <p class="eyebrow"><span class="live-dot"></span> Tipování je otevřené</p>
-          <h1>Ahoj, Jakube.<br /><span>Jdeme na titul?</span></h1>
-          <p class="hero-copy">Vyplň své tipy na skupinovou fázi a bonusové otázky. První zápas začíná za <strong>6 dní</strong>.</p>
-        </div>
-        <div class="progress-card">
-          <div class="progress-top"><span>Vyplněno</span><strong id="progress-label">0 / 6</strong></div>
-          <div class="progress-track"><span id="progress-bar"></span></div>
-          <p>Tipy můžeš měnit až do výkopu každého zápasu.</p>
+  <main class="exercise-board" aria-label="Knihovna cviků">
+    <article class="exercise-card hinge">
+      <div class="exercise-visual" aria-hidden="true">
+        <span class="visual-label">RDL</span>
+        <div class="figure figure-hinge"></div>
+      </div>
+      <div class="exercise-content">
+        <p class="category">HINGE • ZADNÍ ŘETĚZEC</p>
+        <h1>Rumunský tah <span>(RDL)</span></h1>
+        <ul class="cue-list">
+          <li>Mírně pokrč kolena</li>
+          <li>Boky tlač dozadu</li>
+          <li>Kettlebell drž blízko těla</li>
+          <li>Chodidla pevně v zemi</li>
+          <li>Zpevni střed a drž neutrální páteř</li>
+          <li>Pohyb vede kyčel, ne dřep</li>
+        </ul>
+        <div class="rules">
+          <span>Trup zůstává pevný</span>
+          <span>Tah jde podél stehen</span>
+          <span>Nezakulacuj bedra</span>
         </div>
       </div>
+    </article>
 
-      <div class="page-grid">
-        <div class="main-column">
-          <section class="content-section">
-            <div class="section-title">
-              <div><p class="eyebrow">Skupinová fáze</p><h2>Nejbližší zápasy</h2></div>
-              <span class="count-pill">4 zápasy</span>
-            </div>
-            <form id="tips-form" class="match-list"></form>
-          </section>
-
-          <section class="content-section bonus-section">
-            <div class="section-title">
-              <div><p class="eyebrow">Za extra body</p><h2>Bonusové otázky</h2></div>
-              <span class="points-pill">+ 8 bodů</span>
-            </div>
-            <div id="bonus-list" class="bonus-list"></div>
-          </section>
-
-          <div class="save-panel">
-            <p><span class="status-icon">✓</span><span><strong id="save-status">Tipy jsou připravené</strong><small>Uložíme je pod tvým unikátním odkazem.</small></span></p>
-            <button id="save-tips" class="primary-btn">Uložit všechny tipy <span>→</span></button>
-          </div>
+    <article class="exercise-card carry">
+      <div class="exercise-visual" aria-hidden="true">
+        <span class="visual-label">HOLD</span>
+        <div class="figure figure-carry"></div>
+      </div>
+      <div class="exercise-content">
+        <p class="category">CARRY • CORE • ANTI-ÚKLON</p>
+        <h1>Suitcase Hold</h1>
+        <ul class="cue-list">
+          <li>Zpevni střed a stůj vzpřímeně</li>
+          <li>Chodidla pevně v zemi</li>
+          <li>Kettlebell drž vedle těla</li>
+          <li>Volná strana zůstává klidná</li>
+          <li>Rameno drž dál od ucha</li>
+          <li>Pánev drž rovně</li>
+        </ul>
+        <div class="rules">
+          <span>Trup zůstává pevný</span>
+          <span>Nevykláněj se do strany</span>
+          <span>Dýchej klidně a drž postoj</span>
         </div>
+      </div>
+    </article>
 
-        <aside class="sidebar">
-          <div class="side-card league-card">
-            <p class="eyebrow">Tvoje liga</p>
-            <h3>Kancl United</h3>
-            <div class="rank"><strong>4.</strong><span>místo z 12 hráčů<small>zatím bez bodů</small></span></div>
-            <button class="text-btn">Zobrazit žebříček <span>→</span></button>
-          </div>
-          <div class="side-card rules-card">
-            <div class="icon-box">i</div>
-            <h3>Jak se boduje?</h3>
-            <ul><li><strong>3 body</strong> za přesný výsledek</li><li><strong>1 bod</strong> za správného vítěze</li><li><strong>+ body</strong> za bonusové otázky</li></ul>
-            <a href="#">Kompletní pravidla</a>
-          </div>
-        </aside>
+    <article class="exercise-card push">
+      <div class="exercise-visual" aria-hidden="true">
+        <span class="visual-label">PUSH</span>
+        <div class="figure figure-push"></div>
       </div>
-    </section>
+      <div class="exercise-content">
+        <p class="category">PUSH • HORNÍ ČÁST TĚLA</p>
+        <h1>Klik</h1>
+        <ul class="cue-list">
+          <li>Tělo v jedné přímce</li>
+          <li>Lokty 30–45° od těla</li>
+          <li>Hrudník těsně nad zemí</li>
+          <li>Dlaně pod rameny a pevný střed</li>
+        </ul>
+        <div class="rules">
+          <span>Neprohýbej bedra</span>
+          <span>Ramena netlač k uším</span>
+          <span>Kvalita opakování je víc než počet</span>
+        </div>
+      </div>
+    </article>
 
-    <section id="admin-view" class="view">
-      <div class="admin-heading">
-        <div><p class="eyebrow">Administrace ligy</p><h1>Kancl United</h1><p>Spravuj zápasy, účastníky a výsledky na jednom místě.</p></div>
-        <button id="export-btn" class="secondary-btn">↓ Exportovat tipy CSV</button>
+    <article class="exercise-card core">
+      <div class="exercise-visual" aria-hidden="true">
+        <span class="visual-label">CORE</span>
+        <div class="figure figure-core"></div>
       </div>
-      <div class="stats-grid">
-        <article><span class="stat-icon">♟</span><p>Účastníci</p><strong id="participant-count">4</strong><small>unikátní odkazy</small></article>
-        <article><span class="stat-icon">✓</span><p>Odevzdané tipy</p><strong id="submission-count">1</strong><small>z celkových 4</small></article>
-        <article><span class="stat-icon">⚽</span><p>Zápasy</p><strong>4</strong><small>čekají na výsledek</small></article>
-        <article><span class="stat-icon">★</span><p>Bonusové otázky</p><strong>2</strong><small>celkem 8 bodů</small></article>
+      <div class="exercise-content">
+        <p class="category">CORE • STABILITA • ANTIEXTENZE</p>
+        <h1>Plank</h1>
+        <ul class="cue-list">
+          <li>Tělo v jedné přímce</li>
+          <li>Lokty přímo pod rameny</li>
+          <li>Zpevni břicho a hýždě</li>
+          <li>Tlač předloktí do země</li>
+        </ul>
+        <div class="rules">
+          <span>Nenech padat bedra</span>
+          <span>Dýchej bez povolení středu</span>
+          <span>Ukonči sérii dřív, než se rozpadne technika</span>
+        </div>
       </div>
+    </article>
 
-      <div class="admin-grid">
-        <section class="admin-card">
-          <div class="card-head"><div><p class="eyebrow">Správa účastníků</p><h2>Unikátní odkazy</h2></div><button id="add-participant" class="primary-btn small">+ Přidat účastníka</button></div>
-          <div id="participants-list" class="participants-list"></div>
-        </section>
-        <section class="admin-card quick-card">
-          <p class="eyebrow">Rychlé akce</p><h2>Obsah tipovačky</h2>
-          <button id="add-match" class="action-row"><span class="action-icon">+</span><span><strong>Přidat zápas</strong><small>Soupeři, termín a uzávěrka</small></span><b>→</b></button>
-          <button id="add-question" class="action-row"><span class="action-icon">?</span><span><strong>Přidat bonusovou otázku</strong><small>Text, možnosti a počet bodů</small></span><b>→</b></button>
-          <button id="open-ranking" class="action-row"><span class="action-icon">#</span><span><strong>Bodování a žebříček</strong><small>Připraveno pro automatizaci</small></span><b>→</b></button>
-        </section>
+    <article class="exercise-card lunge">
+      <div class="exercise-visual" aria-hidden="true">
+        <span class="visual-label">LUNGE</span>
+        <div class="figure figure-lunge"></div>
       </div>
-    </section>
+      <div class="exercise-content">
+        <p class="category">NOHY • STABILITA • JEDNA NOHA</p>
+        <h1>Výpad vzad</h1>
+        <ul class="cue-list">
+          <li>Trup drž vzpřímeně</li>
+          <li>Kettlebell drž u hrudníku</li>
+          <li>Přední chodidlo pevně v zemi</li>
+          <li>Zadní koleno míří k zemi</li>
+        </ul>
+        <div class="rules">
+          <span>Koleno přední nohy drž ve směru špičky</span>
+          <span>Nepadáš do strany</span>
+          <span>Pohyb kontroluj dolů i nahoru</span>
+        </div>
+      </div>
+    </article>
   </main>
-
-  <div id="toast" class="toast" role="status"></div>
-  <dialog id="app-dialog">
-    <form method="dialog" id="dialog-form">
-      <div class="dialog-head"><div><p class="eyebrow">Administrace</p><h2 id="dialog-title">Přidat účastníka</h2></div><button type="button" class="close-btn" aria-label="Zavřít">×</button></div>
-      <div id="dialog-fields"></div>
-      <div class="dialog-actions"><button type="button" class="secondary-btn dialog-cancel">Zrušit</button><button id="dialog-submit" class="primary-btn" type="submit">Uložit</button></div>
-    </form>
-  </dialog>
-  <script src="app.js"></script>
 </body>
 </html>
